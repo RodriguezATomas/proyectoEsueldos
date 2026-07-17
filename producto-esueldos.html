@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Producto — e-Sueldos</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Conocé el ecosistema modular de e-Sueldos: liquidación, RR.HH., operaciones y la plataforma Leia. Todo conectado en una sola base de datos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   1. DESIGN TOKENS
+   ============================================================ */
+:root{
+  --blue:#2355E8; --blue-2:#5C82F5; --blue-3:#8FADFC;
+  --navy:#071124; --navy-2:#0B1220; --navy-3:#121B2E;
+  --ink:#081A4D; --text:#1D2939; --muted:#667085;
+  --line:#E1E4E9; --soft:#F7F8FA; --soft-blue:#EEF3FF;
+  --teal:#0EA5A0; --orange:#D97706; --violet:#7B6CF0; --cyan:#22D3EE;
+  --shadow:0 24px 70px rgba(11,18,32,.14);
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Nunito Sans",sans-serif;background:#fff;color:var(--ink)}
+a{text-decoration:none;color:inherit}
+img,svg{display:block}
+.wrap{width:min(1180px,calc(100% - 48px));margin:auto}
+.section{padding:92px 0}
+.section-head{text-align:center;max-width:860px;margin:0 auto 46px}
+.eyebrow{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);font-weight:900;margin-bottom:12px}
+.section h2{font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.12;letter-spacing:-.025em;color:#14215D;margin:0}
+.section-head p{font-size:16px;color:#475467;line-height:1.6;margin:18px auto 0;max-width:760px}
+
+/* ============================================================
+   2. TOPBAR + UTILITY BAR
+   ============================================================ */
+.topbar{background:linear-gradient(90deg,#405EEA,#6C7AF8);color:#fff;font-size:14px;font-weight:800}
+.topbar .wrap{height:34px;display:flex;align-items:center;justify-content:center;gap:10px}
+.pill{border:1px solid rgba(255,255,255,.78);border-radius:999px;padding:2px 14px;font-size:12px;text-transform:uppercase}
+.utility{background:#fff;border-bottom:1px solid var(--line)}
+.utility .wrap{height:42px;display:flex;align-items:center;justify-content:flex-end;gap:22px;font-size:14px;color:var(--ink);font-weight:700}
+
+/* ============================================================
+   3. HEADER / NAV STICKY CON MEGA MENÚ
+   ============================================================ */
+.header{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-shell{position:relative;width:min(1320px,calc(100% - 24px));margin:10px auto;border:1px solid var(--line);border-radius:999px;background:#fff;box-shadow:0 12px 34px rgba(11,18,32,.06)}
+.nav{height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;gap:28px}
+.logo{display:flex;align-items:center;padding:0}
+.logo img{width:170px;height:46px;object-fit:contain;object-position:left center}
+.nav-links{display:flex;align-items:center;gap:30px;flex:1}
+.nav-item{position:static}
+.nav-btn,.nav-link{border:0;background:transparent;font:inherit;font-size:17px;font-weight:700;color:#020617;letter-spacing:0;display:flex;align-items:center;gap:7px;cursor:pointer;padding:22px 0}
+.nav-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.4;transition:.2s}
+.nav-item:hover .nav-btn svg{transform:rotate(180deg)}
+.nav-actions{display:flex;align-items:center;gap:16px;flex-shrink:0}
+.login{font-size:15px;font-weight:700;color:var(--ink)}
+.demo{height:46px;display:inline-flex;align-items:center;justify-content:center;background:#4A67EA;color:#fff;border-radius:15px;padding:0 28px;font-size:16px;font-weight:800}
+.mega{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(12px);width:min(1140px,calc(100vw - 30px));background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:10px;opacity:0;pointer-events:none;transition:.18s;display:grid;grid-template-columns:190px 1fr 300px;gap:10px}
+.nav-item:hover .mega,.nav-item:focus-within .mega{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.mega-side{background:#fff;border-radius:16px;padding:10px}
+.mega-side a{display:flex;justify-content:space-between;align-items:center;padding:12px 12px;border-radius:12px;color:#020617;font-weight:700;font-size:16px;letter-spacing:0;white-space:nowrap}
+.mega-side a:hover,.mega-side a.active{background:var(--soft-blue);color:#4A67EA}
+.mega-main{background:#F7F8FA;border-radius:16px;padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.mega-card{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start}
+.mega-icon{width:24px;height:24px;border-radius:8px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;color:#4A67EA;font-weight:900}
+.mega-card b{display:block;font-size:16px;color:#475467;margin-bottom:5px}
+.mega-card small{display:block;font-size:13px;line-height:1.4;color:#98A2B3}
+.mega-visual{border-radius:16px;background:linear-gradient(145deg,#EEF3FF,#F8FBFF);padding:22px;display:flex;align-items:center;justify-content:center;min-height:250px}
+.mini-screen{width:220px;background:#fff;border:1px solid #DCE6FF;border-radius:18px;box-shadow:0 18px 48px rgba(35,85,232,.16);padding:18px}
+.mini-bar{height:12px;border-radius:999px;background:#EEF3FF;margin:10px 0}
+.industry-badge{font-size:42px;line-height:1.05;color:#5C76E8;font-weight:900;text-align:center}
+
+/* ============================================================
+   4. HERO
+   ============================================================ */
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#EEF3FF 0,#fff 76%);padding:110px 0 90px}
+.hero-grid{display:grid;grid-template-columns:1fr 520px;gap:54px;align-items:center}
+.hero h1{font-size:clamp(2.35rem,4.8vw,4.6rem);line-height:1;letter-spacing:-.035em;margin:0;color:#14215D;font-weight:900;max-width:780px}
+.hero h1 em{font-style:normal;color:#4A67EA}
+.hero-sub{font-size:18px;line-height:1.5;color:#344054;margin:24px 0 0;max-width:720px}
+.hero-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.hero-tabs span{background:#fff;border:1px solid #DCE6FF;border-radius:999px;padding:8px 13px;color:#4A67EA;font-size:13px;font-weight:900}
+.hero-actions{display:flex;align-items:center;gap:18px;margin-top:34px;flex-wrap:wrap}
+.store-rating{display:flex;align-items:center;gap:14px;margin-top:28px;color:#475467;font-size:14px;font-weight:800}
+.stars{color:var(--blue);letter-spacing:2px}
+.hero-visual{position:relative;width:min(100%,500px);min-height:480px;display:flex;align-items:flex-start;justify-content:center;justify-self:center;padding-top:24px;box-sizing:border-box}
+.hero-visual img{width:100%;height:auto;border-radius:30px;box-shadow:0 30px 70px rgba(35,85,232,.22);filter:brightness(.58) saturate(.92)}
+.image-copy{position:absolute;left:44px;top:48px;z-index:2;color:#fff;max-width:260px}
+.image-copy .suite-tag{background:rgba(255,255,255,.24);border:1px solid rgba(255,255,255,.34);backdrop-filter:blur(10px)}
+.image-copy .suite-title{font-size:24px;line-height:1.05;text-shadow:0 12px 28px rgba(0,0,0,.32)}
+
+/* Visual propio del hero: suite de módulos conectados */
+.suite-visual{position:relative;width:100%;display:grid;gap:16px}
+.suite-main{background:linear-gradient(155deg,#14215D,#2355E8);border-radius:26px;padding:30px;color:#fff;box-shadow:var(--shadow)}
+.suite-tag{display:inline-flex;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:7px 12px;font-size:11px;font-weight:900;text-transform:none;letter-spacing:0;margin-bottom:18px;backdrop-filter:blur(12px)}
+.suite-title{font-size:22px;font-weight:800;margin:18px 0 20px}
+.suite-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.suite-grid span{display:block;height:56px;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2)}
+.suite-bars{display:grid;gap:8px;margin-top:20px}
+.suite-bars span{display:block;height:8px;border-radius:999px;background:rgba(255,255,255,.22)}
+.suite-card{position:absolute;right:0;bottom:88px;background:#fff;border:1px solid #DCE6FF;border-radius:18px;padding:15px 15px 15px 48px;box-shadow:0 18px 44px rgba(11,18,32,.14);text-align:left;backdrop-filter:blur(12px);min-width:188px;color:#14215D;font-size:13px;font-weight:900}
+.suite-card:before{content:"";position:absolute;left:16px;top:18px;width:18px;height:18px;border-radius:7px;background:linear-gradient(145deg,#2355E8,#8FADFC);box-shadow:0 8px 18px rgba(35,85,232,.24)}
+.suite-card span{display:block;font-size:13px;color:#102052;font-weight:900;text-transform:none;letter-spacing:0}
+.suite-card b{display:block;font-size:24px;color:var(--blue);line-height:1;margin-top:7px}
+.suite-card small{display:block;color:#667085;font-size:11px;margin-top:5px;font-weight:800;line-height:1.35}
+
+/* ============================================================
+   5. LOGOS / MARQUEE
+   ============================================================ */
+.logos{padding:42px 0 76px;background:#fff}
+.logos h2{text-align:center;font-size:28px;line-height:1.2;margin:0;color:#14215D}
+.logos p{text-align:center;color:var(--muted);margin:12px 0 26px;font-size:15px}
+.logo-marquee{overflow:hidden;margin-top:28px;display:grid;gap:18px}
+.logo-track{display:flex;gap:48px;width:max-content;animation:marquee 34s linear infinite}
+.logo-track.reverse{animation-direction:reverse;animation-duration:40s}
+.logo-tile{min-width:160px;height:54px;display:flex;align-items:center;justify-content:center;color:#8A94A6;font-size:17px;font-weight:900;filter:grayscale(1);opacity:.72;transition:.22s ease;text-align:center}
+.logo-tile:hover{color:var(--blue);filter:grayscale(0);opacity:1;transform:translateY(-2px)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============================================================
+   6. PANEL DE PRODUCTO / IA
+   ============================================================ */
+.feature{background:#F7F8FF;padding-top:46px}
+.feature-intro{text-align:center;max-width:900px;margin:0 auto 34px}
+.feature-intro h2{font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.12;color:#14215D;margin:0}
+.feature-intro p{margin:14px auto 0;color:#475467;font-size:16px;line-height:1.55}
+.feature-grid{display:grid;grid-template-columns:minmax(0,520px) minmax(0,600px);gap:28px;align-items:center;justify-content:center}
+.feature-panel{width:min(100%,520px);background:#fff;border:1px solid #DCE6FF;border-radius:26px;padding:30px;box-shadow:var(--shadow)}
+.feature-panel h3{font-size:28px;margin:0 0 14px;color:#14215D}
+.feature-panel p{color:#475467;line-height:1.6;font-size:15px}
+.feature-list{display:grid;gap:14px;margin-top:22px}
+.feature-list div{display:flex;gap:12px;align-items:flex-start;border:1px solid #E7ECF8;border-radius:16px;padding:15px;background:#FAFCFF}
+.feature-list b{display:block;color:#14215D}.feature-list small{color:#667085;line-height:1.4}
+.feature-visual{width:min(100%,600px);min-height:400px;justify-self:center;border-radius:26px;background:#fff;border:1px solid #DCE6FF;box-shadow:var(--shadow);overflow:hidden;color:#14215D;display:flex;align-items:center;justify-content:center;padding:24px}
+
+/* Mockup de chat para el panel de Leia */
+.chat-mock{width:100%;display:grid;gap:12px}
+.chat-mock .bot,.chat-mock .user{max-width:82%;padding:13px 16px;border-radius:16px;font-size:14px;line-height:1.5}
+.chat-mock .bot{background:#F0F4FF;color:#14215D;border:1px solid #DCE6FF;justify-self:start;border-bottom-left-radius:4px}
+.chat-mock .user{background:#14215D;color:#EAF0FF;justify-self:end;border-bottom-right-radius:4px}
+.chat-mock .bot b{color:var(--blue)}
+
+/* ============================================================
+   7. SECCIÓN OSCURA — plataforma / integraciones
+   ============================================================ */
+.dark-section{background:#091225;color:#fff;overflow:hidden}
+.dark-section .section-head h2,.dark-section .section-head p{color:#fff}
+.dark-grid{display:grid;grid-template-columns:480px 560px;gap:34px;align-items:center;justify-content:center}
+.dark-copy h3{font-size:32px;line-height:1.08;margin:0 0 18px}.dark-copy p{color:#CBD5E8;font-size:15px;line-height:1.6}
+.dark-tags{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}
+.dark-tags span{border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;text-align:center;color:#EAF0FF;font-weight:900}
+.dark-visual{position:relative;min-height:360px;border-radius:26px;background:linear-gradient(135deg,#17203A,#0B1220);border:1px solid rgba(255,255,255,.1);padding:28px 30px;display:grid;align-content:center;gap:12px;overflow:hidden}
+.feed-card{position:relative;margin-left:42px;padding:8px 0 8px 22px;color:#fff}
+.feed-card:before{content:"✓";position:absolute;left:-36px;top:10px;width:24px;height:24px;border-radius:8px;background:rgba(74,103,234,.16);border:1px solid rgba(74,103,234,.38);color:#8FADFC;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.feed-card b{display:flex;align-items:center;gap:8px;font-size:17px;margin-bottom:5px}
+.feed-card p{margin:0;color:#CBD5E8;line-height:1.45}
+
+/* ============================================================
+   8. RESULTADOS / KPIs
+   ============================================================ */
+.results{background:#fff}
+.results-board{border:1px solid #DCE6FF;border-radius:26px;background:rgba(255,255,255,.92);box-shadow:0 24px 70px rgba(35,85,232,.08);overflow:hidden;display:grid;grid-template-columns:300px 1fr}
+.results-main{background:linear-gradient(135deg,#142B78,#4A67EA);color:#fff;padding:32px;display:flex;flex-direction:column;justify-content:space-between;min-height:290px}
+.results-main small{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:900;color:#C8D7FF}
+.results-main b{display:block;font-size:52px;line-height:.95;margin-top:36px;font-weight:800}
+.results-main span{display:block;color:#EAF0FF;font-size:16px;font-weight:800;line-height:1.35;margin-top:12px}
+.results-list{display:grid;grid-template-columns:repeat(2,1fr);gap:0 32px;padding:24px 34px}
+.result{display:grid;grid-template-columns:72px 1fr;align-items:center;gap:16px;padding:15px 0;border-bottom:1px solid #E7ECF8}
+.result:nth-last-child(-n+2){border-bottom:0}
+.result b{width:max-content;background:#EEF3FF;border:1px solid #DCE6FF;border-radius:999px;padding:7px 10px;font-size:18px;color:var(--blue);line-height:1;font-weight:900}
+.result span{color:#14215D;font-weight:800;line-height:1.35;font-size:14px}
+
+/* ============================================================
+   9. GRID DE MÓDULOS / PRODUCTOS (por familia)
+   ============================================================ */
+.modules{background:#F7F8FA}
+.modules-shell{display:grid;grid-template-columns:220px 1fr;gap:18px;align-items:start}
+.module-side{background:#fff;border:1px solid #DCE6FF;border-radius:20px;padding:10px;align-self:stretch;box-shadow:0 14px 34px rgba(35,85,232,.06);display:grid}
+.module-side a{display:flex;align-items:center;padding:14px 15px;border-radius:13px;color:#020617;font-size:15px;font-weight:800}
+.module-side a:hover,.module-side a.active{background:var(--soft-blue);color:var(--blue)}
+.module-grid{background:#fff;border:1px solid #DCE6FF;border-radius:20px;padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px;box-shadow:0 18px 46px rgba(35,85,232,.07)}
+.module-card{position:relative;border:1px solid #E7ECF8;border-radius:14px;padding:14px 44px 14px 18px;background:linear-gradient(180deg,#fff,#FAFCFF);display:block;transition:.2s;min-height:64px}
+.module-card:hover{border-color:#BFD0FF;box-shadow:0 16px 38px rgba(35,85,232,.1);transform:translateY(-2px)}
+.module-card:after{content:"→";position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--blue);font-size:18px;font-weight:900}
+.module-card h3{font-size:16px;margin:0 0 6px;color:#14215D}
+.module-card p{font-size:13px;margin:0;color:#667085;line-height:1.4}
+
+/* ============================================================
+   10. GRID DE INDUSTRIAS / CASOS DE USO
+   ============================================================ */
+.industries{background:#fff}
+.industry-grid{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:stretch}
+.industry-list{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.industry-list div{position:relative;min-height:170px;padding:24px 24px 44px;border-radius:18px;background:#fff;border:1px solid #E7ECF8;box-shadow:0 18px 48px rgba(11,18,32,.06);transition:.2s}
+.industry-list div:hover{border-color:#BFD0FF;box-shadow:0 24px 58px rgba(35,85,232,.14);transform:translateY(-3px)}
+.industry-list i{display:flex;width:48px;height:48px;border-radius:14px;background:#EEF3FF;color:var(--blue);align-items:center;justify-content:center;margin-bottom:16px;font-style:normal;font-size:25px;font-weight:900}
+.industry-list h3{margin:0 0 9px;color:#071124;font-size:18px}.industry-list p{margin:0;color:#475467;line-height:1.45}
+.industry-list span{position:absolute;right:24px;bottom:20px;color:var(--blue);font-size:25px;font-weight:900}
+.industry-visual{position:relative;overflow:hidden;border-radius:18px;background:linear-gradient(160deg,#EAF7FF,#EEF3FF 56%,#DCE6FF);display:flex;align-items:center;justify-content:center;padding:34px;box-shadow:0 24px 58px rgba(35,85,232,.12)}
+
+/* ============================================================
+   11. TESTIMONIOS
+   ============================================================ */
+.testimonials{background:linear-gradient(180deg,#EEF3FF,#F8FAFF)}
+.quote-grid{overflow:hidden;display:flex;gap:18px}
+.quote-track{display:flex;gap:18px;width:max-content;animation:quoteMarquee 32s linear infinite}
+.quote-grid:hover .quote-track{animation-play-state:paused}
+.quote{position:relative;width:360px;min-height:190px;flex:0 0 360px;background:rgba(255,255,255,.9);border:1px solid #DCE6FF;border-radius:20px;padding:26px;box-shadow:0 18px 46px rgba(35,85,232,.08);overflow:hidden}
+.quote:before{content:"“";position:absolute;right:22px;top:8px;color:#E1E8FF;font-size:72px;font-weight:900;line-height:1}
+.quote p{position:relative;margin:0;color:#344054;line-height:1.65;font-size:15px;font-weight:700}
+.quote-author{display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:center;margin-top:22px}
+.quote-author:before{content:"";width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#EEF3FF,#DCE6FF);border:1px solid #C8D7FF}
+.quote-author b,.quote-author small{margin:0;display:block}
+.quote-author small{color:#667085;margin-top:3px;font-weight:800}
+@keyframes quoteMarquee{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 9px))}}
+
+/* ============================================================
+   12. CTA FINAL
+   ============================================================ */
+.cta-section{background:#091225;color:#fff;text-align:center;padding:90px 0}
+.cta-section h2{font-size:clamp(1.65rem,2.8vw,2.8rem);line-height:1.12;margin:0 0 20px;color:#fff}
+.cta-section p{font-size:16px;color:#EAF0FF;margin:0 auto 30px;max-width:720px}
+.cta-section .demo{margin-top:40px}
+
+/* ============================================================
+   13. FOOTER
+   ============================================================ */
+.footer{background:#050B16;color:#8FA0BD;padding:56px 0 28px}
+.footer-top{display:grid;grid-template-columns:1.25fr repeat(4,1fr);gap:28px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:40px}
+.footer-logo{height:38px;width:auto;margin-bottom:18px}
+.footer p{line-height:1.6;color:#8FA0BD}
+.footer h4{color:#5C6B8A;text-transform:uppercase;font-size:14px;font-weight:700;letter-spacing:.08em}
+.footer a{display:block;color:#CBD5E8;margin:10px 0;font-size:14px}
+.footer-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;font-size:13px;color:#667085}
+
+/* ============================================================
+   14. RESPONSIVE
+   ============================================================ */
+@media(max-width:980px){
+  .topbar,.utility,.nav-links,.login{display:none}
+  .nav-shell{border-radius:0;width:100%;margin:0;border-left:0;border-right:0}
+  .hero-grid,.feature-grid,.dark-grid,.industry-grid,.modules-shell,.results-board{grid-template-columns:1fr}
+  .module-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .dark-visual{grid-template-columns:1fr;height:auto}
+  .suite-card{position:static;margin-top:14px;text-align:left}
+}
+@media(max-width:620px){
+  .wrap{width:min(100% - 28px,1180px)}
+  .hero{padding-top:70px}
+  .hero-actions{align-items:stretch}
+  .demo{width:100%}
+  .industry-list,.footer-top,.results-list{grid-template-columns:1fr}
+  .quote{width:300px;flex-basis:300px}
+  .result:nth-last-child(-n+2){border-bottom:1px solid #E7ECF8}
+  .result:last-child{border-bottom:0}
+  .section{padding:68px 0}
+  .hero h1{font-size:2.55rem}
+  .suite-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap"><span class="pill">Producto</span><span>Un ecosistema modular para sueldos, RR.HH. y operación.</span></div></div>
+
+<div class="utility"><div class="wrap"><a href="#">ES</a><a href="recursos-esueldos.html">Soporte</a><a href="#">Iniciar sesión</a></div></div>
+
+<header class="header">
+  <div class="nav-shell">
+    <nav class="nav">
+      <a class="logo" href="index-esueldos.html"><img src="fondo.png" alt="e-Sueldos"></a>
+      <div class="nav-links">
+        <div class="nav-item">
+          <button class="nav-btn">Producto <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="mega">
+            <div class="mega-side"><a class="active" href="producto-esueldos.html#liquidacion">Liquidación</a><a href="producto-esueldos.html#rrhh">Gestión de RR.HH.</a><a href="producto-esueldos.html#operaciones">Operaciones</a><a href="producto-esueldos.html#plataforma">Plataforma</a></div>
+            <div class="mega-main">
+              <a class="mega-card" href="e-sueldos-landing-completa.html"><span class="mega-icon">✓</span><span><b>Portal Liquidación</b><small>Sueldos, convenios, recibos y reportes.</small></span></a>
+              <a class="mega-card" href="portal-rrhh-landing.html"><span class="mega-icon">✓</span><span><b>Portal RRHH</b><small>Legajo, firma digital y autogestión.</small></span></a>
+              <a class="mega-card" href="control-horario-esueldos.html"><span class="mega-icon">✓</span><span><b>Control Horario</b><small>Fichadas, turnos, GPS, QR y FaceID.</small></span></a>
+              <a class="mega-card" href="calculadora-horas-extras.html"><span class="mega-icon">✓</span><span><b>Horas extras</b><small>Cálculo, trazabilidad y liquidación.</small></span></a>
+              <a class="mega-card" href="brief-esueldos.html"><span class="mega-icon">✓</span><span><b>Leia IA</b><small>Asistente para consultas y automatización.</small></span></a>
+              <a class="mega-card" href="brief-esueldos.html#ecosistema-brief"><span class="mega-icon">✓</span><span><b>Integraciones</b><small>Datos conectados entre módulos.</small></span></a>
+            </div>
+            <div class="mega-visual"><div class="mini-screen"><b>Liquidación · Junio</b><div class="mini-bar"></div><div class="mini-bar"></div><div class="mini-chart"><span style="height:45%"></span><span></span><span></span><span></span><span></span></div></div></div>
+          </div>
+        </div>
+        <div class="nav-item">
+          <button class="nav-btn">Soluciones <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="mega">
+            <div class="mega-side"><a class="active" href="soluciones-esueldos.html#perfil">Por perfil</a><a href="soluciones-esueldos.html#area">Por área</a><a href="soluciones-esueldos.html#operacion">Por operación</a><a href="soluciones-esueldos.html#industria">Por industria</a></div>
+            <div class="mega-main">
+              <a class="mega-card" href="planes-esueldos.html"><span class="mega-icon">1</span><span><b>PyMEs</b><small>Liquidación y RR.HH. sin complejidad.</small></span></a>
+              <a class="mega-card" href="e-sueldos-landing-completa.html"><span class="mega-icon">2</span><span><b>Liquidadores</b><small>Cierre mensual, reportes y recibos.</small></span></a>
+              <a class="mega-card" href="portal-rrhh-landing.html"><span class="mega-icon">3</span><span><b>RR.HH.</b><small>Solicitudes, legajos y comunicación.</small></span></a>
+              <a class="mega-card" href="control-horario-esueldos.html"><span class="mega-icon">4</span><span><b>Operaciones</b><small>Equipos distribuidos y turnos.</small></span></a>
+            </div>
+            <div class="mega-visual"><div class="industry-badge">+40<br>casos de uso</div></div>
+          </div>
+        </div>
+        <a class="nav-link" href="brief-esueldos.html">e-Sueldos AI</a>
+        <div class="nav-item">
+          <button class="nav-btn">Recursos <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="mega">
+            <div class="mega-side"><a class="active" href="recursos-esueldos.html">Soporte</a><a href="calculadora-horas-extras.html">Calculadora</a><a href="brief-esueldos.html">Brief</a><a href="planes-esueldos.html">Planes</a></div>
+            <div class="mega-main">
+              <a class="mega-card" href="calculadora-horas-extras.html"><span class="mega-icon">?</span><span><b>Calculadora horas extras</b><small>Herramienta gratuita para Argentina.</small></span></a>
+              <a class="mega-card" href="brief-esueldos.html"><span class="mega-icon">i</span><span><b>Brief del ecosistema</b><small>Arquitectura, módulos y propuesta.</small></span></a>
+              <a class="mega-card" href="planes-esueldos.html"><span class="mega-icon">$</span><span><b>Planes</b><small>Comparación por tamaño y módulos.</small></span></a>
+              <a class="mega-card" href="agendar-demo-esueldos.html"><span class="mega-icon">→</span><span><b>Demo</b><small>Validá alcance e implementación.</small></span></a>
+            </div>
+            <div class="mega-visual"><div class="mini-screen"><b>Centro de recursos</b><div class="mini-bar"></div><div class="mini-bar"></div><div class="mini-bar"></div></div></div>
+          </div>
+        </div>
+        <div class="nav-item">
+          <button class="nav-btn">Nosotros <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="mega">
+            <div class="mega-side"><a class="active" href="nosotros-esueldos.html">e-Sueldos</a><a href="agendar-demo-esueldos.html">Contacto</a><a href="recursos-esueldos.html">Soporte</a><a href="planes-esueldos.html">Planes</a></div>
+            <div class="mega-main">
+              <a class="mega-card" href="nosotros-esueldos.html"><span class="mega-icon">e</span><span><b>Sobre e-Sueldos</b><small>Especialistas en gestión laboral argentina.</small></span></a>
+              <a class="mega-card" href="agendar-demo-esueldos.html"><span class="mega-icon">+</span><span><b>Hablemos</b><small>Conocé el producto con un asesor.</small></span></a>
+            </div>
+            <div class="mega-visual"><div class="industry-badge">20+<br>años</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-actions"><a class="demo" href="agendar-demo-esueldos.html">Agendar Demo</a></div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============================================================
+       1. HERO
+       ============================================================ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Producto ordenado por <em>familias de trabajo.</em></h1>
+        <p class="hero-sub">Cada módulo tiene su función, su landing y su recorrido. Todo conectado por una misma base de datos, sin doble carga entre liquidación, RR.HH. y operaciones.</p>
+        <div class="hero-tabs"><span>Liquidación</span><span>RR.HH.</span><span>Operaciones</span><span>Plataforma</span></div>
+        <div class="hero-actions">
+          <a class="demo" href="agendar-demo-esueldos.html">Agend&aacute; una demo</a>
+          <a class="login" href="#modulos">Ver módulos</a>
+        </div>
+        <div class="store-rating"><span class="stars">✓</span><span>Especialistas en gestión laboral argentina desde 2006</span></div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/hero-suite.png" alt="Suite de módulos e-Sueldos">
+        <div class="image-copy"><span class="suite-tag">Suite e-Sueldos</span><div class="suite-title">Módulos conectados</div></div>
+        <div class="suite-card"><span>Familias activas</span><b>4</b><small>Una base de datos</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       2. LOGOS
+       ============================================================ -->
+  <section class="logos">
+    <div class="wrap">
+      <h2>Un mismo producto para distintos tipos de organización</h2>
+      <p>Empresas privadas, organismos públicos y estudios de administración de personal.</p>
+      <div class="logo-marquee">
+        <div class="logo-track">
+          <span class="logo-tile">PyMEs</span>
+          <span class="logo-tile">Industria</span>
+          <span class="logo-tile">Seguros</span>
+          <span class="logo-tile">Sector público</span>
+          <span class="logo-tile">Salud</span>
+          <span class="logo-tile">Comercio</span>
+          <span class="logo-tile">Servicios</span>
+          <span class="logo-tile">Municipios</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       3. PANEL DE PRODUCTO / IA — Leia
+       ============================================================ -->
+  <section class="section feature" id="leia">
+    <div class="wrap"><div class="feature-intro"><div class="eyebrow">Plataforma</div><h2>Leia orquesta cada familia de módulos.</h2><p>Una capa de inteligencia artificial que conecta liquidación, RR.HH. y operaciones para responder consultas y automatizar tareas repetitivas.</p></div></div>
+    <div class="wrap feature-grid">
+      <div class="feature-panel">
+        <div class="eyebrow">Leia AI</div>
+        <h3>Un orquestador, agentes especializados</h3>
+        <p>Leia distribuye cada consulta al agente correcto según el tema: payroll, talento, compliance, experiencia del empleado u operaciones.</p>
+        <div class="feature-list">
+          <div><span class="mega-icon">1</span><span><b>Agentes especializados</b><small>Cada familia de módulos tiene su propio agente entrenado.</small></span></div>
+          <div><span class="mega-icon">2</span><span><b>Datos compartidos</b><small>Responde con información real, sincronizada entre módulos.</small></span></div>
+          <div><span class="mega-icon">3</span><span><b>Automatización de consultas</b><small>Reduce tickets repetitivos hacia RR.HH. y liquidación.</small></span></div>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <div class="chat-mock">
+          <div class="user">¿Cuándo se paga el recibo de junio?</div>
+          <div class="bot"><b>Leia · </b>El recibo de junio se libera el día 5 hábil. Ya está disponible en tu Portal RRHH.</div>
+          <div class="user">Necesito cargar horas extra de la semana pasada.</div>
+          <div class="bot"><b>Leia · </b>Te derivo al módulo de Control Horario para registrar las horas al 50% o al 100%.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       4. SECCIÓN OSCURA — plataforma / integraciones
+       ============================================================ -->
+  <section class="section dark-section" id="plataforma">
+    <div class="wrap dark-grid">
+      <div class="dark-copy">
+        <div class="eyebrow" style="color:#8FADFC">Plataforma</div>
+        <h3>Una sola base de datos para todo el ecosistema.</h3>
+        <p>Liquidación, RR.HH. y operaciones comparten la misma información. Nada se carga dos veces y cada módulo ve los datos actualizados del resto.</p>
+        <div class="dark-tags"><span>Liquidación</span><span>RR.HH.</span><span>Operaciones</span><span>Compliance</span></div>
+      </div>
+      <div class="dark-visual">
+        <div class="feed-card"><b>Datos sincronizados</b><p>Legajo, fichadas y recibos comparten la misma fuente de verdad.</p></div>
+        <div class="feed-card"><b>Reportes en tiempo real</b><p>La información de cada módulo está lista para el cierre mensual.</p></div>
+        <div class="feed-card"><b>Integraciones abiertas</b><p>Conexión con sistemas contables y de gestión externos.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       5. RESULTADOS / KPIs
+       ============================================================ -->
+  <section class="section results">
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">En números</div><h2>Un ecosistema maduro y en expansión.</h2><p>Más de dos décadas especializados en la gestión laboral argentina.</p></div>
+      <div class="results-board">
+        <div class="results-main"><small>Trayectoria</small><div><b>+20</b><span>años acompañando la gestión laboral en Argentina</span></div></div>
+        <div class="results-list">
+          <div class="result"><b>260+</b><span>convenios colectivos preconfigurados</span></div>
+          <div class="result"><b>13</b><span>agentes especializados en Leia</span></div>
+          <div class="result"><b>4</b><span>familias de módulos conectados</span></div>
+          <div class="result"><b>1</b><span>base de datos única para todo el ecosistema</span></div>
+          <div class="result"><b>AR</b><span>foco en la legislación laboral argentina</span></div>
+          <div class="result"><b>LatAm</b><span>alcance para empresas y organismos públicos</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       6. MÓDULOS POR FAMILIA
+       ============================================================ -->
+  <section class="section modules" id="modulos">
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">Producto</div><h2>Explorá el ecosistema por familia de trabajo.</h2><p>Cada familia agrupa los módulos que resuelven un mismo tipo de tarea.</p></div>
+      <div class="modules-shell">
+        <aside class="module-side">
+          <a class="active" href="#liquidacion">Liquidación</a>
+          <a href="#rrhh">RR.HH.</a>
+          <a href="#operaciones">Operaciones</a>
+          <a href="#plataforma">Plataforma</a>
+        </aside>
+        <div class="module-grid">
+          <a class="module-card" href="e-sueldos-landing-completa.html"><h3>Portal Liquidación</h3><p>Sueldos, convenios, recibos y reportes.</p></a>
+          <a class="module-card" href="portal-rrhh-landing.html"><h3>Portal RRHH</h3><p>Legajo digital, firma y autogestión.</p></a>
+          <a class="module-card" href="control-horario-esueldos.html"><h3>Control Horario</h3><p>Fichadas, GPS, QR, FaceID y turnos.</p></a>
+          <a class="module-card" href="brief-esueldos.html"><h3>Leia IA</h3><p>Asistente para consultas y automatización.</p></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="liquidacion">
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">Liquidación</div><h2>Del convenio al recibo firmado.</h2><p>Procesos de sueldo, recibos digitales, reportes y cierre mensual sin doble carga.</p></div>
+      <div class="module-grid">
+        <a class="module-card" href="e-sueldos-landing-completa.html"><h3>Portal Liquidación</h3><p>La landing específica para sueldos, convenios, recibos y reportes.</p></a>
+        <a class="module-card" href="calculadora-horas-extras.html"><h3>Horas extra</h3><p>Herramienta funcional para calcular horas al 50% y al 100%.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section modules" id="rrhh">
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">RR.HH.</div><h2>Autogestión para cada colaborador.</h2><p>Legajo digital, solicitudes y firma para bajar la carga administrativa.</p></div>
+      <div class="module-grid">
+        <a class="module-card" href="portal-rrhh-landing.html"><h3>Portal RRHH</h3><p>Legajo digital, firma, solicitudes, vacaciones y documentos.</p></a>
+        <a class="module-card" href="portal-rrhh-landing.html#modulos-detalle"><h3>Solicitudes y firma</h3><p>Flujos simples para bajar carga administrativa.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="operaciones">
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">Operaciones</div><h2>Asistencia conectada al cierre.</h2><p>Datos de asistencia listos para el seguimiento y la liquidación mensual.</p></div>
+      <div class="module-grid">
+        <a class="module-card" href="control-horario-esueldos.html"><h3>Control Horario</h3><p>Fichadas, GPS, QR, FaceID, turnos y ausencias.</p></a>
+        <a class="module-card" href="control-horario-esueldos.html#dashboard"><h3>Reportes operativos</h3><p>Datos listos para seguimiento y liquidación.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       7. INDUSTRIAS / CASOS DE USO
+       ============================================================ -->
+  <section class="section industries">
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">A quién sirve</div><h2>Pensado para distintos tipos de organización.</h2><p>El mismo ecosistema se adapta a empresas privadas, organismos públicos y estudios contables.</p></div>
+      <div class="industry-grid">
+        <div class="industry-list">
+          <div><i>▤</i><h3>Empresas privadas</h3><p>PyMEs e industrias que necesitan liquidación y RR.HH. sin complejidad.</p><span>→</span></div>
+          <div><i>□</i><h3>Organismos públicos</h3><p>Municipios y entes que requieren trazabilidad y reportes normativos.</p><span>→</span></div>
+          <div><i>▥</i><h3>Estudios y consultoras</h3><p>Administración de personal para múltiples clientes desde una sola plataforma.</p><span>→</span></div>
+        </div>
+        <div class="industry-visual">
+          <div class="industry-badge"><strong>+40</strong><span>casos de uso documentados</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       8. TESTIMONIOS
+       ============================================================ -->
+  <section class="section testimonials">
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">Lo que dicen los equipos</div><h2>Historias de quienes ya lo usan todos los días.</h2></div>
+      <div class="quote-grid">
+        <div class="quote-track">
+          <div class="quote"><p>Pasamos de tres planillas distintas a un solo portal para liquidación y RR.HH. El cierre mensual bajó de días a horas.</p><div class="quote-author"><span><b>Jefa de RR.HH.</b><small>Empresa de servicios</small></span></div></div>
+          <div class="quote"><p>El control horario conectado a la liquidación nos eliminó la carga manual de horas extra.</p><div class="quote-author"><span><b>Responsable de Operaciones</b><small>Industria manufacturera</small></span></div></div>
+          <div class="quote"><p>Como organismo público necesitábamos trazabilidad. e-Sueldos nos la dio sin perder agilidad.</p><div class="quote-author"><span><b>Coordinador de RR.HH.</b><small>Organismo municipal</small></span></div></div>
+          <div class="quote"><p>Pasamos de tres planillas distintas a un solo portal para liquidación y RR.HH. El cierre mensual bajó de días a horas.</p><div class="quote-author"><span><b>Jefa de RR.HH.</b><small>Empresa de servicios</small></span></div></div>
+          <div class="quote"><p>El control horario conectado a la liquidación nos eliminó la carga manual de horas extra.</p><div class="quote-author"><span><b>Responsable de Operaciones</b><small>Industria manufacturera</small></span></div></div>
+          <div class="quote"><p>Como organismo público necesitábamos trazabilidad. e-Sueldos nos la dio sin perder agilidad.</p><div class="quote-author"><span><b>Coordinador de RR.HH.</b><small>Organismo municipal</small></span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       9. CTA FINAL
+       ============================================================ -->
+  <section class="cta-section">
+    <div class="wrap">
+      <h2>Conocé el producto en una demo con un asesor.</h2>
+      <p>Te mostramos cómo se conectan liquidación, RR.HH., operaciones y Leia para tu operación puntual.</p>
+      <a class="demo" href="agendar-demo-esueldos.html">Agendar Demo</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div><img class="footer-logo" src="fondoBlanco.png" alt="e-Sueldos"><p>Payroll + RR.HH. impulsados por Leia. El ecosistema de gestión humana para empresas y organismos públicos de Argentina.</p></div>
+      <div><h4>Producto</h4><a href="e-sueldos-landing-completa.html">Portal Liquidación</a><a href="portal-rrhh-landing.html">Portal RRHH</a><a href="control-horario-esueldos.html">Control Horario</a><a href="brief-esueldos.html">Leia IA</a></div>
+      <div><h4>Soluciones</h4><a href="soluciones-esueldos.html#perfil">Por perfil</a><a href="soluciones-esueldos.html#area">Por área</a><a href="soluciones-esueldos.html#industria">Por industria</a><a href="planes-esueldos.html">Planes</a></div>
+      <div><h4>Recursos</h4><a href="calculadora-horas-extras.html">Calculadora</a><a href="brief-esueldos.html">Brief</a><a href="recursos-esueldos.html">Soporte</a><a href="agendar-demo-esueldos.html">Demo</a></div>
+      <div><h4>Contacto</h4><a href="#">hola@e-sueldos.com</a><a href="#">+54 9 11 7110 3105</a><a href="#">Lun a Vie · 9 a 17 hs</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 e-Sueldos. Todos los derechos reservados.</span><span>Términos · Privacidad · Media Kit</span></div>
+  </div>
+</footer>
+
+</body>
+</html>

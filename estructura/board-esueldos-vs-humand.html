@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Board — e-Sueldos vs Humand</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue-deep:#0B2038;
+    --blue-mid:#123A5E;
+    --grid-line:#1B4870;
+    --paper:#F7F5EF;
+    --paper-dim:#EFEBE0;
+    --ink:#16202B;
+    --ink-soft:#4A5568;
+    --es-accent:#2355E8;
+    --es-accent-dark:#12318C;
+    --hu-accent:#E8A23D;
+    --hu-accent-dark:#8A5A12;
+    --cmp-accent:#E8543D;
+    --cmp-accent-dark:#8C2A1B;
+    --pr-accent:#1FAE83;
+    --pr-accent-dark:#0E6B4F;
+    --pin:#C7CEDB;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% 8%, rgba(255,255,255,0.04), transparent 40%),
+      repeating-linear-gradient(0deg, var(--grid-line) 0px, var(--grid-line) 1px, transparent 1px, transparent 32px),
+      repeating-linear-gradient(90deg, var(--grid-line) 0px, var(--grid-line) 1px, transparent 1px, transparent 32px),
+      var(--blue-deep);
+    background-blend-mode: normal, overlay, overlay, normal;
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--ink);
+    padding-bottom:80px;
+  }
+  ::selection{ background:var(--pr-accent); color:#04150F; }
+
+  /* ---------- topbar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,32,56,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid var(--grid-line);
+    padding:14px 26px;
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;
+  }
+  .brandmark{ display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .brandmark .es-logo{ width:150px; height:42px; object-fit:cover; object-position:left center; flex-shrink:0; }
+  .brandmark h1{
+    font-family:'Archivo',sans-serif; font-weight:800; font-size:15px; letter-spacing:.04em;
+    color:#EAF1FF; margin:0; text-transform:uppercase;
+  }
+  .brandmark span{ display:block; font-size:10.5px; color:#9FB3CC; font-weight:500; letter-spacing:.03em; margin-top:2px;}
+  .tabs{ display:flex; gap:6px; flex-wrap:wrap; }
+  .tabs a{
+    text-decoration:none; font-size:10.5px; font-weight:600; letter-spacing:.05em; text-transform:uppercase;
+    color:#CBD8EA; border:1px solid var(--grid-line); padding:7px 12px; border-radius:5px;
+    transition:all .15s ease; background:rgba(255,255,255,0.02);
+  }
+  .tabs a:hover{ border-color:var(--pr-accent); color:#fff; background:rgba(31,174,131,0.12); }
+
+  /* ---------- zone ---------- */
+  .zone{ max-width:1400px; margin:0 auto; padding:56px 26px 10px; }
+  .zone-head{ display:flex; align-items:flex-end; gap:16px; margin-bottom:26px; flex-wrap:wrap; }
+  .zone-index{
+    font-family:'Archivo',sans-serif; font-weight:800; font-size:54px; line-height:1;
+    color:transparent; -webkit-text-stroke:1.4px rgba(255,255,255,0.28);
+  }
+  .zone-title{ font-family:'Archivo',sans-serif; font-weight:800; font-size:26px; color:#F5F8FF; text-transform:uppercase; letter-spacing:.01em; margin:0; }
+  .zone-sub{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:#9FB3CC; margin-top:4px; }
+  .zone-tagline{
+    font-family:'Caveat',cursive; font-size:22px; color:var(--zone-accent,#fff); margin-left:auto;
+    transform:rotate(-1.5deg); font-weight:700;
+  }
+  .stamp{
+    font-family:'IBM Plex Mono',monospace; font-size:9.5px; font-weight:600; letter-spacing:.08em;
+    color:#0B2038; background:var(--zone-accent,#2355E8); padding:3px 8px; border-radius:3px; text-transform:uppercase;
+  }
+
+  /* ---------- frame grid ---------- */
+  .frame-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:22px; margin-bottom:10px;}
+  .frame-grid.wide{ grid-template-columns:repeat(auto-fit, minmax(480px,1fr)); }
+  .frame{
+    background:var(--paper);
+    border-radius:6px;
+    position:relative;
+    padding:26px 22px 20px;
+    box-shadow:0 18px 34px -14px rgba(0,0,0,0.55), 0 1px 0 rgba(255,255,255,0.4) inset;
+    border:1px solid rgba(0,0,0,0.06);
+  }
+  .frame::before{ /* pin */
+    content:''; position:absolute; top:-9px; left:50%; transform:translateX(-50%);
+    width:16px; height:16px; border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, #fff, var(--zone-accent,#2355E8) 60%, var(--zone-accent-dark,#12318C));
+    box-shadow:0 3px 6px rgba(0,0,0,0.4);
+  }
+  .frame-eyebrow{
+    font-size:9.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--zone-accent-dark,#12318C); margin-bottom:5px; display:flex; align-items:center; gap:6px;
+  }
+  .frame-eyebrow::before{ content:''; width:14px; height:2px; background:var(--zone-accent,#2355E8); display:inline-block; }
+  .frame h3{
+    font-family:'Archivo',sans-serif; font-size:17.5px; font-weight:700; margin:0 0 14px; color:var(--ink);
+    letter-spacing:-.01em;
+  }
+  .frame-id{
+    position:absolute; bottom:10px; right:14px; font-size:9px; color:#B7B0A0; letter-spacing:.05em;
+  }
+  .note{
+    font-family:'Caveat',cursive; font-size:16.5px; font-weight:700; color:var(--zone-accent-dark,#12318C);
+    margin-top:14px; transform:rotate(-0.6deg); line-height:1.25;
+  }
+
+  /* ---------- chip flow (landing structure) ---------- */
+  .chipflow{ display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+  .chip{
+    background:#fff; border:1.5px solid var(--zone-accent,#2355E8); border-radius:5px;
+    padding:6px 9px; font-size:10.5px; font-weight:600; color:var(--ink); white-space:nowrap;
+    display:flex; align-items:center; gap:5px;
+  }
+  .chip b{ color:var(--zone-accent-dark,#12318C); font-size:9px; }
+  .chip.hi{ background:var(--zone-accent,#2355E8); color:#fff; border-color:var(--zone-accent,#2355E8); }
+  .chip.hi b{ color:rgba(255,255,255,0.75); }
+  .arrow{ color:var(--zone-accent-dark,#12318C); font-size:13px; opacity:.6; }
+
+  /* ---------- vertical flow ---------- */
+  .vflow{ display:flex; flex-direction:column; align-items:stretch; gap:0; }
+  .vstep{
+    background:#fff; border:1.5px solid #DCD5C4; border-left:4px solid var(--zone-accent,#2355E8);
+    border-radius:4px; padding:9px 12px; font-size:11.5px; font-weight:600; color:var(--ink);
+  }
+  .vstep small{ display:block; font-size:9px; font-weight:500; color:var(--ink-soft); margin-top:2px; }
+  .vconnector{ display:flex; justify-content:flex-start; padding-left:16px; }
+  .vconnector span{ color:var(--zone-accent,#2355E8); font-size:14px; opacity:.65; }
+  .branchrow{ display:flex; gap:10px; margin-top:4px; }
+  .branchrow .vstep{ flex:1; }
+
+  /* ---------- horizontal flow ---------- */
+  .hflow{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+  .hstep{
+    background:#fff; border:1.5px solid #DCD5C4; border-radius:5px; padding:8px 11px;
+    font-size:10.5px; font-weight:600; color:var(--ink); min-width:96px; text-align:center;
+  }
+  .hstep.cta{ background:var(--zone-accent,#2355E8); color:#fff; border-color:var(--zone-accent,#2355E8); }
+  .hstep.warn{ border-color:var(--cmp-accent); color:var(--cmp-accent-dark); }
+  .harrow{ color:var(--zone-accent-dark,#12318C); font-size:15px; opacity:.55; }
+
+  /* ---------- tree (pure CSS org chart) ---------- */
+  .tree, .tree ul, .tree li{ list-style:none; margin:0; padding:0; position:relative; }
+  .tree{ display:flex; justify-content:center; padding-top:6px; overflow-x:auto; }
+  .tree ul{ display:flex; padding-top:22px; position:relative; }
+  .tree li{ display:flex; flex-direction:column; align-items:center; padding:22px 8px 0; position:relative; }
+  .tree li::before, .tree li::after{
+    content:''; position:absolute; top:0; right:50%; border-top:1.5px solid var(--zone-accent,#2355E8); width:50%; height:22px;
+  }
+  .tree li::after{ right:auto; left:50%; border-left:1.5px solid var(--zone-accent,#2355E8); }
+  .tree li:only-child::after, .tree li:only-child::before{ display:none; }
+  .tree li:only-child{ padding-top:0; }
+  .tree li:first-child::before{ border:0 none; }
+  .tree li:last-child::after{ border:0 none; }
+  .tree li:last-child::before{ border-right:1.5px solid var(--zone-accent,#2355E8); border-radius:0 5px 0 0; }
+  .tree li:first-child::after{ border-radius:5px 0 0 0; }
+  .tree ul ul::before{
+    content:''; position:absolute; top:0; left:50%; border-left:1.5px solid var(--zone-accent,#2355E8); width:0; height:22px;
+  }
+  .node{
+    background:#fff; border:1.5px solid var(--zone-accent,#2355E8); border-radius:5px; padding:7px 10px;
+    font-size:10px; font-weight:700; color:var(--ink); white-space:nowrap;
+  }
+  .node.root{ background:var(--zone-accent,#2355E8); color:#fff; font-size:11px; }
+  .node.dim{ border-style:dashed; opacity:.72; font-weight:500; }
+
+  /* ---------- bars (jerarquía visual) ---------- */
+  .bars{ display:flex; flex-direction:column; gap:9px; }
+  .barrow{ display:flex; align-items:center; gap:9px; }
+  .barrow .lbl{ font-size:9.5px; font-weight:600; color:var(--ink-soft); width:118px; flex-shrink:0; text-align:right; }
+  .barrow .bar{ height:15px; border-radius:3px; background:var(--zone-accent,#2355E8); }
+  .barrow .bar span{ font-size:8.5px; color:#fff; padding-left:6px; line-height:15px; font-weight:700; white-space:nowrap; }
+
+  /* ---------- comparison split ---------- */
+  .cmp-card{
+    background:var(--paper); border-radius:6px; padding:20px; position:relative;
+    box-shadow:0 14px 28px -14px rgba(0,0,0,0.5);
+  }
+  .cmp-card h4{ font-family:'Archivo',sans-serif; font-size:14px; margin:0 0 12px; color:#F5F8FF; letter-spacing:.01em; }
+  .cmp-head{ display:flex; align-items:center; gap:10px; margin-bottom:22px; }
+  .cmp-split{ display:grid; grid-template-columns:1fr auto 1fr; gap:14px; align-items:start; }
+  .cmp-col{ display:flex; flex-direction:column; gap:8px; }
+  .cmp-col .colhead{
+    font-size:10px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; padding:5px 9px;
+    border-radius:4px; display:inline-block; margin-bottom:2px;
+  }
+  .cmp-col.es .colhead{ background:var(--es-accent); color:#fff; }
+  .cmp-col.hu .colhead{ background:var(--hu-accent); color:#3A2400; }
+  .cmp-item{
+    background:#fff; border:1px solid #E4DECE; border-radius:4px; padding:8px 10px; font-size:11px;
+    line-height:1.4; color:var(--ink);
+  }
+  .vs-badge{
+    align-self:center; font-family:'Archivo',sans-serif; font-weight:800; font-size:11px; color:#fff;
+    background:var(--cmp-accent); border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  .sw-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .sw{ border-radius:4px; padding:9px 10px; font-size:10.5px; line-height:1.4; }
+  .sw.plus{ background:#E8F6EF; border:1px solid #B9E4CC; color:#0E4A31; }
+  .sw.minus{ background:#FBEBE7; border:1px solid #F0C4B8; color:#7A2A16; }
+  .sw b{ display:block; font-size:9px; letter-spacing:.05em; text-transform:uppercase; margin-bottom:3px; }
+
+  /* ---------- footer note ---------- */
+  .board-footer{
+    max-width:1400px; margin:60px auto 0; padding:22px 26px; text-align:center;
+    color:#8098B8; font-size:11px; border-top:1px solid var(--grid-line);
+  }
+  .board-footer b{ color:#CBD8EA; }
+
+  @media (max-width: 640px){
+    .zone{ padding:40px 16px 10px; }
+    .frame-grid{ grid-template-columns:1fr; }
+    .cmp-split{ grid-template-columns:1fr; }
+    .vs-badge{ justify-self:center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="brandmark" href="../index-esueldos.html">
+    <img class="es-logo" src="../logoEsueldos.png" alt="e-Sueldos">
+    <div>
+      <h1>Board · Arquitectura UX</h1>
+      <span>e-Sueldos vs. Humand — diagramas de estructura, flujo y jerarquía</span>
+    </div>
+  </a>
+  <div class="tabs">
+    <a href="../portal-rrhh-landing.html">Portal RRHH</a>
+    <a href="../e-sueldos-landing-completa.html">Portal Liquidación</a>
+    <a href="#es">e-Sueldos</a>
+    <a href="#hu">Humand</a>
+    <a href="#cmp">Comparación</a>
+    <a href="#pr">Propuesta</a>
+  </div>
+</div>
+
+<!-- ============================================================ ZONE A — E-SUELDOS ============================================================ -->
+<section class="zone" id="es" style="--zone-accent:var(--es-accent); --zone-accent-dark:var(--es-accent-dark);">
+  <div class="zone-head">
+    <div class="zone-index">01</div>
+    <div>
+      <h2 class="zone-title"><span class="stamp">e-sueldos.com</span> &nbsp;Board de diagramas</h2>
+      <div class="zone-sub">Payroll + RR.HH. para Argentina — landing actual</div>
+    </div>
+    <div class="zone-tagline">plana, informativa, dos productos ✎</div>
+  </div>
+
+  <div class="frame-grid">
+
+    <!-- 1. Estructura landing -->
+    <div class="frame">
+      <div class="frame-eyebrow">01 · Estructura de la landing</div>
+      <h3>Orden de secciones (scroll)</h3>
+      <div class="chipflow">
+        <span class="chip hi"><b>1</b>Header</span><span class="arrow">→</span>
+        <span class="chip hi"><b>2</b>Hero</span><span class="arrow">→</span>
+        <span class="chip"><b>3</b>6 funcionalidades</span><span class="arrow">→</span>
+        <span class="chip"><b>4</b>Contadores</span><span class="arrow">→</span>
+        <span class="chip"><b>5</b>Sist. Sueldos</span><span class="arrow">→</span>
+        <span class="chip"><b>6</b>Sist. RR.HH.</span><span class="arrow">→</span>
+        <span class="chip"><b>7</b>Combiná sistemas</span><span class="arrow">→</span>
+        <span class="chip"><b>8</b>Video</span><span class="arrow">→</span>
+        <span class="chip"><b>9</b>Logos</span><span class="arrow">→</span>
+        <span class="chip"><b>10</b>Testimonios</span><span class="arrow">→</span>
+        <span class="chip"><b>11</b>Formulario</span><span class="arrow">→</span>
+        <span class="chip"><b>12</b>Footer</span>
+      </div>
+      <div class="note">bloques 5-6-7 repiten el mismo layout ×3 →</div>
+      <div class="frame-id">FR-ES-01</div>
+    </div>
+
+    <!-- 2. Arquitectura información -->
+    <div class="frame">
+      <div class="frame-eyebrow">02 · Arquitectura de la información</div>
+      <h3>2 niveles, sin capa transversal</h3>
+      <div class="tree">
+        <ul>
+          <li>
+            <div class="node root">e-Sueldos</div>
+            <ul>
+              <li><div class="node">Sueldos</div>
+                <ul>
+                  <li><div class="node dim">Liquidación</div></li>
+                  <li><div class="node dim">Convenios</div></li>
+                  <li><div class="node dim">Libro Sueldos</div></li>
+                </ul>
+              </li>
+              <li><div class="node">RR.HH.</div>
+                <ul>
+                  <li><div class="node dim">Recibo digital</div></li>
+                  <li><div class="node dim">Solicitudes</div></li>
+                  <li><div class="node dim">C. Horario</div></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="note">promesa de IA del kicker no baja a la arquitectura ✎</div>
+      <div class="frame-id">FR-ES-02</div>
+    </div>
+
+    <!-- 3. User flow -->
+    <div class="frame" style="grid-column: span 2;">
+      <div class="frame-eyebrow">03 · User flow</div>
+      <h3>Recorrido lineal, sin ruta de bajo compromiso</h3>
+      <div class="hflow">
+        <div class="hstep">Hero</div><span class="harrow">→</span>
+        <div class="hstep">Nav explora Sueldos/RRHH</div><span class="harrow">→</span>
+        <div class="hstep">Scroll pasivo funcionalidades</div><span class="harrow">→</span>
+        <div class="hstep">Logos + testimonios</div><span class="harrow">→</span>
+        <div class="hstep cta">Agendar Demo↗</div>
+      </div>
+      <div class="hflow" style="margin-top:8px;">
+        <div class="hstep" style="min-width:130px;"></div>
+        <span class="harrow" style="opacity:0;">→</span>
+        <div class="hstep warn">✗ sin calculadora / simulador intermedio</div>
+        <span class="harrow">→</span>
+        <div class="hstep cta">Formulario</div>
+      </div>
+      <div class="note">el usuario indeciso no tiene dónde "quedarse": o convierte o se va ✎</div>
+      <div class="frame-id">FR-ES-03</div>
+    </div>
+
+    <!-- 4. Arquitectura módulos -->
+    <div class="frame">
+      <div class="frame-eyebrow">04 · Arquitectura de módulos</div>
+      <h3>Dos sistemas, sin orquestador</h3>
+      <div class="tree">
+        <ul>
+          <li>
+            <div class="node dim" style="border-color:var(--cmp-accent); color:var(--cmp-accent-dark);">sin capa IA</div>
+            <ul>
+              <li><div class="node root">Sueldos</div></li>
+              <li><div class="node root">RR.HH.</div></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="note">"combiná los sistemas" se explica en texto, nunca se dibuja ✎</div>
+      <div class="frame-id">FR-ES-04</div>
+    </div>
+
+    <!-- 5. Jerarquía visual -->
+    <div class="frame">
+      <div class="frame-eyebrow">05 · Jerarquía visual</div>
+      <h3>Todo pesa igual (Nivel 2 colapsa)</h3>
+      <div class="bars">
+        <div class="barrow"><div class="lbl">H1 Hero</div><div class="bar" style="width:100%;"><span>lo primero que ve</span></div></div>
+        <div class="barrow"><div class="lbl">Sist. Sueldos</div><div class="bar" style="width:56%;"><span>igual peso</span></div></div>
+        <div class="barrow"><div class="lbl">Sist. RR.HH.</div><div class="bar" style="width:56%;"><span>igual peso</span></div></div>
+        <div class="barrow"><div class="lbl">Combinación</div><div class="bar" style="width:56%;"><span>igual peso</span></div></div>
+        <div class="barrow"><div class="lbl">E-learning</div><div class="bar" style="width:56%;"><span>¡igual que el núcleo!</span></div></div>
+      </div>
+      <div class="note">sin distinción entre módulo núcleo y secundario ✎</div>
+      <div class="frame-id">FR-ES-05</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ ZONE B — HUMAND ============================================================ -->
+<section class="zone" id="hu" style="--zone-accent:var(--hu-accent); --zone-accent-dark:var(--hu-accent-dark);">
+  <div class="zone-head">
+    <div class="zone-index">02</div>
+    <div>
+      <h2 class="zone-title"><span class="stamp">humand.co/es</span> &nbsp;Board de diagramas</h2>
+      <div class="zone-sub">Comunicación interna + RR.HH. + IA — landing actual</div>
+    </div>
+    <div class="zone-tagline">progresiva, guiada, un CTA ✎</div>
+  </div>
+
+  <div class="frame-grid">
+
+    <!-- 1. Estructura landing -->
+    <div class="frame">
+      <div class="frame-eyebrow">01 · Estructura de la landing</div>
+      <h3>Orden de secciones (scroll)</h3>
+      <div class="chipflow">
+        <span class="chip hi"><b>1</b>Banner prensa</span><span class="arrow">→</span>
+        <span class="chip hi"><b>2</b>Mega menú</span><span class="arrow">→</span>
+        <span class="chip hi"><b>3</b>Hero</span><span class="arrow">→</span>
+        <span class="chip"><b>4</b>Trust escala</span><span class="arrow">→</span>
+        <span class="chip"><b>5</b>Humand AI</span><span class="arrow">→</span>
+        <span class="chip"><b>6</b>Deskless+logos</span><span class="arrow">→</span>
+        <span class="chip"><b>7</b>Resultados ROI</span><span class="arrow">→</span>
+        <span class="chip"><b>8</b>+3hs (IA refuerzo)</span><span class="arrow">→</span>
+        <span class="chip"><b>9</b>Segmentación</span><span class="arrow">→</span>
+        <span class="chip"><b>10</b>Comunidad</span><span class="arrow">→</span>
+        <span class="chip"><b>11</b>Módulos</span><span class="arrow">→</span>
+        <span class="chip"><b>12</b>Testimonios</span><span class="arrow">→</span>
+        <span class="chip"><b>13</b>Prensa</span><span class="arrow">→</span>
+        <span class="chip"><b>14</b>Footer</span>
+      </div>
+      <div class="note">14 bloques, ningún layout se repite igual dos veces →</div>
+      <div class="frame-id">FR-HU-01</div>
+    </div>
+
+    <!-- 2. Arquitectura información -->
+    <div class="frame">
+      <div class="frame-eyebrow">02 · Arquitectura de la información</div>
+      <h3>3 niveles + capa transversal</h3>
+      <div class="tree">
+        <ul>
+          <li>
+            <div class="node root">Plataforma</div>
+            <ul>
+              <li><div class="node">Comunicación</div></li>
+              <li><div class="node">Gestión RR.HH.</div></li>
+              <li><div class="node">Talento</div></li>
+              <li><div class="node">Operaciones</div></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="note">Humand AI atraviesa las 5 categorías (no se ve en el árbol, se nombra aparte) ✎</div>
+      <div class="frame-id">FR-HU-02</div>
+    </div>
+
+    <!-- 3. User flow -->
+    <div class="frame" style="grid-column: span 2;">
+      <div class="frame-eyebrow">03 · User flow</div>
+      <h3>Embudo de convicción progresivo — 1 solo CTA</h3>
+      <div class="hflow">
+        <div class="hstep">Credibilidad (Serie A)</div><span class="harrow">→</span>
+        <div class="hstep">Propuesta de valor</div><span class="harrow">→</span>
+        <div class="hstep">Prueba de escala</div><span class="harrow">→</span>
+        <div class="hstep">Producto IA (Sammy)</div><span class="harrow">→</span>
+        <div class="hstep">Prueba ROI (~20 métricas)</div>
+      </div>
+      <div class="hflow" style="margin-top:8px;">
+        <div class="hstep">Catálogo modular</div><span class="harrow">→</span>
+        <div class="hstep">Testimonios c/ métrica</div><span class="harrow">→</span>
+        <div class="hstep">Prensa (terceros)</div><span class="harrow">→</span>
+        <div class="hstep cta">Agenda una demo</div>
+      </div>
+      <div class="note">el mismo CTA se refuerza en cada etapa — nunca hay que elegir entre 2 botones ✎</div>
+      <div class="frame-id">FR-HU-03</div>
+    </div>
+
+    <!-- 4. Arquitectura módulos -->
+    <div class="frame">
+      <div class="frame-eyebrow">04 · Arquitectura de módulos</div>
+      <h3>Plataforma → categorías → módulos + IA</h3>
+      <div class="tree">
+        <ul>
+          <li>
+            <div class="node root">Humand AI</div>
+            <ul>
+              <li><div class="node">Comunicación</div></li>
+              <li><div class="node">RR.HH.</div></li>
+              <li><div class="node">Talento</div></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="note">28+ módulos activables/desactivables por categoría, con ícono a color ✎</div>
+      <div class="frame-id">FR-HU-04</div>
+    </div>
+
+    <!-- 5. Jerarquía visual -->
+    <div class="frame">
+      <div class="frame-eyebrow">05 · Jerarquía visual</div>
+      <h3>Densidad decreciente por nivel</h3>
+      <div class="bars">
+        <div class="barrow"><div class="lbl">H1 aspiracional</div><div class="bar" style="width:100%;"><span>lo primero que ve</span></div></div>
+        <div class="barrow"><div class="lbl">Trust / ROI</div><div class="bar" style="width:78%;"><span>números grandes</span></div></div>
+        <div class="barrow"><div class="lbl">Humand AI</div><div class="bar" style="width:60%;"><span>video + 3 features</span></div></div>
+        <div class="barrow"><div class="lbl">Catálogo módulos</div><div class="bar" style="width:34%;"><span>denso, para explorar</span></div></div>
+        <div class="barrow"><div class="lbl">Testimonios/prensa</div><div class="bar" style="width:46%;"><span>validación extendida</span></div></div>
+      </div>
+      <div class="note">la densidad guía: "convencé rápido arriba, explorá en detalle abajo" ✎</div>
+      <div class="frame-id">FR-HU-05</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ ZONE C — COMPARACIÓN ============================================================ -->
+<section class="zone" id="cmp" style="--zone-accent:var(--cmp-accent); --zone-accent-dark:var(--cmp-accent-dark);">
+  <div class="zone-head">
+    <div class="zone-index">03</div>
+    <div>
+      <h2 class="zone-title"><span class="stamp">comparación</span> &nbsp;Board lado a lado</h2>
+      <div class="zone-sub">Estructura · UX · Navegación · Módulos · Fortalezas y debilidades</div>
+    </div>
+    <div class="zone-tagline">misma categoría, madurez distinta ✎</div>
+  </div>
+
+  <div class="frame-grid wide">
+
+    <div class="cmp-card">
+      <h4>🧱 Diferencias de estructura</h4>
+      <div class="cmp-split">
+        <div class="cmp-col es"><span class="colhead">e-Sueldos</span>
+          <div class="cmp-item">13 bloques · 3 con layout idéntico repetido</div>
+          <div class="cmp-item">Prueba social concentrada al final</div>
+        </div>
+        <div class="vs-badge">VS</div>
+        <div class="cmp-col hu"><span class="colhead">Humand</span>
+          <div class="cmp-item">14 bloques · ningún layout se repite igual</div>
+          <div class="cmp-item">Prueba social distribuida en 4 formatos distintos</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmp-card">
+      <h4>🧭 Diferencias de UX</h4>
+      <div class="cmp-split">
+        <div class="cmp-col es"><span class="colhead">e-Sueldos</span>
+          <div class="cmp-item">2 CTAs de igual peso → decisión ambigua</div>
+          <div class="cmp-item">Experiencia "informativa": hay que creer con poca evidencia</div>
+        </div>
+        <div class="vs-badge">VS</div>
+        <div class="cmp-col hu"><span class="colhead">Humand</span>
+          <div class="cmp-item">1 CTA consistente, reforzado en cada bloque</div>
+          <div class="cmp-item">Experiencia "guiada": cada bloque suma una razón nueva</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmp-card">
+      <h4>🗺️ Diferencias de navegación</h4>
+      <div class="cmp-split">
+        <div class="cmp-col es"><span class="colhead">e-Sueldos</span>
+          <div class="cmp-item">Nav plano, sin mega menú</div>
+          <div class="cmp-item">"Planes" no enlazado desde el contenido</div>
+        </div>
+        <div class="vs-badge">VS</div>
+        <div class="cmp-col hu"><span class="colhead">Humand</span>
+          <div class="cmp-item">Mega menú con ícono+descripción+imagen por ítem</div>
+          <div class="cmp-item">Doble eje: por función y por industria</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmp-card">
+      <h4>🧩 Diferencias de organización de módulos</h4>
+      <div class="cmp-split">
+        <div class="cmp-col es"><span class="colhead">e-Sueldos</span>
+          <div class="cmp-item">2 niveles: sistema → funcionalidad suelta</div>
+          <div class="cmp-item">IA mencionada, no ubicada en la arquitectura</div>
+        </div>
+        <div class="vs-badge">VS</div>
+        <div class="cmp-col hu"><span class="colhead">Humand</span>
+          <div class="cmp-item">3 niveles: plataforma → categoría → módulo</div>
+          <div class="cmp-item">IA (Sammy) como capa transversal nombrada</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="frame-grid" style="margin-top:6px;">
+    <div class="cmp-card" style="grid-column:1/-1;">
+      <h4>⚖️ Fortalezas y debilidades</h4>
+      <div class="sw-grid">
+        <div class="sw plus"><b>+ e-Sueldos</b>Especialización normativa argentina defendible · segmento Gobiernos propio · contacto físico local</div>
+        <div class="sw plus"><b>+ Humand</b>Arquitectura de 3 niveles clara · prueba social multicapa · evidencia visual real de producto</div>
+        <div class="sw minus"><b>− e-Sueldos</b>Arquitectura plana · CTA fragmentado · ilustraciones en vez de UI real</div>
+        <div class="sw minus"><b>− Humand</b>Landing extensa · mensaje genérico sin especialización local</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ ZONE D — PROPUESTA ============================================================ -->
+<section class="zone" id="pr" style="--zone-accent:var(--pr-accent); --zone-accent-dark:var(--pr-accent-dark);">
+  <div class="zone-head">
+    <div class="zone-index">04</div>
+    <div>
+      <h2 class="zone-title"><span class="stamp">propuesta</span> &nbsp;Nueva arquitectura e-Sueldos</h2>
+      <div class="zone-sub">Inspirada en la disciplina narrativa de Humand — sin copiar su identidad</div>
+    </div>
+    <div class="zone-tagline">Leia como orquestador propio ✎</div>
+  </div>
+
+  <div class="frame-grid">
+
+    <!-- 1. Nueva estructura landing -->
+    <div class="frame">
+      <div class="frame-eyebrow">01 · Nueva estructura de landing</div>
+      <h3>10 bloques, sin repetir patrón</h3>
+      <div class="chipflow">
+        <span class="chip hi"><b>1</b>Hero + mockup real</span><span class="arrow">→</span>
+        <span class="chip hi"><b>2</b>Confianza/escala</span><span class="arrow">→</span>
+        <span class="chip hi"><b>3</b>Leia (IA)</span><span class="arrow">→</span>
+        <span class="chip"><b>4</b>Catálogo modular</span><span class="arrow">→</span>
+        <span class="chip"><b>5</b>Resultados</span><span class="arrow">→</span>
+        <span class="chip"><b>6</b>Casos de éxito</span><span class="arrow">→</span>
+        <span class="chip"><b>7</b>Ecosistema (diagrama)</span><span class="arrow">→</span>
+        <span class="chip"><b>8</b>Video nativo</span><span class="arrow">→</span>
+        <span class="chip"><b>9</b>Sector público</span><span class="arrow">→</span>
+        <span class="chip"><b>10</b>Form + calendario</span>
+      </div>
+      <div class="note">2 bloques nuevos: Leia y Sector Público — diferenciales que Humand no tiene ✎</div>
+      <div class="frame-id">FR-PR-01</div>
+    </div>
+
+    <!-- 2. Arquitectura módulos con Leia -->
+    <div class="frame">
+      <div class="frame-eyebrow">02 · Arquitectura de módulos</div>
+      <h3>Leia como orquestador transversal</h3>
+      <div class="tree">
+        <ul>
+          <li>
+            <div class="node root">Leia (IA)</div>
+            <ul>
+              <li><div class="node">Liquidación</div></li>
+              <li><div class="node">RR.HH.</div></li>
+              <li><div class="node">C. Horario</div></li>
+              <li><div class="node">Capacitación</div></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="note">mismo nivel de sofisticación que Humand, con taxonomía 100% propia ✎</div>
+      <div class="frame-id">FR-PR-02</div>
+    </div>
+
+    <!-- 3. User flow propuesto -->
+    <div class="frame" style="grid-column: span 2;">
+      <div class="frame-eyebrow">03 · User flow propuesto</div>
+      <h3>Con rutas de bajo compromiso antes de convertir</h3>
+      <div class="hflow">
+        <div class="hstep">Hero + trust inline</div><span class="harrow">→</span>
+        <div class="hstep">Leia: cómo automatiza</div><span class="harrow">→</span>
+        <div class="hstep">Catálogo modular (explorar)</div><span class="harrow">→</span>
+        <div class="hstep">Resultados + casos c/métrica</div>
+      </div>
+      <div class="hflow" style="margin-top:8px;">
+        <div class="hstep">Sector público (si aplica)</div><span class="harrow">→</span>
+        <div class="hstep cta">Agendar Demo</div>
+        <span class="harrow">·</span>
+        <div class="hstep" style="border-color:var(--pr-accent); color:var(--pr-accent-dark);">Probar gratis (link 2do nivel)</div>
+      </div>
+      <div class="note">"ver cómo funciona" y "explorar catálogo" retienen al usuario indeciso ✎</div>
+      <div class="frame-id">FR-PR-03</div>
+    </div>
+
+    <!-- 4. Jerarquía visual propuesta -->
+    <div class="frame">
+      <div class="frame-eyebrow">04 · Jerarquía visual propuesta</div>
+      <h3>Densidad decreciente, Leia con nombre propio</h3>
+      <div class="bars">
+        <div class="barrow"><div class="lbl">H1 corto aspiracional</div><div class="bar" style="width:100%;"><span>"sin fricción"</span></div></div>
+        <div class="barrow"><div class="lbl">Trust inline</div><div class="bar" style="width:70%;"><span>+500 · +170 convenios</span></div></div>
+        <div class="barrow"><div class="lbl">Leia (video)</div><div class="bar" style="width:58%;"><span>capacidades concretas</span></div></div>
+        <div class="barrow"><div class="lbl">Catálogo modular</div><div class="bar" style="width:32%;"><span>denso, por categoría</span></div></div>
+      </div>
+      <div class="note">ningún módulo secundario iguala visualmente al núcleo (Liquidación) ✎</div>
+      <div class="frame-id">FR-PR-04</div>
+    </div>
+
+    <!-- 5. Mapa del sitio propuesto -->
+    <div class="frame">
+      <div class="frame-eyebrow">05 · Sistema de navegación</div>
+      <h3>Mega menú liviano por producto</h3>
+      <div class="tree">
+        <ul>
+          <li>
+            <div class="node root">Home</div>
+            <ul>
+              <li><div class="node">Sueldos ▾</div></li>
+              <li><div class="node">RR.HH. ▾</div></li>
+              <li><div class="node">Leia</div></li>
+              <li><div class="node">Gobiernos</div></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="note">cada ▾ anticipa contenido con ícono + descripción antes del clic ✎</div>
+      <div class="frame-id">FR-PR-05</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="board-footer">
+  <b>Board de arquitectura UX</b> — e-Sueldos vs. Humand · Diagramas construidos a partir del contenido público de ambos sitios (julio 2026)
+</div>
+
+</body>
+</html>

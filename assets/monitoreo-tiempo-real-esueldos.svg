@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="720" viewBox="0 0 1160 720">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#0B1220" flood-opacity=".10"/>
+    </filter>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#2355E8" flood-opacity=".10"/>
+    </filter>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4A67EA"/>
+      <stop offset="1" stop-color="#BFD7FF"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F7FAFF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1160" height="720" fill="none"/>
+  <rect x="88" y="70" width="984" height="580" rx="36" fill="#fff" filter="url(#shadow)"/>
+  <text x="136" y="150" fill="#071124" font-family="Nunito Sans, Arial, sans-serif" font-size="42" font-weight="700">Monitoreo en tiempo real</text>
+
+  <rect x="136" y="198" width="330" height="238" rx="22" fill="url(#panel)" stroke="#E3EAF8"/>
+  <g font-family="Nunito Sans, Arial, sans-serif" font-size="20" fill="#071124">
+    <circle cx="178" cy="248" r="15" fill="#EAF2FF" stroke="#C9DDFF"/>
+    <path d="M172 248l4 4 8-10" fill="none" stroke="#4A67EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="210" y="242" width="170" height="12" rx="6" fill="#DCEBFF"/>
+    <rect x="210" y="242" width="120" height="12" rx="6" fill="url(#bar)"/>
+    <text x="392" y="256">3.5 h</text>
+
+    <circle cx="178" cy="304" r="15" fill="#EAF2FF" stroke="#C9DDFF"/>
+    <path d="M172 304l4 4 8-10" fill="none" stroke="#4A67EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="210" y="298" width="170" height="12" rx="6" fill="#DCEBFF"/>
+    <rect x="210" y="298" width="146" height="12" rx="6" fill="url(#bar)"/>
+    <text x="392" y="312">5.2 h</text>
+
+    <circle cx="178" cy="360" r="15" fill="#EAF2FF" stroke="#C9DDFF"/>
+    <path d="M172 360l4 4 8-10" fill="none" stroke="#4A67EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="210" y="354" width="170" height="12" rx="6" fill="#DCEBFF"/>
+    <rect x="210" y="354" width="156" height="12" rx="6" fill="url(#bar)"/>
+    <text x="392" y="368">6.1 h</text>
+
+    <circle cx="178" cy="416" r="15" fill="#EAF2FF" stroke="#C9DDFF"/>
+    <path d="M172 416l4 4 8-10" fill="none" stroke="#4A67EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="210" y="410" width="170" height="12" rx="6" fill="#DCEBFF"/>
+    <rect x="210" y="410" width="78" height="12" rx="6" fill="url(#bar)"/>
+    <text x="392" y="424">3.6 h</text>
+  </g>
+
+  <rect x="488" y="198" width="536" height="238" rx="22" fill="url(#panel)" stroke="#E3EAF8"/>
+  <g font-family="Nunito Sans, Arial, sans-serif" fill="#16325C">
+    <text x="520" y="258" font-size="19">7h</text>
+    <text x="520" y="314" font-size="19">8h</text>
+    <text x="520" y="370" font-size="19">9h</text>
+    <text x="514" y="426" font-size="19">10h</text>
+    <line x1="562" y1="250" x2="984" y2="250" stroke="#E7EFFB" stroke-width="2"/>
+    <line x1="562" y1="306" x2="984" y2="306" stroke="#E7EFFB" stroke-width="2"/>
+    <line x1="562" y1="362" x2="984" y2="362" stroke="#E7EFFB" stroke-width="2"/>
+    <line x1="562" y1="418" x2="984" y2="418" stroke="#E7EFFB" stroke-width="2"/>
+    <line x1="608" y1="238" x2="608" y2="418" stroke="#EDF3FC"/>
+    <line x1="746" y1="238" x2="746" y2="418" stroke="#EDF3FC"/>
+    <line x1="884" y1="238" x2="884" y2="418" stroke="#EDF3FC"/>
+    <path d="M562 418 C660 416 704 350 766 332 C820 316 856 252 918 304 C956 336 960 382 984 392" fill="none" stroke="#58A6FF" stroke-width="7" stroke-linecap="round"/>
+    <path d="M562 418 C660 416 704 350 766 332 C820 316 856 252 918 304 C956 336 960 382 984 392" fill="none" stroke="#2355E8" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="838" cy="304" r="28" fill="#7FB3FF"/>
+    <path d="M828 304a10 10 0 1 0 4-8" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+    <path d="M828 296v12h12" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="650" y="228" width="158" height="72" rx="13" fill="#102A4C" filter="url(#soft)"/>
+    <text x="672" y="260" fill="#fff" font-size="25" font-weight="700">9.00 am</text>
+    <text x="672" y="286" fill="#fff" font-size="17">Registradas: 6.1h</text>
+    <path d="M724 300l14 22 14-22" fill="#102A4C"/>
+    <text x="604" y="450" font-size="17">7h</text>
+    <text x="746" y="450" font-size="17">8h</text>
+    <text x="838" y="450" font-size="17">9h</text>
+    <text x="960" y="450" font-size="17">10h</text>
+  </g>
+
+  <rect x="136" y="458" width="330" height="146" rx="22" fill="url(#panel)" stroke="#E3EAF8"/>
+  <text x="176" y="506" fill="#071124" font-family="Nunito Sans, Arial, sans-serif" font-size="23" font-weight="700">Tiempo registrado</text>
+  <rect x="176" y="530" width="250" height="54" rx="13" fill="#EAF2FF"/>
+  <text x="252" y="569" fill="#071124" font-family="Nunito Sans, Arial, sans-serif" font-size="36" font-weight="700">45.6 h</text>
+  <rect x="188" y="594" width="226" height="13" rx="7" fill="#DCEBFF"/>
+  <rect x="188" y="594" width="192" height="13" rx="7" fill="url(#bar)"/>
+
+  <rect x="488" y="458" width="536" height="86" rx="22" fill="url(#panel)" stroke="#E3EAF8"/>
+  <rect x="522" y="481" width="52" height="52" rx="14" fill="#EAF2FF"/>
+  <path d="M538 493h20l-8 10v16l-4 2v-18z" fill="none" stroke="#2355E8" stroke-width="4" stroke-linejoin="round"/>
+  <text x="598" y="502" fill="#071124" font-family="Nunito Sans, Arial, sans-serif" font-size="23" font-weight="700">27 registros hoy</text>
+  <text x="598" y="528" fill="#071124" font-family="Nunito Sans, Arial, sans-serif" font-size="18">Filtro aplicado: Sala A</text>
+
+  <rect x="488" y="560" width="536" height="86" rx="22" fill="url(#panel)" stroke="#E3EAF8"/>
+  <rect x="522" y="583" width="52" height="52" rx="14" fill="#EAF2FF"/>
+  <path d="M548 594c-8 0-13 6-13 15v10h26v-10c0-9-5-15-13-15z" fill="none" stroke="#2355E8" stroke-width="4"/>
+  <circle cx="548" cy="590" r="3" fill="#2355E8"/>
+  <line x1="540" y1="624" x2="556" y2="624" stroke="#2355E8" stroke-width="4" stroke-linecap="round"/>
+  <text x="598" y="604" fill="#071124" font-family="Nunito Sans, Arial, sans-serif" font-size="23" font-weight="700">3 personas ausentes</text>
+  <text x="598" y="630" fill="#071124" font-family="Nunito Sans, Arial, sans-serif" font-size="18">1 sin justificar el dia de hoy</text>
+</svg>
