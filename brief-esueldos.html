@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Leia orquesta agentes especializados de payroll, RR.HH., compliance y operaciones sobre una misma base de datos. Conocé la arquitectura del ecosistema e-Sueldos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    1. DESIGN TOKENS
@@ -75,7 +75,7 @@ img,svg{display:block}
 /* ============================================================
    4. HERO
    ============================================================ */
-.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#EEF3FF 0,#fff 76%);padding:96px 0 84px}
+.hero{position:relative;overflow:hidden;background:#fff;padding:96px 0 84px}
 .hero-grid{display:grid;grid-template-columns:1fr 500px;gap:54px;align-items:center}
 .hero-kicker{display:inline-flex;align-items:center;border:1px solid #4A67EA;border-radius:999px;color:#4A67EA;padding:8px 14px;font-size:15px;font-weight:900;margin-bottom:22px}
 .hero h1{font-size:clamp(2.25rem,4.6vw,4.4rem);line-height:1;letter-spacing:-.035em;margin:0;color:#14215D;font-weight:900;max-width:640px}
@@ -142,6 +142,32 @@ img,svg{display:block}
 .chat-mock .bot{background:#F0F4FF;color:#14215D;border:1px solid #DCE6FF;justify-self:start;border-bottom-left-radius:4px}
 .chat-mock .user{background:#14215D;color:#EAF0FF;justify-self:end;border-bottom-right-radius:4px}
 .chat-mock .bot b{color:var(--blue)}
+
+.ai-section{background:#fff;padding:52px 0;font-family:"Inter","Nunito Sans",sans-serif}
+.ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.ai-copy{text-align:left}.ai-copy.center{text-align:center;max-width:640px;margin:0 auto}
+.ai-copy h2{font-size:clamp(1.85rem,2.85vw,2.85rem);line-height:1.05;color:#020617;margin:0 0 22px;font-weight:700;letter-spacing:0;max-width:460px}
+.ai-copy.center h2{margin-left:auto;margin-right:auto}
+.ai-copy p{font-size:20px;line-height:1.45;color:#475467;margin:0}
+.ai-visual{position:relative;min-height:330px;display:flex;align-items:center;justify-content:center}
+.ai-card{background:#fff;border:1px solid #DCE6FF;border-radius:18px;box-shadow:0 18px 46px rgba(35,85,232,.08);padding:20px;color:#020617}
+.ai-card b{display:block;font-size:18px;margin-bottom:10px}.ai-card p{margin:0;color:#344054;line-height:1.35}
+.ai-core{position:relative;width:132px;height:132px;border-radius:50%;background:linear-gradient(145deg,#EEF3FF,#fff);border:2px solid #C8D7FF;box-shadow:0 24px 58px rgba(35,85,232,.16);display:flex;align-items:center;justify-content:center;color:#4A67EA;font-size:20px;font-weight:800}
+.ai-core:before{content:"";position:absolute;inset:14px;border-radius:50%;border:10px solid #5C76E8;opacity:.95}
+.ai-core:after{content:"";position:absolute;inset:-14px;border-radius:50%;border:1px solid #DCE6FF;opacity:.9}
+.ai-bot{width:120px;height:120px;border-radius:36px;background:#EEF3FF;border:12px solid #5C76E8;display:flex;align-items:center;justify-content:center;color:#5C76E8;font-size:52px;font-weight:900}
+.ai-bot:before{content:"• •";letter-spacing:8px}
+.ai-prompt-card{position:absolute;width:220px}.ai-prompt-card.one{left:20px;top:18px}.ai-prompt-card.two{left:0;bottom:28px}.ai-prompt-card.three{right:0;top:82px}.ai-prompt-card.four{right:24px;bottom:0}
+.ai-chat{width:min(100%,330px);display:grid;gap:12px}
+.ai-bubble{padding:16px 18px;border-radius:16px;background:#F0F4FF;color:#6B7280;font-size:18px;line-height:1.16;font-weight:900}
+.ai-bubble.answer{background:#fff;border:1px solid #E7ECF8;box-shadow:0 18px 46px rgba(35,85,232,.08)}
+.ai-bubble small{display:block;text-align:right;font-size:13px;color:#8A94A6;margin-top:10px}.ai-lines{display:grid;gap:8px;margin-top:14px}.ai-lines span{height:9px;border-radius:999px;background:linear-gradient(90deg,#C8D7FF,#4A67EA)}
+.ai-doc{width:320px;transform:translate(-42px,-44px)}.ai-doc-chat{position:absolute;right:18px;bottom:24px;width:360px}
+.ai-use-cases{background:linear-gradient(110deg,#315DE8 0%,#233A8F 50%,#06101F 100%);color:#fff;padding:96px 0;overflow:hidden}
+.ai-use-cases h2{text-align:center;font-size:clamp(2rem,3vw,3.35rem);line-height:1.05;margin:0;color:#fff}.ai-use-cases p{text-align:center;color:#fff;font-size:20px;margin:22px 0 34px}
+.use-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:38px}
+.use-card{background:#fff;border-radius:18px;padding:34px 30px;min-height:250px;color:#344054}.use-card i{display:block;color:#5C76E8;font-size:42px;font-style:normal;margin-bottom:28px}.use-card h3{font-size:24px;color:#475467;margin:0 0 12px}.use-card p{text-align:left;color:#475467;font-size:17px;line-height:1.45;margin:0}
+.demo-form{background:#fff;padding:92px 0}.demo-form h2{text-align:center;font-family:"Inter","Nunito Sans",sans-serif;font-size:clamp(1.8rem,2.7vw,2.85rem);font-weight:700;line-height:1.16;color:#020617;margin:0 auto 64px;max-width:760px}.demo-fields{width:min(100%,760px);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:22px 34px}.demo-field.full{grid-column:1/-1}.demo-field label{display:block;color:#475467;font-size:16px;margin-bottom:10px}.demo-field label span{color:#E11D48}.demo-field input,.demo-field select{width:100%;height:44px;border:1px solid #D0D5DD;border-radius:10px;background:#fff;font:inherit;padding:0 14px}.demo-fields .demo{border:0;cursor:pointer;grid-column:1/-1;width:max-content;margin:18px auto 0}
 
 /* ============================================================
    7. SECCIÓN OSCURA — diferenciales
@@ -241,18 +267,19 @@ img,svg{display:block}
 @media(max-width:980px){
   .topbar,.utility,.nav-links,.login{display:none}
   .nav-shell{border-radius:0;width:100%;margin:0;border-left:0;border-right:0}
-  .hero-grid,.feature-grid,.dark-grid,.industry-grid,.modules-shell,.results-board{grid-template-columns:1fr}
+  .hero-grid,.feature-grid,.dark-grid,.industry-grid,.modules-shell,.results-board,.ai-grid{grid-template-columns:1fr}
   .module-grid{grid-template-columns:1fr 1fr}
   .footer-top{grid-template-columns:1fr 1fr}
   .dark-visual{grid-template-columns:1fr;height:auto}
   .suite-card{position:static;margin-top:14px;text-align:left!important}
+  .ai-copy{text-align:center}.ai-prompt-card,.ai-doc-chat{position:static;width:100%;margin-top:14px}.use-grid{grid-template-columns:1fr}.ai-doc{transform:none}
 }
 @media(max-width:620px){
   .wrap{width:min(100% - 28px,1180px)}
   .hero{padding-top:70px}
   .hero-actions{align-items:stretch}
   .demo{width:100%}
-  .industry-list,.footer-top,.results-list{grid-template-columns:1fr}
+  .industry-list,.footer-top,.results-list,.demo-fields{grid-template-columns:1fr}
   .module-grid{grid-template-columns:1fr}
   .quote{width:300px;flex-basis:300px}
   .result:nth-last-child(-n+2){border-bottom:1px solid #E7ECF8}
@@ -341,8 +368,8 @@ img,svg{display:block}
     <div class="wrap hero-grid">
       <div>
         <span class="hero-kicker">Leia AI</span>
-        <h1>Leia AI para la gestión de tu<em> equipo</em></h1>
-        <p class="hero-sub">Conect&aacute; consultas, datos y flujos para que sueldos, RR.HH. y control horario trabajen como un solo sistema.</p>
+        <h1>IA que acompaña <br> a tu<em> equipo</em></h1>
+        <p class="hero-sub">Leia responde consultas de sueldos, RR.HH. y control horario con datos conectados del ecosistema e-Sueldos, para reducir interrupciones y acelerar cada trámite.</p>
         <div class="hero-actions">
           <a class="demo" href="agendar-demo-esueldos.html">Agend&aacute; una demo</a>
         </div>
@@ -356,13 +383,10 @@ img,svg{display:block}
     </div>
   </section>
 
-  <!-- ============================================================
-       2. LOGOS
-       ============================================================ -->
   <section class="logos">
     <div class="wrap">
-      <h2>Empresas que conf&iacute;an en Leia AI</h2>
-      <p>Organizaciones que conectan consultas, datos y procesos con e-Sueldos.</p>
+      <h2>Empresas que conf&iacute;an en e-Sueldos</h2>
+      <p>Organizaciones que conectan sueldos, RR.HH. y novedades con e-Sueldos.</p>
       <div class="logo-marquee">
         <div class="logo-track">
           <a class="logo-tile" href="https://www.cerveceriaandes.com/" target="_blank" rel="noopener">Andes</a>
@@ -371,16 +395,12 @@ img,svg{display:block}
           <a class="logo-tile" href="https://www.ogilvy.com/" target="_blank" rel="noopener">Ogilvy</a>
           <a class="logo-tile" href="https://www.pecom.com.ar/" target="_blank" rel="noopener">Pecom</a>
           <a class="logo-tile" href="https://securion.com.ar/" target="_blank" rel="noopener">Securion</a>
-          <a class="logo-tile" href="https://www.gestamp.com/" target="_blank" rel="noopener">Gestamp</a>
-          <a class="logo-tile" href="https://www.franui.store/es/" target="_blank" rel="noopener">Franu&iacute;</a>
           <a class="logo-tile" href="https://www.cerveceriaandes.com/" target="_blank" rel="noopener">Andes</a>
           <a class="logo-tile" href="https://www.pirelli.com/" target="_blank" rel="noopener">Pirelli</a>
           <a class="logo-tile" href="https://www.lumen.com/" target="_blank" rel="noopener">Lumen</a>
           <a class="logo-tile" href="https://www.ogilvy.com/" target="_blank" rel="noopener">Ogilvy</a>
           <a class="logo-tile" href="https://www.pecom.com.ar/" target="_blank" rel="noopener">Pecom</a>
           <a class="logo-tile" href="https://securion.com.ar/" target="_blank" rel="noopener">Securion</a>
-          <a class="logo-tile" href="https://www.gestamp.com/" target="_blank" rel="noopener">Gestamp</a>
-          <a class="logo-tile" href="https://www.franui.store/es/" target="_blank" rel="noopener">Franu&iacute;</a>
         </div>
         <div class="logo-track reverse">
           <a class="logo-tile" href="https://www.hospitalitaliano.org.ar/" target="_blank" rel="noopener">Hospital Italiano</a>
@@ -388,157 +408,85 @@ img,svg{display:block}
           <a class="logo-tile" href="https://www.viva.com.ar/" target="_blank" rel="noopener">Viva</a>
           <a class="logo-tile" href="https://www.grupowerthein.com/" target="_blank" rel="noopener">Werthein</a>
           <a class="logo-tile" href="https://www.llaollao.com/" target="_blank" rel="noopener">Llao Llao</a>
-          <a class="logo-tile" href="https://www.vicentelopez.gov.ar/" target="_blank" rel="noopener">Vicente L&oacute;pez</a>
-          <a class="logo-tile" href="soluciones-esueldos.html#industria">Retail</a>
-          <a class="logo-tile" href="soluciones-esueldos.html#industria">Industria</a>
           <a class="logo-tile" href="https://www.hospitalitaliano.org.ar/" target="_blank" rel="noopener">Hospital Italiano</a>
           <a class="logo-tile" href="https://corporate.arcelormittal.com/" target="_blank" rel="noopener">ArcelorMittal</a>
           <a class="logo-tile" href="https://www.viva.com.ar/" target="_blank" rel="noopener">Viva</a>
           <a class="logo-tile" href="https://www.grupowerthein.com/" target="_blank" rel="noopener">Werthein</a>
           <a class="logo-tile" href="https://www.llaollao.com/" target="_blank" rel="noopener">Llao Llao</a>
-          <a class="logo-tile" href="https://www.vicentelopez.gov.ar/" target="_blank" rel="noopener">Vicente L&oacute;pez</a>
-          <a class="logo-tile" href="soluciones-esueldos.html#industria">Retail</a>
-          <a class="logo-tile" href="soluciones-esueldos.html#industria">Industria</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       3. PANEL DE PRODUCTO / IA — arquitectura de Leia
-       ============================================================ -->
-  <section class="section feature" id="arquitectura">
-    <div class="wrap"><div class="feature-intro"><div class="eyebrow">Arquitectura</div><h2>Un orquestador, agentes especializados por dominio.</h2><p>Leia no es un único modelo genérico: es una capa de orquestación que distribuye cada consulta al agente entrenado para resolverla.</p></div></div>
-    <div class="wrap feature-grid">
-      <div class="feature-panel">
-        <div class="eyebrow">Cómo funciona</div>
-        <h3>De la consulta a la respuesta correcta</h3>
-        <p>Cada mensaje se clasifica y se enruta al agente de dominio adecuado, que responde con datos reales del ecosistema, no con información genérica.</p>
-        <div class="feature-list">
-          <div><span class="mega-icon">1</span><span><b>Orquestador central</b><small>Interpreta la consulta y decide qué agente debe responder.</small></span></div>
-          <div><span class="mega-icon">2</span><span><b>Agentes por dominio</b><small>Payroll, talento, compliance, experiencia y operaciones.</small></span></div>
-          <div><span class="mega-icon">3</span><span><b>Datos compartidos</b><small>Todos los agentes leen de la misma base, sin duplicar información.</small></span></div>
-        </div>
+  <section class="ai-section">
+    <div class="wrap ai-grid">
+      <div class="ai-copy center">
+        <h2>Respuestas claras y actualizadas</h2>
+        <p>Leia aprende de convenios, recibos, legajos y solicitudes para dar respuestas consistentes. Cada consulta se enruta al agente correcto y vuelve con contexto real del ecosistema.</p>
       </div>
-      <div class="feature-visual">
-        <div class="chat-mock">
-          <div class="user">¿Cuándo se paga el recibo de junio?</div>
-          <div class="bot"><b>Leia · </b>El recibo de junio se libera el día 5 hábil. Ya está disponible en tu Portal RRHH.</div>
-          <div class="user">Necesito cargar horas extra de la semana pasada.</div>
-          <div class="bot"><b>Leia · </b>Te derivo al agente de Operaciones para registrar las horas al 50% o al 100%.</div>
-        </div>
+      <div class="ai-visual">
+        <div class="ai-card ai-prompt-card one"><b>Liquidaci&oacute;n</b><p>Cu&aacute;ndo se publica mi recibo de junio.</p></div>
+        <div class="ai-card ai-prompt-card two"><b>Convenios</b><p>Qu&eacute; escala aplica para esta categor&iacute;a.</p></div>
+        <div class="ai-core">Leia</div>
+        <div class="ai-card ai-prompt-card three"><b>Soporte RR.HH.</b><p>Necesito cargar una licencia m&eacute;dica.</p></div>
+        <div class="ai-card ai-prompt-card four"><b>Control horario</b><p>Revis&aacute; mis horas extra de la semana.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       4. ECOSISTEMA — cuatro familias conectadas por datos
-       ============================================================ -->
-  <section class="section modules" id="ecosistema-brief">
+  <section class="ai-section">
+    <div class="wrap ai-grid">
+      <div class="ai-visual">
+        <div class="ai-chat">
+          <div class="ai-bubble">Hola, Leia. Necesito entender por qu&eacute; este recibo tiene una diferencia.</div>
+          <div class="ai-bubble answer">Te muestro el concepto asociado y el convenio aplicado.<div class="ai-lines"><span></span><span></span></div><small>11:01</small></div>
+        </div>
+      </div>
+      <div class="ai-copy">
+        <h2>Ayuda clara, sin esperas</h2>
+        <p>Leia no funciona como un chatbot r&iacute;gido. Comprende el contexto laboral, responde con lenguaje claro y escala a una persona cuando el caso requiere intervenci&oacute;n humana.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-section">
+    <div class="wrap ai-grid">
+      <div class="ai-copy center">
+        <h2>Activaci&oacute;n simple, impacto inmediato</h2>
+        <p>Activ&aacute; Leia sobre tus m&oacute;dulos actuales de e-Sueldos. Se conecta con liquidaci&oacute;n, RR.HH. y control horario para responder sin duplicar datos ni cambiar tus procesos.</p>
+      </div>
+      <div class="ai-visual">
+        <div class="ai-card ai-doc"><b>Pol&iacute;tica de beneficios</b><p>Salud, bienestar, licencias y documentaci&oacute;n interna.</p><div class="ai-lines"><span></span><span></span></div></div>
+        <div class="ai-card ai-doc-chat"><b>Leia</b><p>&iexcl;Hola! Ya puedo responder usando esta pol&iacute;tica y los datos del legajo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-use-cases">
     <div class="wrap">
-      <div class="section-head"><div class="eyebrow">Ecosistema</div><h2>Cuatro familias conectadas por datos.</h2><p>Cada familia resuelve una parte de la operación de personas, sobre la misma base.</p></div>
-      <div class="modules-shell">
-        <aside class="module-side">
-          <a class="active" href="producto-esueldos.html#liquidacion">Liquidación</a>
-          <a href="producto-esueldos.html#rrhh">RR.HH.</a>
-          <a href="producto-esueldos.html#operaciones">Operaciones</a>
-          <a href="producto-esueldos.html#plataforma">Plataforma</a>
-        </aside>
-        <div class="module-grid">
-          <a class="module-card" href="e-sueldos-landing-completa.html"><h3>Liquidación</h3><p>Sueldos y recibos.</p></a>
-          <a class="module-card" href="portal-rrhh-landing.html"><h3>RR.HH.</h3><p>Legajo y autogestión.</p></a>
-          <a class="module-card" href="control-horario-esueldos.html"><h3>Operaciones</h3><p>Asistencia y turnos.</p></a>
-          <a class="module-card" href="brief-esueldos.html"><h3>Leia</h3><p>IA e integraciones.</p></a>
-        </div>
+      <h2>Trabaj&aacute; junto a Leia para impulsar tu organizaci&oacute;n</h2>
+      <p>Explor&aacute; los casos de uso de e-Sueldos AI</p>
+      <div class="use-grid">
+        <div class="use-card"><i>✦</i><h3>Liquidaci&oacute;n</h3><p>Responde dudas sobre recibos, escalas, conceptos, cierres y novedades mensuales.</p></div>
+        <div class="use-card"><i>✦</i><h3>RR.HH.</h3><p>Acompa&ntilde;a solicitudes, legajos, documentos, licencias y comunicaciones internas.</p></div>
+        <div class="use-card"><i>✦</i><h3>Operaciones</h3><p>Ayuda con asistencia, horarios, horas extra y consultas frecuentes del equipo.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       5. SECCIÓN OSCURA — diferenciales
-       ============================================================ -->
-  <section class="section dark-section">
-    <div class="wrap dark-grid">
-      <div class="dark-copy">
-        <div class="eyebrow" style="color:#8FADFC">Diferenciales</div>
-        <h3>Lo que hace que el ecosistema sea escalable.</h3>
-        <p>Tres decisiones de arquitectura sostienen todo el producto, desde una PyME hasta un organismo público.</p>
-        <div class="dark-tags"><span>Multiconvenio</span><span>Integrado</span><span>Automatizado</span><span>Cloud</span></div>
-      </div>
-      <div class="dark-visual">
-        <div class="feed-card"><b>Multiconvenio</b><p>Soporte para operaciones con reglas laborales diversas, sin desarrollos a medida.</p></div>
-        <div class="feed-card"><b>Integrado</b><p>La información fluye entre módulos sin duplicarse ni perder consistencia.</p></div>
-        <div class="feed-card"><b>Automatizado</b><p>Leia reduce consultas repetitivas y tareas manuales del equipo de RR.HH.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       6. RESULTADOS / KPIs
-       ============================================================ -->
-  <section class="section results">
+  <section class="demo-form">
     <div class="wrap">
-      <div class="section-head"><div class="eyebrow">En números</div><h2>Una plataforma con arquitectura probada.</h2><p>Diseñada para escalar sin perder trazabilidad.</p></div>
-      <div class="results-board">
-        <div class="results-main"><small>Cobertura</small><div><b>+20</b><span>años de especialización en gestión laboral argentina</span></div></div>
-        <div class="results-list">
-          <div class="result"><b>13</b><span>agentes especializados dentro de Leia</span></div>
-          <div class="result"><b>260+</b><span>convenios colectivos preconfigurados</span></div>
-          <div class="result"><b>4</b><span>familias de módulos conectados</span></div>
-          <div class="result"><b>1</b><span>base de datos única para todo el ecosistema</span></div>
-          <div class="result"><b>24/7</b><span>disponibilidad del asistente para cada colaborador</span></div>
-          <div class="result"><b>AR</b><span>foco en la legislación laboral argentina</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       7. CASOS DE USO POR PERFIL
-       ============================================================ -->
-  <section class="section industries">
-    <div class="wrap">
-      <div class="section-head"><div class="eyebrow">Casos de uso</div><h2>Leia responde distinto según quién pregunta.</h2><p>El mismo orquestador se adapta al rol de cada persona dentro de la organización.</p></div>
-      <div class="industry-grid">
-        <div class="industry-list">
-          <div><i>▤</i><h3>Liquidador</h3><p>Consultas sobre convenios, recibos y cierre mensual.</p><span>→</span></div>
-          <div><i>□</i><h3>RR.HH.</h3><p>Legajos, solicitudes y seguimiento de documentos.</p><span>→</span></div>
-          <div><i>▥</i><h3>Colaborador</h3><p>Recibos, vacaciones y novedades de su propio legajo.</p><span>→</span></div>
-        </div>
-        <div class="industry-visual">
-          <div class="industry-badge"><strong>+40</strong><span>casos de uso documentados</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       8. TESTIMONIOS
-       ============================================================ -->
-  <section class="section testimonials">
-    <div class="wrap">
-      <div class="section-head"><div class="eyebrow">Lo que dicen los equipos</div><h2>Menos consultas repetidas, más foco en lo importante.</h2></div>
-      <div class="quote-grid">
-        <div class="quote-track">
-          <div class="quote"><p>Leia absorbió la mayoría de las consultas sobre recibos y vacaciones. El equipo de RR.HH. dejó de responder lo mismo todos los meses.</p><div class="quote-author"><span><b>Jefa de RR.HH.</b><small>Empresa de servicios</small></span></div></div>
-          <div class="quote"><p>Que el asistente responda con datos reales, y no genéricos, cambió la confianza del equipo en la herramienta.</p><div class="quote-author"><span><b>Responsable de Operaciones</b><small>Industria manufacturera</small></span></div></div>
-          <div class="quote"><p>Necesitábamos trazabilidad sobre cada consulta. La arquitectura por agentes nos permitió auditar todo.</p><div class="quote-author"><span><b>Coordinador de RR.HH.</b><small>Organismo municipal</small></span></div></div>
-          <div class="quote"><p>Leia absorbió la mayoría de las consultas sobre recibos y vacaciones. El equipo de RR.HH. dejó de responder lo mismo todos los meses.</p><div class="quote-author"><span><b>Jefa de RR.HH.</b><small>Empresa de servicios</small></span></div></div>
-          <div class="quote"><p>Que el asistente responda con datos reales, y no genéricos, cambió la confianza del equipo en la herramienta.</p><div class="quote-author"><span><b>Responsable de Operaciones</b><small>Industria manufacturera</small></span></div></div>
-          <div class="quote"><p>Necesitábamos trazabilidad sobre cada consulta. La arquitectura por agentes nos permitió auditar todo.</p><div class="quote-author"><span><b>Coordinador de RR.HH.</b><small>Organismo municipal</small></span></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       9. CTA FINAL
-       ============================================================ -->
-  <section class="cta-section">
-    <div class="wrap">
-      <h2>Validemos cómo encaja e-Sueldos en tu operación.</h2>
-      <p>Una demo para mostrarte la arquitectura de Leia y cómo se conecta con liquidación, RR.HH. y operaciones.</p>
-      <a class="demo" href="agendar-demo-esueldos.html">Agendar Demo</a>
+      <h2>&iexcl;Descubr&iacute; c&oacute;mo Leia AI puede transformar tu empresa!</h2>
+      <form class="demo-fields">
+        <div class="demo-field"><label>Nombre<span>*</span></label><input type="text"></div>
+        <div class="demo-field"><label>Apellido<span>*</span></label><input type="text"></div>
+        <div class="demo-field full"><label>Email empresarial<span>*</span></label><input type="email"></div>
+        <div class="demo-field"><label>Nombre de la empresa<span>*</span></label><input type="text"></div>
+        <div class="demo-field"><label>Cantidad de empleados<span>*</span></label><select><option></option><option>1 a 50</option><option>51 a 200</option><option>201 a 500</option><option>+500</option></select></div>
+        <div class="demo-field"><label>Pa&iacute;s<span>*</span></label><select><option>Argentina</option></select></div>
+        <div class="demo-field"><label>N&uacute;mero de tel&eacute;fono</label><input type="tel" value="+54"></div>
+        <button class="demo" type="submit">Agendar Demo</button>
+      </form>
     </div>
   </section>
 
