@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>PyMEs | e-Sueldos</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="esueldos-site.css">
+<style>
+.hero{background:#F7F7F7;padding:92px 0 84px}
+.hero-grid{grid-template-columns:1fr 620px;gap:42px}
+.hero-kicker{display:inline-flex;align-items:center;border:1px solid #4A67EA;border-radius:999px;color:#4A67EA;padding:8px 14px;font-size:15px;font-weight:900;margin-bottom:22px}
+.hero h1{font-size:clamp(2.2rem,4vw,3.8rem);line-height:1.05;letter-spacing:-.025em;max-width:680px}
+.hero-sub{font-size:20px;line-height:1.18;max-width:660px}
+.hero-visual{position:relative;width:min(100%,580px);min-height:420px;display:flex;align-items:flex-start;justify-content:center;justify-self:center;padding-top:8px;box-sizing:border-box}
+.hero-visual img{width:100%;height:auto;border-radius:30px;filter:brightness(.72) saturate(.95)}
+.hero-visual .showcase-card.left{left:0;bottom:20px}
+.hero-visual .showcase-card.right{right:0;bottom:20px}
+.image-copy{position:absolute;left:44px;top:48px;z-index:2;color:#fff;max-width:260px}
+.image-copy .showcase-tag{background:rgba(255,255,255,.24);border:1px solid rgba(255,255,255,.34);backdrop-filter:blur(10px)}
+.image-copy .showcase-title{font-size:24px;line-height:1.05;text-shadow:0 12px 28px rgba(0,0,0,.32)}
+.py-challenge{background:#fff}
+.py-challenge-grid{display:grid;grid-template-columns:1fr 520px;gap:46px;align-items:center}
+.py-challenge h2{font-size:clamp(1.5rem,2.25vw,2.25rem);line-height:1.08;color:#020617;margin:0 0 22px;font-weight:700;letter-spacing:-.025em}
+.py-intro{padding-bottom:28px}
+.logos{padding-bottom:36px}
+.logos + .py-intro{padding-top:36px}
+.py-intro + .py-challenge{padding-top:28px}
+.py-list + .demo{margin-top:24px}
+.py-challenge p{font-size:18px;line-height:1.35;color:#475467;margin:0 0 26px;max-width:640px}
+.py-list{display:grid;gap:18px}
+.py-list div{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;color:#344054;font-size:18px;line-height:1.25}
+.py-list i{width:34px;height:34px;border-radius:50%;background:#EEF3FF;color:#4A67EA;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:900}
+.py-visual{position:relative;min-height:420px}
+.py-visual img{width:100%;height:420px;object-fit:cover;border-radius:30px;filter:brightness(.78) saturate(.92)}
+.py-float{position:absolute;background:#fff;border:1px solid #E7ECF8;border-radius:14px;padding:16px 18px;box-shadow:0 18px 46px rgba(11,18,32,.14);color:#14215D;font-weight:900}
+.py-float.one{left:-36px;top:34px}.py-float.two{right:-34px;top:142px}.py-float.three{right:28px;bottom:28px}
+.py-float small{display:block;color:#667085;font-size:12px;margin-top:5px;font-weight:800}
+.py-form{background:#fff}
+.py-form h2{text-align:center;font-size:clamp(1.9rem,3vw,3rem);line-height:1.15;color:#020617;margin:0 auto 50px;max-width:760px}
+.py-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 28px;max-width:720px;margin:0 auto}
+.py-form-grid label{display:grid;gap:9px;color:#14215D;font-size:14px;font-weight:700}
+.py-form-grid label.full{grid-column:1/-1}
+.py-form-grid input,.py-form-grid select{height:42px;border:1px solid #C9D2E3;border-radius:9px;padding:0 14px;font:inherit;color:#14215D;background:#fff}
+.py-form-grid button{grid-column:1/-1;justify-self:center;margin-top:12px}
+.required{color:#E23B5A}
+.py-modules{background:#F7F7F7}
+.py-modules .section-head{max-width:900px}
+.py-modules .section-head h2{color:#020617}
+.py-modules .module-grid{grid-template-columns:repeat(3,1fr);max-width:944px;margin:0 auto;background:transparent;border:0;box-shadow:none;padding:0;gap:14px}
+.py-modules .module-card{min-height:152px;border:1px solid #C9D2E3;border-radius:12px;padding:22px;background:#fff;box-shadow:none}
+.py-modules .module-card:after{display:none}
+.module-badge{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;border-radius:7px;background:#DCE6FF;color:#4A67EA;font-size:12px;font-weight:900;margin-bottom:16px}
+.py-bridge{padding:48px 0;background:#fff}
+.py-bridge-row{max-width:1040px;margin:0 auto;border-top:1px solid #DCE6FF;border-bottom:1px solid #DCE6FF;padding:42px 0;display:grid;grid-template-columns:340px 1fr;gap:52px;align-items:center}
+.py-bridge-copy b{display:block;color:#14215D;font-size:30px;line-height:1.08;margin-bottom:12px}
+.py-bridge-copy span{color:#667085;line-height:1.45;font-size:17px;font-weight:700}
+.py-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;counter-reset:step}
+.py-step{position:relative;padding:0 26px;color:#14215D;font-size:19px;font-weight:900}
+.py-step:before{counter-increment:step;content:counter(step);display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:#4A67EA;color:#fff;margin-bottom:14px;font-size:16px}
+.py-step:after{content:"";position:absolute;left:68px;right:-12px;top:21px;height:1px;background:#DCE6FF}
+.py-step:last-child:after{display:none}
+.py-step small{display:block;color:#667085;font-size:15px;font-weight:700;line-height:1.4;margin-top:7px}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr}.hero-visual{margin-top:34px}.showcase-card{position:static;margin-top:14px}}
+@media(max-width:980px){.py-challenge-grid,.py-bridge-row,.py-steps{grid-template-columns:1fr}.py-step:after{display:none}.py-form-grid,.py-modules .module-grid{grid-template-columns:1fr}.py-float.one,.py-float.two,.py-float.three{position:static;margin-top:12px}}
+@media(max-width:620px){.hero{padding-top:70px}.hero h1{font-size:2.55rem}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap"><span class="pill">PyMEs</span><span>Liquidaci&oacute;n, RR.HH. y control horario sin complejidad.</span></div></div>
+<div class="utility"><div class="wrap"><a href="#">ES</a><a href="recursos-esueldos.html">Soporte</a><a href="#">Iniciar sesi&oacute;n</a></div></div>
+<header class="header">
+  <div class="nav-shell">
+    <nav class="nav">
+      <a class="logo" href="index-esueldos.html"><img src="fondo.png" alt="e-Sueldos"></a>
+      <div class="nav-links">
+        <div class="nav-item">
+          <button class="nav-btn">Producto <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="mega">
+            <div class="mega-side"><a class="active" href="producto-esueldos.html#liquidacion">Liquidación</a><a href="producto-esueldos.html#rrhh">Gestión de RR.HH.</a><a href="producto-esueldos.html#operaciones">Operaciones</a><a href="producto-esueldos.html#plataforma">Plataforma</a></div>
+            <div class="mega-main">
+              <a class="mega-card" href="e-sueldos-landing-completa.html"><span class="mega-icon">✓</span><span><b>Portal Liquidación</b><small>Sueldos, convenios, recibos y reportes.</small></span></a>
+              <a class="mega-card" href="portal-rrhh-landing.html"><span class="mega-icon">✓</span><span><b>Portal RRHH</b><small>Legajo, firma digital y autogestión.</small></span></a>
+              <a class="mega-card" href="control-horario-esueldos.html"><span class="mega-icon">✓</span><span><b>Control Horario</b><small>Fichadas, turnos, GPS, QR y FaceID.</small></span></a>
+              <a class="mega-card" href="calculadora-horas-extras.html"><span class="mega-icon">✓</span><span><b>Horas extras</b><small>Cálculo, trazabilidad y liquidación.</small></span></a>
+              <a class="mega-card" href="brief-esueldos.html"><span class="mega-icon">✓</span><span><b>Leia IA</b><small>Asistente para consultas y automatización.</small></span></a>
+              <a class="mega-card" href="brief-esueldos.html#ecosistema-brief"><span class="mega-icon">✓</span><span><b>Integraciones</b><small>Datos conectados entre módulos.</small></span></a>
+            </div>
+            <div class="mega-visual"><div class="mini-screen"><b>Liquidación · Junio</b><div class="mini-bar"></div><div class="mini-bar"></div><div class="mini-chart"><span style="height:45%"></span><span></span><span></span><span></span><span></span></div></div></div>
+          </div>
+        </div>
+        <div class="nav-item">
+          <button class="nav-btn">Soluciones <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="mega">
+            <div class="mega-side"><a class="active" href="soluciones-esueldos.html#perfil">Por perfil</a><a href="soluciones-esueldos.html#area">Por área</a><a href="soluciones-esueldos.html#operacion">Por operación</a><a href="soluciones-esueldos.html#industria">Por industria</a></div>
+            <div class="mega-main">
+              <a class="mega-card" href="pymes-esueldos.html"><span class="mega-icon">1</span><span><b>PyMEs</b><small>Liquidación y RR.HH. sin complejidad.</small></span></a>
+              <a class="mega-card" href="e-sueldos-landing-completa.html"><span class="mega-icon">2</span><span><b>Liquidadores</b><small>Cierre mensual, reportes y recibos.</small></span></a>
+              <a class="mega-card" href="portal-rrhh-landing.html"><span class="mega-icon">3</span><span><b>RR.HH.</b><small>Solicitudes, legajos y comunicación.</small></span></a>
+              <a class="mega-card" href="control-horario-esueldos.html"><span class="mega-icon">4</span><span><b>Operaciones</b><small>Equipos distribuidos y turnos.</small></span></a>
+            </div>
+            <div class="mega-visual"><div class="industry-badge">+40<br>casos de uso</div></div>
+          </div>
+        </div>
+        <a class="nav-link" href="brief-esueldos.html">e-Sueldos AI</a>
+        <div class="nav-item">
+          <button class="nav-btn">Recursos <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="mega">
+            <div class="mega-side"><a class="active" href="recursos-esueldos.html">Soporte</a><a href="calculadora-horas-extras.html">Calculadora</a><a href="brief-esueldos.html">Brief</a><a href="planes-esueldos.html">Planes</a></div>
+            <div class="mega-main">
+              <a class="mega-card" href="calculadora-horas-extras.html"><span class="mega-icon">?</span><span><b>Calculadora horas extras</b><small>Herramienta gratuita para Argentina.</small></span></a>
+              <a class="mega-card" href="brief-esueldos.html"><span class="mega-icon">i</span><span><b>Brief del ecosistema</b><small>Arquitectura, módulos y propuesta.</small></span></a>
+              <a class="mega-card" href="planes-esueldos.html"><span class="mega-icon">$</span><span><b>Planes</b><small>Comparación por tamaño y módulos.</small></span></a>
+              <a class="mega-card" href="agendar-demo-esueldos.html"><span class="mega-icon">→</span><span><b>Demo</b><small>Validá alcance e implementación.</small></span></a>
+            </div>
+            <div class="mega-visual"><div class="mini-screen"><b>Centro de recursos</b><div class="mini-bar"></div><div class="mini-bar"></div><div class="mini-bar"></div></div></div>
+          </div>
+        </div>
+        <div class="nav-item">
+          <button class="nav-btn">Nosotros <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="mega">
+            <div class="mega-side"><a class="active" href="nosotros-esueldos.html">e-Sueldos</a><a href="agendar-demo-esueldos.html">Contacto</a><a href="recursos-esueldos.html">Soporte</a><a href="planes-esueldos.html">Planes</a></div>
+            <div class="mega-main">
+              <a class="mega-card" href="nosotros-esueldos.html"><span class="mega-icon">e</span><span><b>Sobre e-Sueldos</b><small>Especialistas en gestión laboral argentina.</small></span></a>
+              <a class="mega-card" href="agendar-demo-esueldos.html"><span class="mega-icon">+</span><span><b>Hablemos</b><small>Conocé el producto con un asesor.</small></span></a>
+            </div>
+            <div class="mega-visual"><div class="industry-badge">20+<br>años</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-actions"><a class="demo" href="agendar-demo-esueldos.html">Agendar Demo</a></div>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero"><div class="wrap hero-grid"><div><div class="hero-kicker">PyMEs</div><h1>Sueldos y RR.HH. para <em>PyMEs</em></h1><p class="hero-sub">Centraliz&aacute; recibos, legajos, novedades y asistencia en una plataforma simple, escalable y preparada para la operaci&oacute;n laboral argentina.</p><div class="hero-actions"><a class="demo" href="agendar-demo-esueldos.html">Agend&aacute; una demo</a></div></div><div class="hero-visual"><img src="assets/hero-suite.png" alt="Feature PyMEs e-Sueldos"><div class="image-copy"><span class="showcase-tag">Feature PyMEs</span><div class="showcase-title">Operaci&oacute;n laboral simple</div></div><div class="showcase-card left"><span>Inicio recomendado</span><b>Sueldos</b><small>Con recibos y legajos</small></div><div class="showcase-card right"><span>M&oacute;dulos listos</span><b>4</b><small>Escalables por etapa</small></div></div></div></section>
+<section class="logos"><div class="wrap"><h2>Empresas que conf&iacute;an en nosotros</h2><p>Organizaciones que ordenan sueldos, RR.HH. y control horario con e-Sueldos.</p><div class="logo-marquee"><div class="logo-track"><a class="logo-tile" href="https://www.cerveceriaandes.com/" target="_blank" rel="noopener">Andes</a><a class="logo-tile" href="https://www.pirelli.com/" target="_blank" rel="noopener">Pirelli</a><a class="logo-tile" href="https://www.lumen.com/" target="_blank" rel="noopener">Lumen</a><a class="logo-tile" href="https://www.ogilvy.com/" target="_blank" rel="noopener">Ogilvy</a><a class="logo-tile" href="https://www.pecom.com.ar/" target="_blank" rel="noopener">Pecom</a><a class="logo-tile" href="https://securion.com.ar/" target="_blank" rel="noopener">Securion</a><a class="logo-tile" href="https://www.gestamp.com/" target="_blank" rel="noopener">Gestamp</a><a class="logo-tile" href="https://www.franui.store/es/" target="_blank" rel="noopener">Franu&iacute;</a></div><div class="logo-track reverse"><a class="logo-tile" href="https://www.hospitalitaliano.org.ar/" target="_blank" rel="noopener">Hospital Italiano</a><a class="logo-tile" href="https://corporate.arcelormittal.com/" target="_blank" rel="noopener">ArcelorMittal</a><a class="logo-tile" href="https://www.viva.com.ar/" target="_blank" rel="noopener">Viva</a><a class="logo-tile" href="https://www.grupowerthein.com/" target="_blank" rel="noopener">Werthein</a><a class="logo-tile" href="https://www.llaollao.com/" target="_blank" rel="noopener">Llao Llao</a><a class="logo-tile" href="https://www.vicentelopez.gov.ar/" target="_blank" rel="noopener">Vicente L&oacute;pez</a><a class="logo-tile" href="soluciones-esueldos.html#industria">Retail</a><a class="logo-tile" href="soluciones-esueldos.html#industria">Industria</a></div></div></div></section>
+<section class="section py-intro"><div class="wrap section-head"><div class="eyebrow">Feature PyMEs</div><h2>Orden&aacute; sueldos, RR.HH. y asistencia con e-Sueldos</h2><p>Una plataforma pensada para reducir carga manual, conectar datos y acompa&ntilde;ar el crecimiento de tu operaci&oacute;n.</p></div></section>
+<section class="section py-challenge" id="alcance"><div class="wrap py-challenge-grid"><div><h2>Desaf&iacute;os de gesti&oacute;n en PyMEs</h2><p>Las PyMEs necesitan ordenar sueldos y RR.HH. sin depender de planillas, mensajes sueltos o procesos dif&iacute;ciles de seguir.</p><div class="py-list"><div><i>→</i><span><b>Documentaci&oacute;n dispersa</b> entre recibos, legajos, certificados y novedades.</span></div><div><i>→</i><span><b>Procesos manuales</b> que consumen tiempo en cada cierre mensual.</span></div><div><i>→</i><span><b>Control horario desconectado</b> de la liquidaci&oacute;n y los reportes.</span></div><div><i>→</i><span><b>Consultas repetitivas</b> que recargan a administraci&oacute;n y RR.HH.</span></div></div><a class="demo" href="#contacto">Contactanos</a></div><div class="py-visual"><img src="assets/hero-rrhh.png" alt="Gestión PyME e-Sueldos"><div class="py-float one">Legajo digital<small>Datos y documentos</small></div><div class="py-float two">Recibos firmados<small>Con trazabilidad</small></div><div class="py-float three">Novedades listas<small>Para liquidar</small></div></div></div></section>
+<section class="section py-challenge compact"><div class="wrap py-challenge-grid"><div class="py-visual"><img src="assets/hero-liquidacion.png" alt="Liquidación e-Sueldos para PyMEs"><div class="py-float one">Cierre mensual<small>Datos listos</small></div><div class="py-float two">Recibos digitales<small>Firma y trazabilidad</small></div><div class="py-float three">Reportes claros<small>Para decidir</small></div></div><div><h2>Liquidaci&oacute;n simple para crecer</h2><p>e-Sueldos ayuda a que cada cierre mensual tenga datos ordenados, recibos disponibles y reportes claros para la toma de decisiones.</p><div class="py-list"><div><i>→</i><span><b>Conceptos y convenios centralizados</b> para reducir errores de carga.</span></div><div><i>→</i><span><b>Recibos digitales</b> con firma, trazabilidad y consulta permanente.</span></div><div><i>→</i><span><b>Novedades conectadas</b> desde RR.HH. y control horario.</span></div><div><i>→</i><span><b>Reportes de cierre</b> listos para administraci&oacute;n y direcci&oacute;n.</span></div></div><a class="demo" href="#contacto">Contactanos</a></div></div></section>
+<section class="section py-challenge"><div class="wrap py-challenge-grid"><div><h2>RR.HH. y asistencia en una misma plataforma</h2><p>La PyME puede sumar autogesti&oacute;n, solicitudes y control horario sin cambiar de sistema ni duplicar informaci&oacute;n.</p><div class="py-list"><div><i>→</i><span><b>Legajos digitales</b> con documentos y datos del colaborador.</span></div><div><i>→</i><span><b>Solicitudes internas</b> para vacaciones, certificados y novedades.</span></div><div><i>→</i><span><b>Fichadas y turnos</b> conectados a la operaci&oacute;n diaria.</span></div><div><i>→</i><span><b>Leia IA</b> para responder consultas frecuentes del equipo.</span></div></div><a class="demo" href="#contacto">Contactanos</a></div><div class="py-visual"><img src="assets/hero-control-horario.png" alt="RR.HH. y control horario e-Sueldos"><div class="py-float one">Solicitudes<small>Menos mensajes</small></div><div class="py-float two">Control horario<small>Fichadas y turnos</small></div><div class="py-float three">Leia IA<small>Consultas frecuentes</small></div></div></div></section>
+<section class="py-bridge"><div class="wrap py-bridge-row"><div class="py-bridge-copy"><b>De la consulta a la puesta en marcha</b><span>Un recorrido simple para definir alcance y empezar sin fricci&oacute;n.</span></div><div class="py-steps"><div class="py-step">Relevamos<small>Procesos, legajos y necesidades.</small></div><div class="py-step">Priorizamos<small>M&oacute;dulos y etapas de activaci&oacute;n.</small></div><div class="py-step">Implementamos<small>Datos, usuarios y circuitos iniciales.</small></div></div></div></section>
+<section class="section py-form" id="contacto"><div class="wrap"><h2>Conoc&eacute; c&oacute;mo e-Sueldos puede ordenar tu gesti&oacute;n PyME.</h2><form class="py-form-grid"><label>Nombre<span class="required">*</span><input type="text"></label><label>Apellido<span class="required">*</span><input type="text"></label><label class="full">Email empresarial<span class="required">*</span><input type="email"></label><label>Nombre de la empresa<span class="required">*</span><input type="text"></label><label>Cantidad de empleados<span class="required">*</span><select><option></option><option>Hasta 20</option><option>21 a 50</option><option>51 a 100</option><option>+100</option></select></label><label>Pa&iacute;s<span class="required">*</span><select><option>Argentina</option></select></label><label>N&uacute;mero de tel&eacute;fono<input type="tel" value="+54"></label><button class="demo" type="submit">Agendar Demo</button></form></div></section>
+<section class="section modules py-modules" id="modulos"><div class="wrap"><div class="section-head"><h2>Explor&aacute; c&oacute;mo otros m&oacute;dulos de e-Sueldos pueden potenciar tu operaci&oacute;n</h2></div><div class="module-grid"><a class="module-card" href="e-sueldos-landing-completa.html"><span class="module-badge">$</span><h3>Portal Liquidaci&oacute;n</h3><p>Conect&aacute; novedades, recibos y reportes con el cierre mensual.</p></a><a class="module-card" href="portal-rrhh-landing.html"><span class="module-badge">RR</span><h3>Portal RR.HH.</h3><p>Centraliz&aacute; legajos, documentos y solicitudes del equipo.</p></a><a class="module-card" href="brief-esueldos.html"><span class="module-badge">IA</span><h3>Leia IA</h3><p>Resol&eacute; consultas frecuentes y acompa&ntilde;&aacute; procesos internos.</p></a></div></div></section>
+</main>
+<footer class="footer"><div class="wrap"><div class="footer-top"><div><img class="footer-logo" src="fondoBlanco.png" alt="e-Sueldos"><p>Payroll + RR.HH. impulsados por Leia. El ecosistema de gesti&oacute;n humana para empresas y organismos p&uacute;blicos de Argentina.</p></div><div><h4>Producto</h4><a href="e-sueldos-landing-completa.html">Portal Liquidaci&oacute;n</a><a href="portal-rrhh-landing.html">Portal RRHH</a><a href="control-horario-esueldos.html">Control Horario</a><a href="brief-esueldos.html">Leia IA</a></div><div><h4>Soluciones</h4><a href="pymes-esueldos.html">PyMEs</a><a href="soluciones-esueldos.html#area">Por &aacute;rea</a><a href="soluciones-esueldos.html#industria">Por industria</a><a href="planes-esueldos.html">Planes</a></div><div><h4>Recursos</h4><a href="calculadora-horas-extras.html">Calculadora</a><a href="brief-esueldos.html">Brief</a><a href="recursos-esueldos.html">Soporte</a><a href="agendar-demo-esueldos.html">Demo</a></div><div><h4>Contacto</h4><a href="#">hola@e-sueldos.com</a><a href="#">+54 9 11 7110 3105</a><a href="#">Lun a Vie &middot; 9 a 17 hs</a></div></div><div class="footer-bottom"><span>&copy; 2026 e-Sueldos. Todos los derechos reservados.</span><span>T&eacute;rminos &middot; Privacidad &middot; Media Kit</span></div></div></footer>
+</body>
+</html>
