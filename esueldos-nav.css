@@ -1,0 +1,22 @@
+.mega:has(.mega-side a:hover) .mega-side a.active:not(:hover),
+.mega:has(.mega-side a:focus) .mega-side a.active:not(:focus){background:transparent;color:#020617}
+.mega:has(.mega-side a:hover) .mega-main .mega-card,
+.mega:has(.mega-side a:focus) .mega-main .mega-card{display:none}
+.mega:has(.mega-main .mega-card:nth-child(6)):has(.mega-side a:nth-child(1):is(:hover,:focus)) .mega-main .mega-card:nth-child(1),
+.mega:has(.mega-main .mega-card:nth-child(6)):has(.mega-side a:nth-child(1):is(:hover,:focus)) .mega-main .mega-card:nth-child(4),
+.mega:has(.mega-main .mega-card:nth-child(6)):has(.mega-side a:nth-child(2):is(:hover,:focus)) .mega-main .mega-card:nth-child(2),
+.mega:has(.mega-main .mega-card:nth-child(6)):has(.mega-side a:nth-child(2):is(:hover,:focus)) .mega-main .mega-card:nth-child(5),
+.mega:has(.mega-main .mega-card:nth-child(6)):has(.mega-side a:nth-child(3):is(:hover,:focus)) .mega-main .mega-card:nth-child(3),
+.mega:has(.mega-main .mega-card:nth-child(6)):has(.mega-side a:nth-child(3):is(:hover,:focus)) .mega-main .mega-card:nth-child(4),
+.mega:has(.mega-main .mega-card:nth-child(6)):has(.mega-side a:nth-child(4):is(:hover,:focus)) .mega-main .mega-card:nth-child(5),
+.mega:has(.mega-main .mega-card:nth-child(6)):has(.mega-side a:nth-child(4):is(:hover,:focus)) .mega-main .mega-card:nth-child(6),
+.mega:not(:has(.mega-main .mega-card:nth-child(5))):has(.mega-side a:nth-child(1):is(:hover,:focus)) .mega-main .mega-card:nth-child(1),
+.mega:not(:has(.mega-main .mega-card:nth-child(5))):has(.mega-side a:nth-child(2):is(:hover,:focus)) .mega-main .mega-card:nth-child(2),
+.mega:not(:has(.mega-main .mega-card:nth-child(5))):has(.mega-side a:nth-child(3):is(:hover,:focus)) .mega-main .mega-card:nth-child(3),
+.mega:not(:has(.mega-main .mega-card:nth-child(5))):has(.mega-side a:nth-child(4):is(:hover,:focus)) .mega-main .mega-card:nth-child(4),
+.mega:has(.mega-main .mega-card:nth-child(5)):not(:has(.mega-main .mega-card:nth-child(6))):has(.mega-side a:nth-child(1):is(:hover,:focus)) .mega-main .mega-card:nth-child(1),
+.mega:has(.mega-main .mega-card:nth-child(5)):not(:has(.mega-main .mega-card:nth-child(6))):has(.mega-side a:nth-child(2):is(:hover,:focus)) .mega-main .mega-card:nth-child(2),
+.mega:has(.mega-main .mega-card:nth-child(5)):not(:has(.mega-main .mega-card:nth-child(6))):has(.mega-side a:nth-child(3):is(:hover,:focus)) .mega-main .mega-card:nth-child(3),
+.mega:has(.mega-main .mega-card:nth-child(5)):not(:has(.mega-main .mega-card:nth-child(6))):has(.mega-side a:nth-child(4):is(:hover,:focus)) .mega-main .mega-card:nth-child(4){display:grid}
+.mega:has(.mega-side a:hover) .mega-main,
+.mega:has(.mega-side a:focus) .mega-main{align-content:start}
