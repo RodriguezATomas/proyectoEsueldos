@@ -32,12 +32,14 @@ img,svg{display:block}
 .mega{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(12px);width:min(1140px,calc(100vw - 30px));background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:10px;opacity:0;pointer-events:none;transition:.18s;display:grid;grid-template-columns:190px 1fr 300px;gap:10px}
 .nav-item:hover .mega,.nav-item:focus-within .mega{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
 .mega-side{background:#fff;border-radius:16px;padding:10px}
-.mega-side a{display:flex;justify-content:space-between;align-items:center;padding:12px 12px;border-radius:12px;color:#020617;font-weight:700;font-size:16px;letter-spacing:0;white-space:nowrap}
+.mega-side a{display:flex;justify-content:space-between;align-items:center;padding:12px 12px;border-radius:12px;color:#020617;font-weight:700;font-size:16px;letter-spacing:0;white-space:nowrap;transition:background .18s ease,color .18s ease}
 .mega-side a:hover,.mega-side a.active{background:var(--soft-blue);color:#4A67EA}
 .mega-main{background:#F7F8FA;border-radius:16px;padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.mega-card{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start}
+.mega-card{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;border-radius:12px;padding:8px;transition:background .18s ease,transform .18s ease}
+.mega-card:hover{background:#F8FAFF;transform:translateX(2px)}
 .mega-icon{width:24px;height:24px;border-radius:8px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;color:#4A67EA;font-weight:900}
-.mega-card b{display:block;font-size:16px;color:#475467;margin-bottom:5px}
+.mega-card b{display:block;font-size:16px;color:#475467;margin-bottom:5px;transition:color .18s ease}
+.mega-card:hover b{color:#4A67EA}
 .mega-card small{display:block;font-size:13px;line-height:1.4;color:#98A2B3}
 .mega-visual{border-radius:16px;background:linear-gradient(145deg,#EEF3FF,#F8FBFF);padding:22px;display:flex;align-items:center;justify-content:center;min-height:250px}
 .industry-badge{font-size:42px;line-height:1.05;color:#5C76E8;font-weight:900;text-align:center}

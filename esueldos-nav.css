@@ -22,3 +22,9 @@
 .mega:has(.mega-main .mega-card:nth-child(5)):not(:has(.mega-main .mega-card:nth-child(6))):has(.mega-side a:nth-child(4):is(:hover,:focus)) .mega-main .mega-card:nth-child(4){display:grid}
 .mega:has(.mega-side a:hover) .mega-main,
 .mega:has(.mega-side a:focus) .mega-main{align-content:start}
+.mega:has(.mega-main:hover) .mega-side a.active{background:transparent;color:#020617}
+.mega:has(.mega-main:hover) .mega-main .mega-card{display:grid}
+.mega .mega-card{border-radius:12px;padding:8px;transition:background .18s ease,transform .18s ease}
+.mega .mega-card b{transition:color .18s ease}
+.mega .mega-card:hover{background:#F8FAFF;transform:translateX(2px)}
+.mega .mega-card:hover b{color:#4A67EA}
