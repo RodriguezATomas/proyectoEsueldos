@@ -1,3 +1,10 @@
+@font-face{font-family:"SF UI";font-style:normal;font-weight:300;font-display:auto;src:url("https://humand.co/wp-content/uploads/2024/08/sfuitext-light-webfont.woff2") format("woff2"),url("https://humand.co/wp-content/uploads/2024/08/sfuitext-light-webfont.woff") format("woff")}
+@font-face{font-family:"SF UI";font-style:normal;font-weight:400;font-display:auto;src:url("https://humand.co/wp-content/uploads/2024/08/sfuitext-regular-webfont.woff2") format("woff2"),url("https://humand.co/wp-content/uploads/2024/08/sfuitext-regular-webfont.woff") format("woff")}
+@font-face{font-family:"SF UI";font-style:normal;font-weight:500;font-display:auto;src:url("https://humand.co/wp-content/uploads/2024/08/sfuitext-medium-webfont.woff2") format("woff2"),url("https://humand.co/wp-content/uploads/2024/08/sfuitext-medium-webfont.woff") format("woff")}
+@font-face{font-family:"SF UI";font-style:normal;font-weight:600;font-display:auto;src:url("https://humand.co/wp-content/uploads/2024/08/sfuitext-semibold-webfont.woff2") format("woff2"),url("https://humand.co/wp-content/uploads/2024/08/sfuitext-semibold-webfont.woff") format("woff")}
+@font-face{font-family:"SF UI";font-style:normal;font-weight:700;font-display:auto;src:url("https://humand.co/wp-content/uploads/2024/08/sfuitext-bold-webfont.woff2") format("woff2"),url("https://humand.co/wp-content/uploads/2024/08/sfuitext-bold-webfont-1.woff") format("woff")}
+@font-face{font-family:"SF UI";font-style:normal;font-weight:800;font-display:auto;src:url("https://humand.co/wp-content/uploads/2024/08/sfuitext-heavy-webfont.woff2") format("woff2"),url("https://humand.co/wp-content/uploads/2024/08/sfuitext-heavy-webfont.woff") format("woff")}
+html,body,button,input,select,textarea,a{font-family:"SF UI",Arial,sans-serif!important}
 .nav-actions .demo{border:1px solid #4A67EA;transition:background .18s,color .18s,border-color .18s}
 .nav-actions .demo:hover{background:#fff;color:#4A67EA;border-color:#4A67EA}
 .mega:has(.mega-side a:hover) .mega-side a.active:not(:hover),
