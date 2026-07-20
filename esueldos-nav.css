@@ -7,6 +7,10 @@
 html,body,button,input,select,textarea,a{font-family:"SF UI",Arial,sans-serif!important}
 .nav-actions .demo{border:1px solid #4A67EA;transition:background .18s,color .18s,border-color .18s}
 .nav-actions .demo:hover{background:#fff;color:#4A67EA;border-color:#4A67EA}
+main .demo{border:1px solid #4A67EA!important;transition:background .18s,color .18s,border-color .18s}
+main .demo:hover{background:#fff!important;color:#4A67EA!important;border-color:#4A67EA!important}
+body:has(.phone-scene) .hero .demo{background:#050B18!important;color:#fff!important;border-color:#2355E8!important;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+body:has(.phone-scene) .hero .demo:hover{background:#050B18!important;color:#fff!important;border-color:#6F8CFF!important}
 .mega:has(.mega-side a:hover) .mega-side a.active:not(:hover),
 .mega:has(.mega-side a:focus) .mega-side a.active:not(:focus){background:transparent;color:#020617}
 .mega:has(.mega-side a:hover) .mega-main .mega-card,
