@@ -29,8 +29,25 @@
 .contact-card svg{width:36px;height:36px;stroke:#344054;fill:none;stroke-width:2}
 .contact-card h3{font-size:22px;margin:0 0 12px;color:#4A67EA}
 .contact-card p{margin:0;color:#475467;line-height:1.55;font-size:16px}
+.support-chat{position:fixed;inset:0;z-index:120;background:rgba(7,17,36,.36);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px}
+.support-chat.open{display:flex}
+.support-chat-panel{width:min(760px,100%);height:min(680px,calc(100vh - 48px));background:#fff;border:1px solid #DCE6FF;border-radius:18px;box-shadow:0 28px 80px rgba(11,18,32,.22);overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;color:#14215D}
+.support-chat-head{background:#4A67EA;color:#fff;border-bottom:1px solid #4A67EA;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.support-chat-title{display:flex;align-items:center;gap:14px;font-weight:900}
+.support-chat-title span{width:72px;height:72px;border-radius:22px;background:#2355E8;border:1px solid rgba(255,255,255,.42);display:flex;align-items:center;justify-content:center;color:#fff;font-size:42px;line-height:1}
+.support-chat-title small{display:block;margin-top:4px;color:#EAF0FF;font-size:13px}
+.support-chat-close{width:38px;height:38px;border:1px solid rgba(255,255,255,.42);border-radius:12px;background:rgba(255,255,255,.14);color:#fff;font-size:24px;line-height:1;cursor:pointer}
+.support-chat-body{padding:24px;background:linear-gradient(180deg,#F8FAFF,#fff);overflow:auto;display:grid;align-content:start;gap:14px}
+.support-message{max-width:78%;border-radius:16px;padding:14px 16px;font-size:15px;line-height:1.45;box-shadow:0 10px 24px rgba(35,85,232,.06)}
+.support-message.agent{background:#fff;border:1px solid #DCE6FF;color:#14215D}
+.support-message.user{justify-self:end;background:#2355E8;color:#fff;border:1px solid #2355E8}
+.support-chat-form{padding:16px;background:#fff;border-top:1px solid #DCE6FF;display:grid;grid-template-columns:1fr auto;gap:12px}
+.support-chat-form input{height:52px;border:1px solid #C8D7FF;border-radius:14px;padding:0 16px;font:inherit;color:#14215D;background:#F8FAFF}
+.support-chat-form input:focus{outline:0;border-color:#4A67EA;box-shadow:0 0 0 3px rgba(74,103,234,.14);background:#fff}
+.support-chat-form button{height:52px;border:1px solid #4A67EA;border-radius:14px;background:#4A67EA;color:#fff;padding:0 24px;font:inherit;font-weight:900;cursor:pointer;box-shadow:0 14px 28px rgba(74,103,234,.18);transition:background .18s,color .18s,border-color .18s}
+.support-chat-form button:hover{background:#fff;color:#4A67EA;border-color:#4A67EA}
 @media(max-width:980px){.support-grid{grid-template-columns:1fr 1fr}.contact-grid{grid-template-columns:1fr}}
-@media(max-width:620px){.support-grid{grid-template-columns:1fr}.support-hero{padding:70px 0}.support-search{height:54px}.support-search span{font-size:16px}}
+@media(max-width:620px){.support-grid{grid-template-columns:1fr}.support-hero{padding:70px 0}.support-search{height:54px}.support-search span{font-size:16px}.support-chat{padding:12px}.support-chat-panel{height:calc(100vh - 24px)}.support-message{max-width:92%}.support-chat-form{grid-template-columns:1fr}.support-chat-form button{width:100%}}
 </style>
 </head>
 <body>
@@ -102,10 +119,41 @@
 <main>
 <section class="support-hero"><div class="wrap support-hero-grid"><h1>&iquest;C&oacute;mo te podemos ayudar?</h1><p>Inici&aacute; una conversaci&oacute;n con e-Sueldos y nuestro equipo te acompa&ntilde;a para resolver dudas de liquidaci&oacute;n, RR.HH., control horario o acceso al portal.</p></div></section>
 <section class="support-categories"><div class="wrap"><div class="support-grid"><a class="support-card" href="producto-esueldos.html"><svg viewBox="0 0 24 24"><path d="M12 3l7 4v6c0 4-3 7-7 8-4-1-7-4-7-8V7z"/><path d="M9 12l2 2 4-4"/></svg><h3>Conoc&eacute; e-Sueldos</h3><p>Primeros pasos para entender la plataforma y sus m&oacute;dulos.</p></a><a class="support-card" href="portal-rrhh-landing.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.6-4 14.4-4 16 0"/></svg><h3>Ayuda para administradores</h3><p>Configuraci&oacute;n de usuarios, legajos, permisos y solicitudes.</p></a><a class="support-card" href="e-sueldos-landing-completa.html"><svg viewBox="0 0 24 24"><path d="M7 4h10v16H7z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg><h3>&iquest;C&oacute;mo usar e-Sueldos?</h3><p>Gu&iacute;as para operar liquidaci&oacute;n, recibos y control diario.</p></a><a class="support-card" href="brief-esueldos.html"><svg viewBox="0 0 24 24"><path d="M4 18V6l8-3 8 3v12l-8 3z"/><path d="M12 3v18M4 6l8 3 8-3"/></svg><h3>Informaci&oacute;n para desarrolladores</h3><p>Integraciones, datos conectados y documentaci&oacute;n t&eacute;cnica.</p></a></div></div></section>
-<section class="support-contact"><div class="wrap"><h2>Contactanos</h2><div class="contact-grid"><a class="contact-card" href="#"><svg viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg><span><h3>Soporte</h3><p>Inici&aacute; una conversaci&oacute;n con nuestro equipo de soporte y obten&eacute; la ayuda que necesit&aacute;s.</p></span></a><a class="contact-card featured" href="agendar-demo-esueldos.html"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.4 2.8a2 2 0 0 1-.6 1.8L7.6 9.6a16 16 0 0 0 6.8 6.8l1.3-1.3a2 2 0 0 1 1.8-.6l2.8.4a2 2 0 0 1 1.7 2z"/></svg><span><h3>Comercial</h3><p>Dejanos tus datos y te contactaremos a la brevedad para ayudarte a elegir el recorrido correcto.</p></span></a></div></div></section>
+<section class="support-contact"><div class="wrap"><h2>Contactanos</h2><div class="contact-grid"><a class="contact-card js-support-chat" href="#soporte"><svg viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg><span><h3>Soporte</h3><p>Inici&aacute; una conversaci&oacute;n con nuestro equipo de soporte y obten&eacute; la ayuda que necesit&aacute;s.</p></span></a><a class="contact-card featured" href="agendar-demo-esueldos.html"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.4 2.8a2 2 0 0 1-.6 1.8L7.6 9.6a16 16 0 0 0 6.8 6.8l1.3-1.3a2 2 0 0 1 1.8-.6l2.8.4a2 2 0 0 1 1.7 2z"/></svg><span><h3>Comercial</h3><p>Dejanos tus datos y te contactaremos a la brevedad para ayudarte a elegir el recorrido correcto.</p></span></a></div></div></section>
+<div class="support-chat" id="soporte" aria-hidden="true">
+  <div class="support-chat-panel" role="dialog" aria-modal="true" aria-label="Conversaci&oacute;n con soporte">
+    <div class="support-chat-head"><div class="support-chat-title"><span>☁</span><div>Soporte e-Sueldos<small>Respondemos consultas de liquidaci&oacute;n, RR.HH. y acceso.</small></div></div><button class="support-chat-close" type="button" aria-label="Cerrar">&times;</button></div>
+    <div class="support-chat-body"><div class="support-message agent">Hola, soy del equipo de soporte de e-Sueldos. Contame qu&eacute; necesit&aacute;s resolver y te orientamos.</div><div class="support-message agent">&iquest;Tu consulta es sobre recibos, liquidaci&oacute;n, control horario o acceso al portal?</div></div>
+    <form class="support-chat-form"><input type="text" placeholder="Escrib&iacute; tu mensaje..." aria-label="Mensaje para soporte"><button type="submit">Enviar</button></form>
+  </div>
+</div>
 </main>
 <footer class="footer"><div class="wrap"><div class="footer-top"><div><img class="footer-logo" src="fondoBlanco.png" alt="e-Sueldos"><p>Payroll + RR.HH. impulsados por Leia. El ecosistema de gesti&oacute;n humana para empresas y organismos p&uacute;blicos de Argentina.</p></div><div><h4>Producto</h4><a href="e-sueldos-landing-completa.html">Portal Liquidaci&oacute;n</a><a href="portal-rrhh-landing.html">Portal RRHH</a><a href="control-horario-esueldos.html">Control Horario</a><a href="brief-esueldos.html">Leia IA</a></div><div><h4>Soluciones</h4><a href="soluciones-esueldos.html#perfil">Por perfil</a><a href="soluciones-esueldos.html#area">Por &aacute;rea</a><a href="soluciones-esueldos.html#industria">Por industria</a><a href="planes-esueldos.html">Planes</a></div><div><h4>Recursos</h4><a href="calculadora-horas-extras.html">Calculadora</a><a href="brief-esueldos.html">Brief</a><a href="recursos-esueldos.html">Soporte</a><a href="agendar-demo-esueldos.html">Demo</a></div><div><h4>Contacto</h4><a href="#">hola@e-sueldos.com</a><a href="#">+54 9 11 7110 3105</a><a href="#">Lun a Vie &middot; 9 a 17 hs</a></div></div><div class="footer-bottom"><span>&copy; 2026 e-Sueldos. Todos los derechos reservados.</span><span>T&eacute;rminos &middot; Privacidad &middot; Media Kit</span></div></div></footer>
 <script src="esueldos-nav.js"></script>
+<script>
+const supportChat=document.querySelector(".support-chat");
+const supportInput=document.querySelector(".support-chat-form input");
+const supportBody=document.querySelector(".support-chat-body");
+const closeSupport=()=>{supportChat.classList.remove("open");supportChat.setAttribute("aria-hidden","true")};
+document.querySelector(".js-support-chat")?.addEventListener("click",(event)=>{event.preventDefault();supportChat.classList.add("open");supportChat.setAttribute("aria-hidden","false");supportInput.focus()});
+document.querySelector(".support-chat-close")?.addEventListener("click",closeSupport);
+supportChat?.addEventListener("click",(event)=>{if(event.target===supportChat) closeSupport()});
+document.addEventListener("keydown",(event)=>{if(event.key==="Escape") closeSupport()});
+document.querySelector(".support-chat-form")?.addEventListener("submit",(event)=>{
+  event.preventDefault();
+  const text=supportInput.value.trim();
+  if(!text) return;
+  const userMessage=document.createElement("div");
+  const agentMessage=document.createElement("div");
+  userMessage.className="support-message user";
+  agentMessage.className="support-message agent";
+  userMessage.textContent=text;
+  agentMessage.textContent="Gracias. Ya registramos tu consulta y un asesor de soporte te va a responder a la brevedad.";
+  supportBody.append(userMessage,agentMessage);
+  supportInput.value="";
+  supportBody.scrollTop=supportBody.scrollHeight;
+});
+</script>
 </body>
 </html>
 
