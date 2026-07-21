@@ -11,31 +11,10 @@ main .demo{border:1px solid #4A67EA!important;transition:background .18s,color .
 main .demo:hover{background:#fff!important;color:#4A67EA!important;border-color:#4A67EA!important}
 body:has(.phone-scene) .hero .demo{background:#050B18!important;color:#fff!important;border-color:#2355E8!important;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
 body:has(.phone-scene) .hero .demo:hover{background:#050B18!important;color:#fff!important;border-color:#6F8CFF!important}
-.mega:has(.mega-side a:hover) .mega-side a.active:not(:hover),
-.mega:has(.mega-side a:focus) .mega-side a.active:not(:focus){background:transparent;color:#020617}
-.mega:has(.mega-side a:hover) .mega-main .mega-card,
-.mega:has(.mega-side a:focus) .mega-main .mega-card{display:none}
-.mega:has(.mega-main .mega-card:nth-child(6)):has(.mega-side a:nth-child(1):is(:hover,:focus)) .mega-main .mega-card:nth-child(1),
-.mega:has(.mega-main .mega-card:nth-child(6)):has(.mega-side a:nth-child(1):is(:hover,:focus)) .mega-main .mega-card:nth-child(4),
-.mega:has(.mega-main .mega-card:nth-child(6)):has(.mega-side a:nth-child(2):is(:hover,:focus)) .mega-main .mega-card:nth-child(2),
-.mega:has(.mega-main .mega-card:nth-child(6)):has(.mega-side a:nth-child(2):is(:hover,:focus)) .mega-main .mega-card:nth-child(5),
-.mega:has(.mega-main .mega-card:nth-child(6)):has(.mega-side a:nth-child(3):is(:hover,:focus)) .mega-main .mega-card:nth-child(3),
-.mega:has(.mega-main .mega-card:nth-child(6)):has(.mega-side a:nth-child(3):is(:hover,:focus)) .mega-main .mega-card:nth-child(4),
-.mega:has(.mega-main .mega-card:nth-child(6)):has(.mega-side a:nth-child(4):is(:hover,:focus)) .mega-main .mega-card:nth-child(5),
-.mega:has(.mega-main .mega-card:nth-child(6)):has(.mega-side a:nth-child(4):is(:hover,:focus)) .mega-main .mega-card:nth-child(6),
-.mega:not(:has(.mega-main .mega-card:nth-child(5))):has(.mega-side a:nth-child(1):is(:hover,:focus)) .mega-main .mega-card:nth-child(1),
-.mega:not(:has(.mega-main .mega-card:nth-child(5))):has(.mega-side a:nth-child(2):is(:hover,:focus)) .mega-main .mega-card:nth-child(2),
-.mega:not(:has(.mega-main .mega-card:nth-child(5))):has(.mega-side a:nth-child(3):is(:hover,:focus)) .mega-main .mega-card:nth-child(3),
-.mega:not(:has(.mega-main .mega-card:nth-child(5))):has(.mega-side a:nth-child(4):is(:hover,:focus)) .mega-main .mega-card:nth-child(4),
-.mega:has(.mega-main .mega-card:nth-child(5)):not(:has(.mega-main .mega-card:nth-child(6))):has(.mega-side a:nth-child(1):is(:hover,:focus)) .mega-main .mega-card:nth-child(1),
-.mega:has(.mega-main .mega-card:nth-child(5)):not(:has(.mega-main .mega-card:nth-child(6))):has(.mega-side a:nth-child(2):is(:hover,:focus)) .mega-main .mega-card:nth-child(2),
-.mega:has(.mega-main .mega-card:nth-child(5)):not(:has(.mega-main .mega-card:nth-child(6))):has(.mega-side a:nth-child(3):is(:hover,:focus)) .mega-main .mega-card:nth-child(3),
-.mega:has(.mega-main .mega-card:nth-child(5)):not(:has(.mega-main .mega-card:nth-child(6))):has(.mega-side a:nth-child(4):is(:hover,:focus)) .mega-main .mega-card:nth-child(4){display:grid}
-.mega:has(.mega-side a:hover) .mega-main,
-.mega:has(.mega-side a:focus) .mega-main{align-content:start}
-.mega:has(.mega-main:hover) .mega-side a.active{background:transparent;color:#020617}
-.mega:has(.mega-main:hover) .mega-main .mega-card{display:grid}
+.mega-main{align-content:start}
 .mega .mega-card{border-radius:12px;padding:8px;transition:background .18s ease,transform .18s ease}
 .mega .mega-card b{transition:color .18s ease}
 .mega .mega-card:hover{background:#F8FAFF;transform:translateX(2px)}
 .mega .mega-card:hover b{color:#4A67EA}
+.mega{grid-template-columns:240px 1fr 300px}
+.mega-side a{white-space:normal;line-height:1.2}
