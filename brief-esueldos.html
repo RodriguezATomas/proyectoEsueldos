@@ -561,6 +561,169 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
   .logo-tile{font-size:24px!important;line-height:30px!important;letter-spacing:-1.2px!important}
 }
 
+/* Hero Leia alineado con Portal RR.HH. y Portal Liquidación */
+.hero{background:#F7F7F7!important;padding-top:158px!important;padding-bottom:96px!important}
+.hero-grid{width:1120px!important;max-width:1120px!important;grid-template-columns:460px 560px!important;gap:100px!important;align-items:start!important}
+.hero-grid > div:first-child{transform:none!important;padding-top:0!important}
+.hero-kicker{display:inline-flex!important;align-items:center!important;border:1px solid #4A67EA!important;border-radius:999px!important;color:#4A67EA!important;background:transparent!important;font-family:"SF UI",Arial,sans-serif!important;font-size:12px!important;font-weight:500!important;line-height:1!important;padding:6px 12px!important;margin-bottom:18px!important}
+.hero h1{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:43px!important;font-weight:600!important;line-height:1.07!important;letter-spacing:-1.35px!important;max-width:460px!important;color:#020617!important;margin:0!important}
+.hero h1 em{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-weight:600!important;color:#020617!important}
+.hero-sub{font-family:"SF UI",Arial,sans-serif!important;max-width:450px!important;font-size:16px!important;font-weight:400!important;line-height:1.35!important;letter-spacing:-.35px!important;color:#475467!important;margin:18px 0 0!important}
+.hero-actions{margin-top:24px!important}
+.hero .demo{height:46px!important;padding:0 28px!important;width:auto!important;min-width:0!important;border-radius:15px!important;font-size:14px!important;font-weight:600!important;line-height:16.8px!important;letter-spacing:-.5px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
+.hero-visual{position:relative!important;width:560px!important;min-height:380px!important;display:flex!important;align-items:flex-start!important;justify-content:center!important;justify-self:center!important;padding-top:0!important;box-sizing:border-box!important}
+.hero-visual img{width:460px!important;height:auto!important;border-radius:18px!important;box-shadow:none!important;filter:brightness(.72) saturate(.95)!important}
+.image-copy{left:68px!important;top:38px!important;max-width:240px!important;text-align:left!important}
+.image-copy .suite-tag{display:inline-flex!important;align-items:center!important;justify-content:center!important;height:26px!important;padding:0 13px!important;margin:0 0 10px!important;line-height:1!important;font-size:12px!important}
+.image-copy .suite-title{display:block!important;margin:0!important;font-size:23px!important;line-height:1.02!important;text-align:left!important;white-space:nowrap!important}
+.hero-visual .suite-card{transform:scale(.96)!important;transform-origin:center!important}
+.hero-visual .suite-card.left{left:42px!important;bottom:32px!important}
+.hero-visual .suite-card.right{right:42px!important;bottom:32px!important}
+.logos{padding:44px 0 70px!important;overflow:hidden!important}.logos h2{font-size:34px!important;line-height:1.18!important;color:#020617!important;font-weight:400!important;margin-bottom:34px!important}.logos h2 strong{font-weight:800!important}.logos p{display:none!important}.logo-marquee{width:100vw!important;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;gap:20px!important;overflow:hidden!important}.logo-track{gap:64px!important;min-width:max-content!important;width:max-content!important;padding:0 28px!important}.logo-tile{min-width:150px!important;height:48px!important;font-size:28px!important;font-weight:700!important;line-height:34px!important;letter-spacing:-1.8px!important;color:#8E8E8E!important;opacity:.68!important}
+
+/* Tipografía y proporciones exactas de las secciones de Portal Liquidación */
+.ai-section{font-family:var(--font-primary)!important}
+.ai-grid{grid-template-columns:1fr 1fr!important;gap:72px!important;align-items:center!important}
+.ai-copy,.ai-copy.center{max-width:none!important;margin:0!important;text-align:left!important}
+.ai-copy h2,.ai-copy.center h2{
+  font-family:var(--font-primary)!important;
+  font-size:40px!important;
+  font-weight:600!important;
+  line-height:1.08!important;
+  letter-spacing:-1.55px!important;
+  color:#020617!important;
+  max-width:620px!important;
+  margin:0 0 22px!important
+}
+.ai-copy p,.ai-copy.center p{
+  font-family:var(--font-primary)!important;
+  font-size:19px!important;
+  font-weight:400!important;
+  line-height:1.38!important;
+  letter-spacing:-.55px!important;
+  color:#475467!important;
+  max-width:640px!important;
+  margin:0!important
+}
+
+/* Casos de uso: composición de Humand, conservando el fondo de e-Sueldos */
+.ai-use-cases{
+  padding:66px 0 60px!important;
+  background:linear-gradient(110deg,#315DE8 0%,#233A8F 50%,#06101F 100%)!important
+}
+.ai-use-cases .wrap{width:min(calc(100% - 48px),1070px)!important}
+.ai-use-cases h2{
+  max-width:610px!important;
+  margin:0 auto!important;
+  font-family:var(--font-primary)!important;
+  font-size:38px!important;
+  font-weight:700!important;
+  line-height:1.08!important;
+  letter-spacing:-1.45px!important
+}
+.ai-use-cases > .wrap > p{
+  margin:20px 0 34px!important;
+  font-family:var(--font-primary)!important;
+  font-size:18px!important;
+  font-weight:400!important;
+  line-height:1.35!important;
+  letter-spacing:-.45px!important
+}
+.use-grid{grid-template-columns:repeat(3,1fr)!important;gap:31px!important}
+.use-card{
+  min-height:228px!important;
+  padding:24px 25px!important;
+  border-radius:18px!important;
+  box-shadow:none!important
+}
+.use-card i{
+  margin:0 0 16px!important;
+  font-family:var(--font-primary)!important;
+  font-size:42px!important;
+  font-weight:400!important;
+  line-height:1!important;
+  color:#6F88F1!important
+}
+.use-card h3{
+  margin:0 0 10px!important;
+  font-family:var(--font-primary)!important;
+  font-size:23px!important;
+  font-weight:600!important;
+  line-height:1.15!important;
+  letter-spacing:-.8px!important;
+  color:#475467!important
+}
+.use-card p{
+  margin:0!important;
+  font-family:var(--font-primary)!important;
+  font-size:16px!important;
+  font-weight:400!important;
+  line-height:1.45!important;
+  letter-spacing:-.25px!important;
+  color:#475467!important
+}
+
+/* Formulario con la escala y composición visual de Humand */
+.demo-form{
+  background:#F7F7F8!important;
+  padding:92px 0 96px!important;
+  font-family:var(--font-primary)!important
+}
+.demo-form h2{
+  max-width:650px!important;
+  margin:0 auto 88px!important;
+  font-family:var(--font-primary)!important;
+  font-size:38px!important;
+  font-weight:400!important;
+  line-height:1.16!important;
+  letter-spacing:-1.25px!important;
+  color:#020617!important;
+  text-align:center!important
+}
+.demo-form h2 strong{font-weight:700!important}
+.demo-fields{
+  width:min(100%,700px)!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:20px 30px!important
+}
+.demo-field label{
+  margin-bottom:8px!important;
+  font-family:var(--font-primary)!important;
+  font-size:14px!important;
+  font-weight:400!important;
+  line-height:1.25!important;
+  letter-spacing:-.25px!important;
+  color:#475467!important
+}
+.demo-field input,.demo-field select{
+  height:42px!important;
+  border:1px solid #D7DCE5!important;
+  border-radius:9px!important;
+  background:#fff!important;
+  padding:0 12px!important;
+  font-family:var(--font-primary)!important;
+  font-size:14px!important;
+  font-weight:400!important;
+  color:#344054!important
+}
+.demo-fields .demo{
+  height:46px!important;
+  padding:0 28px!important;
+  margin-top:18px!important;
+  border-radius:15px!important;
+  font-family:var(--font-primary)!important;
+  font-size:14px!important;
+  font-weight:600!important
+}
+@media(max-width:767px){
+  .demo-form{padding:68px 0 76px!important}
+  .demo-form h2{font-size:32px!important;margin-bottom:52px!important}
+  .demo-fields{grid-template-columns:1fr!important}
+  .demo-field.full{grid-column:auto!important}
+}
+@media(max-width:1100px){.hero-grid{width:auto!important;max-width:92vw!important;grid-template-columns:1fr!important;gap:34px!important}.hero-grid > div:first-child{transform:none!important}.hero-visual{width:100%!important;margin-top:34px!important}.hero-visual img{width:100%!important;max-width:460px!important}}
+@media(max-width:620px){.hero{padding-top:70px!important}.hero h1{font-size:36px!important}.image-copy{left:max(18px,calc(50% - 162px))!important;top:20px!important}.hero-visual .suite-card{position:static!important;transform:none!important;width:100%!important;margin-top:14px!important}.hero-visual{display:grid!important;min-height:auto!important}.hero .demo{width:100%!important}}
+
 </style>
 </head>
 <body>
@@ -643,7 +806,7 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
       <div>
         <span class="hero-kicker">Leia AI</span>
         <h1>IA que acompaña <br> a tu<em> equipo</em></h1>
-        <p class="hero-sub">Leia responde consultas de sueldos, RR.HH. y control horario con datos conectados del ecosistema e-Sueldos, para reducir interrupciones y acelerar cada trámite.</p>
+        <p class="hero-sub">Leia responde consultas de sueldos, RR.HH. y control horario con datos conectados del ecosistema e-Sueldos, para reducir interrupciones y acelerar cada trámite. Centralizá respuestas, automatizá tareas frecuentes y ofrecé a cada colaborador información clara y disponible cuando la necesita.</p>
         <div class="hero-actions">
           <a class="demo" href="agendar-demo-esueldos.html">Agend&aacute; una demo</a>
         </div>
@@ -659,7 +822,7 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
 
   <section class="logos">
     <div class="wrap">
-      <h2>Empresas que conf&iacute;an en e-Sueldos</h2>
+      <h2>Con la confianza de m&aacute;s de <strong>500 empresas</strong></h2>
       <p>Organizaciones que conectan sueldos, RR.HH. y novedades con e-Sueldos.</p>
       <div class="logo-marquee">
         <div class="logo-track">
@@ -669,12 +832,16 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
           <a class="logo-tile" href="https://www.ogilvy.com/" target="_blank" rel="noopener">Ogilvy</a>
           <a class="logo-tile" href="https://www.pecom.com.ar/" target="_blank" rel="noopener">Pecom</a>
           <a class="logo-tile" href="https://securion.com.ar/" target="_blank" rel="noopener">Securion</a>
+          <a class="logo-tile" href="https://www.gestamp.com/" target="_blank" rel="noopener">Gestamp</a>
+          <a class="logo-tile" href="https://www.franui.store/es/" target="_blank" rel="noopener">Franu&iacute;</a>
           <a class="logo-tile" href="https://www.cerveceriaandes.com/" target="_blank" rel="noopener">Andes</a>
           <a class="logo-tile" href="https://www.pirelli.com/" target="_blank" rel="noopener">Pirelli</a>
           <a class="logo-tile" href="https://www.lumen.com/" target="_blank" rel="noopener">Lumen</a>
           <a class="logo-tile" href="https://www.ogilvy.com/" target="_blank" rel="noopener">Ogilvy</a>
           <a class="logo-tile" href="https://www.pecom.com.ar/" target="_blank" rel="noopener">Pecom</a>
           <a class="logo-tile" href="https://securion.com.ar/" target="_blank" rel="noopener">Securion</a>
+          <a class="logo-tile" href="https://www.gestamp.com/" target="_blank" rel="noopener">Gestamp</a>
+          <a class="logo-tile" href="https://www.franui.store/es/" target="_blank" rel="noopener">Franu&iacute;</a>
         </div>
         <div class="logo-track reverse">
           <a class="logo-tile" href="https://www.hospitalitaliano.org.ar/" target="_blank" rel="noopener">Hospital Italiano</a>
@@ -682,11 +849,17 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
           <a class="logo-tile" href="https://www.viva.com.ar/" target="_blank" rel="noopener">Viva</a>
           <a class="logo-tile" href="https://www.grupowerthein.com/" target="_blank" rel="noopener">Werthein</a>
           <a class="logo-tile" href="https://www.llaollao.com/" target="_blank" rel="noopener">Llao Llao</a>
+          <a class="logo-tile" href="https://www.vicentelopez.gov.ar/" target="_blank" rel="noopener">Vicente L&oacute;pez</a>
+          <a class="logo-tile" href="soluciones-esueldos.html#industria">Retail</a>
+          <a class="logo-tile" href="soluciones-esueldos.html#industria">Industria</a>
           <a class="logo-tile" href="https://www.hospitalitaliano.org.ar/" target="_blank" rel="noopener">Hospital Italiano</a>
           <a class="logo-tile" href="https://corporate.arcelormittal.com/" target="_blank" rel="noopener">ArcelorMittal</a>
           <a class="logo-tile" href="https://www.viva.com.ar/" target="_blank" rel="noopener">Viva</a>
           <a class="logo-tile" href="https://www.grupowerthein.com/" target="_blank" rel="noopener">Werthein</a>
           <a class="logo-tile" href="https://www.llaollao.com/" target="_blank" rel="noopener">Llao Llao</a>
+          <a class="logo-tile" href="https://www.vicentelopez.gov.ar/" target="_blank" rel="noopener">Vicente L&oacute;pez</a>
+          <a class="logo-tile" href="soluciones-esueldos.html#industria">Retail</a>
+          <a class="logo-tile" href="soluciones-esueldos.html#industria">Industria</a>
         </div>
       </div>
     </div>
@@ -741,16 +914,16 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
       <h2>Trabaj&aacute; junto a Leia para impulsar tu organizaci&oacute;n</h2>
       <p>Explor&aacute; los casos de uso de e-Sueldos AI</p>
       <div class="use-grid">
-        <div class="use-card"><i>◆</i><h3>Liquidaci&oacute;n</h3><p>Responde dudas sobre recibos, escalas, conceptos, cierres y novedades mensuales.</p></div>
-        <div class="use-card"><i>◆</i><h3>RR.HH.</h3><p>Acompa&ntilde;a solicitudes, legajos, documentos, licencias y comunicaciones internas.</p></div>
-        <div class="use-card"><i>◆</i><h3>Operaciones</h3><p>Ayuda con asistencia, horarios, horas extra y consultas frecuentes del equipo.</p></div>
+        <div class="use-card"><i>&#10022;</i><h3>Liquidaci&oacute;n</h3><p>Responde dudas sobre recibos, escalas, conceptos, cierres y novedades mensuales.</p></div>
+        <div class="use-card"><i>&#10022;</i><h3>RR.HH.</h3><p>Acompa&ntilde;a solicitudes, legajos, documentos, licencias y comunicaciones internas.</p></div>
+        <div class="use-card"><i>&#10022;</i><h3>Operaciones</h3><p>Ayuda con asistencia, horarios, horas extra y consultas frecuentes del equipo.</p></div>
       </div>
     </div>
   </section>
 
   <section class="demo-form">
     <div class="wrap">
-      <h2>&iexcl;Descubr&iacute; c&oacute;mo Leia AI puede transformar tu empresa!</h2>
+      <h2>&iexcl;Descubr&iacute; c&oacute;mo <strong>Leia AI<br>puede transformar tu empresa!</strong></h2>
       <form class="demo-fields">
         <div class="demo-field"><label>Nombre<span>*</span></label><input type="text"></div>
         <div class="demo-field"><label>Apellido<span>*</span></label><input type="text"></div>
