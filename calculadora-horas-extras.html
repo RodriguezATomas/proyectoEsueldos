@@ -632,9 +632,404 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
   .logo-tile{font-size:24px!important;line-height:30px!important;letter-spacing:-1.2px!important}
 }
 
+/* Hero alineado con Portal Liquidacion */
+.hero{
+  padding:158px 0 96px!important;
+  background:#f7f7f7!important;
+}
+.hero-grid{
+  width:1240px!important;
+  max-width:calc(100% - 48px)!important;
+  margin:0 auto!important;
+  grid-template-columns:500px 500px!important;
+  gap:160px!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.hero-grid > div:first-child{transform:translateY(-18px)}
+.hero-kicker{
+  margin-bottom:18px!important;
+  padding:6px 12px!important;
+  font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;
+  font-size:12px!important;
+  font-weight:500!important;
+  line-height:1!important;
+}
+.hero h1{
+  max-width:500px!important;
+  margin:0!important;
+  color:#020617!important;
+  font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;
+  font-size:43px!important;
+  font-weight:600!important;
+  line-height:1.07!important;
+  letter-spacing:-1.35px!important;
+}
+.hero h1 em{
+  color:#020617!important;
+  font-family:inherit!important;
+  font-weight:600!important;
+}
+.hero-sub{
+  max-width:490px!important;
+  margin-top:18px!important;
+  color:#475467!important;
+  font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;
+  font-size:16px!important;
+  font-weight:400!important;
+  line-height:1.35!important;
+  letter-spacing:-.35px!important;
+}
+.hero-actions{margin-top:24px!important}
+.hero .demo{
+  width:auto!important;
+  min-width:0!important;
+  height:46px!important;
+  padding:0 28px!important;
+  border-radius:15px!important;
+  font-size:14px!important;
+  font-weight:600!important;
+}
+.calculator-visual{
+  position:relative!important;
+  width:560px!important;
+  min-height:380px!important;
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  justify-self:center!important;
+  padding-top:0!important;
+  box-sizing:border-box!important;
+}
+.calculator-visual img{
+  width:460px!important;
+  height:auto!important;
+  border-radius:18px!important;
+  filter:brightness(.72) saturate(.95)!important;
+}
+.calculator-visual .image-copy{
+  position:absolute!important;
+  z-index:2!important;
+  left:68px!important;
+  top:38px!important;
+  max-width:240px!important;
+  color:#fff!important;
+  text-align:left!important;
+}
+.calculator-visual .image-copy .showcase-tag{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  height:26px!important;
+  padding:0 13px!important;
+  margin:0 0 10px!important;
+  border:1px solid rgba(255,255,255,.7)!important;
+  border-radius:999px!important;
+  background:rgba(255,255,255,.18)!important;
+  color:#fff!important;
+  font-size:12px!important;
+  font-weight:700!important;
+}
+.calculator-visual .image-copy .showcase-title{
+  margin:0!important;
+  color:#fff!important;
+  font-size:23px!important;
+  font-weight:800!important;
+  line-height:1.02!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+}
+.calculator-visual .showcase-card.right{
+  right:38px!important;
+  bottom:40px!important;
+  transform:scale(1)!important;
+  transform-origin:center!important;
+}
+.calculator-visual .showcase-card.left{
+  left:38px!important;
+  bottom:40px!important;
+  transform:scale(1)!important;
+  transform-origin:center!important;
+}
+.calculator-visual .showcase-card{
+  width:194px!important;
+  min-width:194px!important;
+  height:104px!important;
+  min-height:104px!important;
+  padding:11px 14px 14px 44px!important;
+  border-radius:16px!important;
+  animation:none!important;
+}
+.calculator-visual .showcase-card:before{
+  left:14px!important;
+  top:15px!important;
+  width:16px!important;
+  height:16px!important;
+  border-radius:6px!important;
+}
+.calculator-visual .showcase-card span{
+  font-size:13px!important;
+  line-height:1.15!important;
+}
+.calculator-visual .showcase-card b{
+  margin-top:5px!important;
+  font-size:24px!important;
+  line-height:1!important;
+}
+.calculator-visual .showcase-card small{
+  margin-top:4px!important;
+  font-size:10px!important;
+  line-height:1.2!important;
+}
+@media(max-width:1100px){
+  .hero{padding:108px 0 82px!important}
+  .hero-grid{width:min(900px,calc(100% - 40px))!important;grid-template-columns:390px 420px!important;gap:70px!important}
+  .calculator-visual{width:420px!important;min-height:320px!important}
+  .calculator-visual img{width:370px!important}
+}
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr!important;gap:42px!important}
+  .hero-grid > div:first-child{transform:none}
+  .calculator-visual{justify-self:start!important}
+}
+@media(max-width:620px){
+  .hero{padding:72px 0 64px!important}
+  .hero-grid{max-width:calc(100% - 28px)!important}
+  .hero h1{font-size:36px!important;line-height:1.08!important}
+  .calculator-visual{width:100%!important;min-height:300px!important}
+  .calculator-visual img{width:100%!important}
+}
+.logos{padding:44px 0 70px!important;overflow:hidden!important}
+.logos h2{font-size:34px!important;line-height:1.18!important;color:#020617!important;font-weight:400!important;margin-bottom:34px!important}
+.logos h2 strong{font-weight:800!important}
+.logos p{display:none!important}
+.logo-marquee{width:100vw!important;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;gap:20px!important;overflow:hidden!important}
+.logo-track{gap:64px!important;min-width:max-content!important;width:max-content!important;padding:0 28px!important}
+.logo-tile{min-width:150px!important;height:48px!important;font-size:28px!important;line-height:34px!important;color:#8E8E8E!important;opacity:.68!important}
+
+/* Tipografía única para toda la calculadora */
+#calculator-page,
+#calculator-page *{
+  font-family:var(--font-display)!important;
+}
+
+/* Mismo tratamiento exacto que “Con la confianza de más de 500 empresas” */
+#calculator-page #calculadora .feature-intro h2{
+  color:#020617!important;
+  font-size:34px!important;
+  font-weight:400!important;
+  line-height:1.18!important;
+  letter-spacing:var(--letter-h2-display)!important;
+}
+#calculator-page #calculadora .feature-intro p{
+  color:#475467!important;
+  font-family:var(--font-display)!important;
+  font-size:16px!important;
+  font-weight:400!important;
+  line-height:1.35!important;
+  letter-spacing:-.35px!important;
+}
+#calculator-page #calculadora .calc-card h3,
+#calculator-page #calculadora .result-total strong{
+  color:#020617!important;
+  font-family:var(--font-display)!important;
+  font-weight:400!important;
+  line-height:1.18!important;
+  letter-spacing:var(--letter-h2-display)!important;
+}
+#calculator-page #calculadora .calc-card h3{
+  font-size:21px!important;
+}
+#calculator-page #calculadora .calc-form label,
+#calculator-page #calculadora .result-row,
+#calculator-page #calculadora .result-total{
+  color:#475467!important;
+  font-family:var(--font-display)!important;
+  font-size:16px!important;
+  font-weight:400!important;
+  line-height:1.35!important;
+  letter-spacing:-.35px!important;
+}
+#calculator-page #calculadora .calc-input .input,
+#calculator-page #calculadora .calc-input .select,
+#calculator-page #calculadora .calc-note,
+#calculator-page #calculadora .calc-note p{
+  color:#475467!important;
+  font-size:13px!important;
+  line-height:1.35!important;
+  letter-spacing:-.2px!important;
+}
+
+/* Formulario con la misma escala y composición de Portal Liquidación */
+#calculator-page .demo-form{
+  background:#F7F7F8!important;
+  padding:88px 0 96px!important;
+}
+#calculator-page .demo-form h2{
+  font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;
+  font-size:32px!important;
+  font-weight:400!important;
+  line-height:1.16!important;
+  letter-spacing:-.8px!important;
+  color:#020617!important;
+  margin:0 auto 12px!important;
+  text-align:center!important;
+  max-width:720px!important;
+}
+#calculator-page .demo-form h2 strong{
+  font-weight:800!important;
+}
+#calculator-page .demo-sub{
+  font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;
+  text-align:center!important;
+  color:#667085!important;
+  font-size:14px!important;
+  font-weight:400!important;
+  line-height:1.4!important;
+  letter-spacing:0!important;
+  margin:0 auto 70px!important;
+  max-width:520px!important;
+}
+#calculator-page .demo-fields{
+  width:min(100%,760px)!important;
+  margin:0 auto!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:22px 34px!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  padding:0!important;
+  box-shadow:none!important;
+}
+#calculator-page .demo-field.full{
+  grid-column:1/-1!important;
+}
+#calculator-page .demo-field label{
+  font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;
+  display:block!important;
+  font-size:12px!important;
+  font-weight:600!important;
+  color:#475467!important;
+  margin-bottom:8px!important;
+  letter-spacing:-.1px!important;
+}
+#calculator-page .demo-field input,
+#calculator-page .demo-field select{
+  font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  height:38px!important;
+  border:1px solid #D7DCE5!important;
+  border-radius:7px!important;
+  background:#fff!important;
+  padding:0 14px!important;
+  font-size:14px!important;
+  font-weight:400!important;
+  color:#344054!important;
+}
+#calculator-page .demo-fields .demo{
+  font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;
+  grid-column:1/-1!important;
+  width:max-content!important;
+  min-width:0!important;
+  height:46px!important;
+  padding:0 28px!important;
+  border-radius:15px!important;
+  font-size:14px!important;
+  font-weight:600!important;
+  margin:20px auto 0!important;
+}
+@media(max-width:620px){
+  #calculator-page .demo-fields{grid-template-columns:1fr!important}
+  #calculator-page .demo-field.full,
+  #calculator-page .demo-fields .demo{grid-column:auto!important}
+  #calculator-page .demo-fields .demo{width:100%!important}
+}
+
+/* Escala editorial de las dos secciones, igual a la referencia de Humand */
+#calculator-page .calc-story-copy h2{
+  font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;
+  max-width:470px!important;
+  margin:0 0 22px!important;
+  color:#020617!important;
+  font-size:40px!important;
+  font-weight:600!important;
+  line-height:1.04!important;
+  letter-spacing:-1.7px!important;
+}
+#calculator-page .calc-story-copy p{
+  font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;
+  max-width:520px!important;
+  margin:0 0 28px!important;
+  color:#475467!important;
+  font-size:17px!important;
+  font-weight:400!important;
+  line-height:1.32!important;
+  letter-spacing:-.45px!important;
+}
+#calculator-page .calc-story-list{
+  gap:17px!important;
+}
+#calculator-page .calc-story-list div{
+  font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;
+  color:#475467!important;
+  font-size:15px!important;
+  font-weight:400!important;
+  line-height:1.35!important;
+  letter-spacing:-.2px!important;
+}
+#calculator-page .calc-story-copy .demo{
+  font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;
+  margin-top:28px!important;
+  font-size:14px!important;
+  font-weight:600!important;
+}
+/* Los mockups comparten la tipografía y jerarquía interna de la calculadora */
+#calculator-page .he-mock,
+#calculator-page .he-mock *{
+  font-family:var(--font-display)!important;
+}
+#calculator-page .he-mock-head b{
+  color:#020617!important;
+  font-size:21px!important;
+  font-weight:400!important;
+  line-height:1.18!important;
+  letter-spacing:var(--letter-h2-display)!important;
+}
+#calculator-page .he-mock-head span,
+#calculator-page .he-summary small,
+#calculator-page .he-line,
+#calculator-page .he-approval-row,
+#calculator-page .he-approval-row small,
+#calculator-page .he-status{
+  font-size:14px!important;
+  line-height:1.35!important;
+  letter-spacing:-.25px!important;
+}
+#calculator-page .he-summary strong{
+  font-size:25px!important;
+  line-height:1.1!important;
+  letter-spacing:-.45px!important;
+}
+#calculator-page .calc-story:not(.alt) .he-mock{
+  box-shadow:0 0 38px 4px rgba(35,85,232,.15)!important;
+}
+#calculator-page .calc-story-list span{
+  font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;
+  font-size:17px!important;
+  font-weight:500!important;
+}
+@media(max-width:620px){
+  #calculator-page .calc-story-copy h2{
+    font-size:34px!important;
+    letter-spacing:-1.2px!important;
+  }
+}
+
 </style>
 </head>
-<body>
+<body id="calculator-page">
 <div class="topbar"><div class="wrap"><span class="pill">Calculadora</span><span>Horas extras al 50% y 100% para Argentina.</span></div></div>
 <div class="utility"><div class="wrap"><a href="recursos-esueldos.html">Soporte</a><a href="log-in/recursos-humanos.html">Iniciar sesi&oacute;n</a></div></div>
 <header class="header">
@@ -701,14 +1096,12 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
   </div>
 </header>
 <main>
-<section class="hero"><div class="wrap hero-grid"><div><div class="hero-kicker">Calculadora</div><h1>Calculadora de horas extras en <em>Argentina</em></h1><p class="hero-sub">Calcul&aacute; una estimaci&oacute;n simple del valor ordinario, horas al 50%, horas al 100% y total bruto.</p><div class="hero-actions"><a class="demo" href="#calculadora">Calcular ahora</a></div></div><div class="visual-card calculator-visual"><div class="showcase-main"><span class="showcase-tag">Calculadora</span><div class="showcase-title">Resultado estimado</div><div class="showcase-bars"><span style="width:88%"></span><span style="width:70%"></span></div><div class="showcase-grid"><span></span><span></span><span></span></div></div><div class="showcase-card right"><span>Total a pagar</span><b id="heroTotal">$0</b><small>Monto bruto sin retenciones</small></div></div></div></section>
-<section class="logos"><div class="wrap"><h2>Empresas que conf&iacute;an en e-Sueldos</h2><p>Organizaciones que conectan sueldos, RR.HH. y novedades con e-Sueldos.</p><div class="logo-marquee"><div class="logo-track"><a class="logo-tile" href="https://www.cerveceriaandes.com/" target="_blank" rel="noopener">Andes</a><a class="logo-tile" href="https://www.pirelli.com/" target="_blank" rel="noopener">Pirelli</a><a class="logo-tile" href="https://www.lumen.com/" target="_blank" rel="noopener">Lumen</a><a class="logo-tile" href="https://www.ogilvy.com/" target="_blank" rel="noopener">Ogilvy</a><a class="logo-tile" href="https://www.pecom.com.ar/" target="_blank" rel="noopener">Pecom</a><a class="logo-tile" href="https://securion.com.ar/" target="_blank" rel="noopener">Securion</a><a class="logo-tile" href="https://www.gestamp.com/" target="_blank" rel="noopener">Gestamp</a><a class="logo-tile" href="https://www.franui.store/es/" target="_blank" rel="noopener">Franu&iacute;</a><a class="logo-tile" href="https://www.cerveceriaandes.com/" target="_blank" rel="noopener">Andes</a><a class="logo-tile" href="https://www.pirelli.com/" target="_blank" rel="noopener">Pirelli</a><a class="logo-tile" href="https://www.lumen.com/" target="_blank" rel="noopener">Lumen</a><a class="logo-tile" href="https://www.ogilvy.com/" target="_blank" rel="noopener">Ogilvy</a><a class="logo-tile" href="https://www.pecom.com.ar/" target="_blank" rel="noopener">Pecom</a><a class="logo-tile" href="https://securion.com.ar/" target="_blank" rel="noopener">Securion</a><a class="logo-tile" href="https://www.gestamp.com/" target="_blank" rel="noopener">Gestamp</a><a class="logo-tile" href="https://www.franui.store/es/" target="_blank" rel="noopener">Franu&iacute;</a></div><div class="logo-track reverse"><a class="logo-tile" href="https://www.hospitalitaliano.org.ar/" target="_blank" rel="noopener">Hospital Italiano</a><a class="logo-tile" href="https://corporate.arcelormittal.com/" target="_blank" rel="noopener">ArcelorMittal</a><a class="logo-tile" href="https://www.viva.com.ar/" target="_blank" rel="noopener">Viva</a><a class="logo-tile" href="https://www.grupowerthein.com/" target="_blank" rel="noopener">Werthein</a><a class="logo-tile" href="https://www.llaollao.com/" target="_blank" rel="noopener">Llao Llao</a><a class="logo-tile" href="https://www.vicentelopez.gov.ar/" target="_blank" rel="noopener">Vicente L&oacute;pez</a><a class="logo-tile" href="soluciones-esueldos.html#industria">Retail</a><a class="logo-tile" href="soluciones-esueldos.html#industria">Industria</a><a class="logo-tile" href="https://www.hospitalitaliano.org.ar/" target="_blank" rel="noopener">Hospital Italiano</a><a class="logo-tile" href="https://corporate.arcelormittal.com/" target="_blank" rel="noopener">ArcelorMittal</a><a class="logo-tile" href="https://www.viva.com.ar/" target="_blank" rel="noopener">Viva</a><a class="logo-tile" href="https://www.grupowerthein.com/" target="_blank" rel="noopener">Werthein</a><a class="logo-tile" href="https://www.llaollao.com/" target="_blank" rel="noopener">Llao Llao</a><a class="logo-tile" href="https://www.vicentelopez.gov.ar/" target="_blank" rel="noopener">Vicente L&oacute;pez</a><a class="logo-tile" href="soluciones-esueldos.html#industria">Retail</a><a class="logo-tile" href="soluciones-esueldos.html#industria">Industria</a></div></div></div></section>
-<section class="section feature" id="calculadora"><div class="wrap"><div class="feature-intro"><div class="eyebrow">Herramienta gratuita</div><h2>Estim&aacute; el valor de tus horas extras</h2><p>Ingres&aacute; sueldo, jornada semanal y cantidad de horas para obtener una referencia clara del total bruto estimado.</p></div><div class="calc-grid"><div class="card calc-card"><div class="calc-card-head"><span class="calc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"></circle><path d="M5 21v-2a7 7 0 0 1 14 0v2"></path></svg></span><h3>Datos del trabajador</h3></div><form class="form calc-form" id="calcForm"><label><span>Sueldo bruto mensual</span><div class="calc-input money-field"><span>$</span><input class="input" id="salary" type="number" min="0" placeholder="850.000"></div></label><label><span>Jornada semanal</span><div class="calc-input select-field"><select class="select" id="weekly"><option value="45">45 horas</option><option value="44">44 horas</option><option value="40">40 horas</option><option value="48">48 horas</option></select></div></label><label><span>Horas extra al 50%</span><div class="calc-input suffix-field"><input class="input" id="h50" type="number" min="0" value="0"><span>hs</span></div></label><label><span>Horas extra al 100%</span><div class="calc-input suffix-field"><input class="input" id="h100" type="number" min="0" value="0"><span>hs</span></div></label><button class="demo calc-submit" type="submit"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M16 15h0"></path></svg>Calcular ahora</button><div class="calc-note"><span>i</span><p>Ingres&aacute; tu sueldo, jornada semanal y cantidad de horas extra para obtener una referencia clara del total bruto estimado.</p></div></form></div><div class="card calc-card calc-result"><div class="calc-card-head"><span class="calc-icon"><svg viewBox="0 0 24 24"><path d="M6 20V10"></path><path d="M12 20V4"></path><path d="M18 20V7"></path></svg></span><h3>Resultado estimado</h3></div><div class="result-list"><div class="result-row"><span class="result-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span><span>Valor hora ordinaria</span><b id="hourValue">$0</b></div><div class="result-row"><span class="result-icon"><svg viewBox="0 0 24 24"><path d="M19 5 5 19"></path><circle cx="7" cy="7" r="2"></circle><circle cx="17" cy="17" r="2"></circle></svg></span><span>Horas extra al 50%</span><b id="total50">$0</b></div><div class="result-row"><span class="result-icon"><svg viewBox="0 0 24 24"><path d="m13 2-8 12h6l-1 8 9-13h-6z"></path></svg></span><span>Horas extra al 100%</span><b id="total100">$0</b></div></div><div class="result-total"><span class="result-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"></rect><path d="M3 10h18M16 15h2"></path></svg></span><strong>Total bruto por extras</strong><b id="grandTotal">$0</b></div></div></div></div></section>
-<section class="section calc-story"><div class="wrap calc-story-grid he-story-grid"><div class="calc-story-copy"><h2>Horas extra simples para cada equipo</h2><p>Registr&aacute; y revis&aacute; horas al 50% y al 100% con datos conectados <br> a turnos, fichadas y liquidaci&oacute;n.</p><div class="calc-story-list"><div><span>?</span>Valid&aacute; cantidad, fecha y tipo de recargo.</div><div><span>?</span>Conect&aacute; cada hora con turnos y ausencias.</div><div><span>?</span>Dej&aacute; las novedades listas para liquidaci&oacute;n.</div></div><a class="demo" href="agendar-demo-esueldos.html">Contactanos</a></div><div class="calc-story-visual"><div class="he-mock"><div class="he-mock-head"><b>Recargos calculados</b><span>Junio</span></div><div class="he-summary"><div><strong>8.5 h</strong><small>al 50%</small></div><div><strong>4 h</strong><small>al 100%</small></div><div><strong>$124k</strong><small>estimado</small></div></div><div class="he-lines"><div class="he-line"><div>Horas aprobadas<div class="he-bar"><i style="width:82%"></i></div></div><span>82%</span></div><div class="he-line"><div>Turnos conectados<div class="he-bar"><i style="width:68%"></i></div></div><span>listo</span></div></div></div></div></div></section>
-<section class="section calc-story alt"><div class="wrap calc-story-grid reverse he-story-grid"><div class="calc-story-visual payroll-visual-card"><div class="he-mock"><div class="he-mock-head"><b>Novedades para liquidar</b><span>Validaci&oacute;n</span></div><div class="he-approval"><div class="he-approval-row"><div>Martina Paz<small>2 h al 50%</small></div><span>Control</span><span>Junio</span><span class="he-status">ok</span></div><div class="he-approval-row"><div>Diego Ramos<small>1.5 h al 100%</small></div><span>Turno</span><span>Junio</span><span class="he-status">revisar</span></div><div class="he-approval-row"><div>Laura Mena<small>3 h al 50%</small></div><span>Fichada</span><span>Junio</span><span class="he-status">ok</span></div></div></div></div><div class="calc-story-copy"><h2>Valid&aacute; cada novedad sin depender de planillas</h2><p>Pas&aacute; de una estimaci&oacute;n aislada a un circuito claro para revisar, aprobar y liquidar horas extra.</p><div class="calc-story-list"><div><span>?</span>Guard&aacute; el detalle de cada recargo y su origen.</div><div><span>?</span>Defin&iacute; responsables antes de impactar en sueldos.</div><div><span>?</span>Consult&aacute; registros exportables cuando los necesites.</div></div><a class="demo" href="agendar-demo-esueldos.html">Contactanos</a></div></div></section>
-<section class="section testimonials"><div class="wrap"><div class="section-head"><div class="eyebrow">Testimonio</div><h2>Lo que dicen nuestros clientes</h2></div><div class="testimonial-card"><div class="testimonial-brand" data-testimonial-brand>e-SUELDOS</div><p data-testimonial-text>"Antes calcul&aacute;bamos horas extra en planillas separadas y despu&eacute;s revis&aacute;bamos diferencias a mano. Con e-Sueldos podemos validar recargos, turnos y novedades en un flujo m&aacute;s claro antes de liquidar."</p><div class="testimonial-author"><span class="testimonial-avatar"></span><span><b data-testimonial-name>Equipo de Liquidaci&oacute;n</b><small data-testimonial-role>Empresa de servicios</small></span></div></div><div class="testimonial-controls"><button type="button" data-testimonial-prev aria-label="Testimonio anterior">‹</button><button type="button" data-testimonial-next aria-label="Testimonio siguiente">›</button></div></div></section>
-<section class="section demo-form"><div class="wrap"><h2>Conoc&eacute; c&oacute;mo automatizar horas extra en e-Sueldos</h2><form class="demo-fields"><div class="demo-field"><label>Nombre<span>*</span></label><input type="text"></div><div class="demo-field"><label>Apellido<span>*</span></label><input type="text"></div><div class="demo-field full"><label>Email empresarial<span>*</span></label><input type="email"></div><div class="demo-field"><label>Nombre de la empresa<span>*</span></label><input type="text"></div><div class="demo-field"><label>Cantidad de empleados<span>*</span></label><select><option></option><option>1 a 50</option><option>51 a 200</option><option>201 a 500</option><option>+500</option></select></div><div class="demo-field"><label>Pa&iacute;s<span>*</span></label><select><option>Argentina</option></select></div><div class="demo-field"><label>N&uacute;mero de tel&eacute;fono</label><input type="tel" value="+54"></div><button class="demo" type="submit">Agendar Demo</button></form></div></section>
-<section class="ch-modules"><div class="wrap"><h2>Explor&aacute; c&oacute;mo otros m&oacute;dulos de e-Sueldos pueden <strong>potenciar tu operaci&oacute;n</strong></h2><div class="ch-module-grid"><a class="ch-module-card" href="control-horario-esueldos.html"><i>CH</i><h3>Control horario</h3><p>Conect&aacute; fichadas, turnos y horas extra con novedades listas para revisar.</p></a><a class="ch-module-card" href="e-sueldos-landing-completa.html"><i>$</i><h3>Portal Liquidaci&oacute;n</h3><p>Impact&aacute; horas extra y ausencias en el cierre mensual de sueldos.</p></a><a class="ch-module-card" href="portal-rrhh-landing.html"><i>RR</i><h3>Portal RR.HH.</h3><p>Centraliz&aacute; legajos, aprobaciones y solicitudes del equipo.</p></a></div></div></section>
+<section class="hero"><div class="wrap hero-grid"><div><div class="hero-kicker">Calculadora</div><h1>Calculadora de horas extras en <em>Argentina</em></h1><p class="hero-sub">Calcul&aacute; el valor ordinario, las horas trabajadas al 50% y al 100%, y el total bruto correspondiente. Obten&eacute; una referencia clara antes de incorporar cada recargo a la liquidaci&oacute;n.</p><div class="hero-actions"><a class="demo" href="#calculadora">Calcular ahora</a></div></div><div class="hero-visual calculator-visual"><img src="assets/hero-suite.png" alt="Calculadora de horas extras e-Sueldos"><div class="image-copy"><span class="showcase-tag">Calculadora</span><div class="showcase-title">Resultado estimado</div></div><div class="showcase-card left"><span>Horas calculadas</span><b>0 hs</b><small>Recargos al 50% y 100%</small></div><div class="showcase-card right"><span>Total a pagar</span><b id="heroTotal">$0</b><small>Monto bruto sin retenciones</small></div></div></div></section>
+<section class="logos"><div class="wrap"><h2>Con la confianza de m&aacute;s de <strong>500 empresas</strong></h2><div class="logo-marquee"><div class="logo-track"><a class="logo-tile" href="https://www.cerveceriaandes.com/" target="_blank" rel="noopener">Andes</a><a class="logo-tile" href="https://www.pirelli.com/" target="_blank" rel="noopener">Pirelli</a><a class="logo-tile" href="https://www.lumen.com/" target="_blank" rel="noopener">Lumen</a><a class="logo-tile" href="https://www.ogilvy.com/" target="_blank" rel="noopener">Ogilvy</a><a class="logo-tile" href="https://www.pecom.com.ar/" target="_blank" rel="noopener">Pecom</a><a class="logo-tile" href="https://securion.com.ar/" target="_blank" rel="noopener">Securion</a><a class="logo-tile" href="https://www.gestamp.com/" target="_blank" rel="noopener">Gestamp</a><a class="logo-tile" href="https://www.franui.store/es/" target="_blank" rel="noopener">Franu&iacute;</a><a class="logo-tile" href="https://www.cerveceriaandes.com/" target="_blank" rel="noopener">Andes</a><a class="logo-tile" href="https://www.pirelli.com/" target="_blank" rel="noopener">Pirelli</a><a class="logo-tile" href="https://www.lumen.com/" target="_blank" rel="noopener">Lumen</a><a class="logo-tile" href="https://www.ogilvy.com/" target="_blank" rel="noopener">Ogilvy</a><a class="logo-tile" href="https://www.pecom.com.ar/" target="_blank" rel="noopener">Pecom</a><a class="logo-tile" href="https://securion.com.ar/" target="_blank" rel="noopener">Securion</a><a class="logo-tile" href="https://www.gestamp.com/" target="_blank" rel="noopener">Gestamp</a><a class="logo-tile" href="https://www.franui.store/es/" target="_blank" rel="noopener">Franu&iacute;</a></div><div class="logo-track reverse"><a class="logo-tile" href="https://www.hospitalitaliano.org.ar/" target="_blank" rel="noopener">Hospital Italiano</a><a class="logo-tile" href="https://corporate.arcelormittal.com/" target="_blank" rel="noopener">ArcelorMittal</a><a class="logo-tile" href="https://www.viva.com.ar/" target="_blank" rel="noopener">Viva</a><a class="logo-tile" href="https://www.grupowerthein.com/" target="_blank" rel="noopener">Werthein</a><a class="logo-tile" href="https://www.llaollao.com/" target="_blank" rel="noopener">Llao Llao</a><a class="logo-tile" href="https://www.vicentelopez.gov.ar/" target="_blank" rel="noopener">Vicente L&oacute;pez</a><a class="logo-tile" href="soluciones-esueldos.html#industria">Retail</a><a class="logo-tile" href="soluciones-esueldos.html#industria">Industria</a><a class="logo-tile" href="https://www.hospitalitaliano.org.ar/" target="_blank" rel="noopener">Hospital Italiano</a><a class="logo-tile" href="https://corporate.arcelormittal.com/" target="_blank" rel="noopener">ArcelorMittal</a><a class="logo-tile" href="https://www.viva.com.ar/" target="_blank" rel="noopener">Viva</a><a class="logo-tile" href="https://www.grupowerthein.com/" target="_blank" rel="noopener">Werthein</a><a class="logo-tile" href="https://www.llaollao.com/" target="_blank" rel="noopener">Llao Llao</a><a class="logo-tile" href="https://www.vicentelopez.gov.ar/" target="_blank" rel="noopener">Vicente L&oacute;pez</a><a class="logo-tile" href="soluciones-esueldos.html#industria">Retail</a><a class="logo-tile" href="soluciones-esueldos.html#industria">Industria</a></div></div></div></section>
+<section class="section feature" id="calculadora"><div class="wrap"><div class="feature-intro"><h2>Estim&aacute; el valor de tus <strong>horas extra</strong></h2><p>Ingres&aacute; sueldo, jornada semanal y cantidad de horas para obtener una referencia clara del total bruto estimado.</p></div><div class="calc-grid"><div class="card calc-card"><div class="calc-card-head"><span class="calc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"></circle><path d="M5 21v-2a7 7 0 0 1 14 0v2"></path></svg></span><h3>Datos del trabajador</h3></div><form class="form calc-form" id="calcForm"><label><span>Sueldo bruto mensual</span><div class="calc-input money-field"><span>$</span><input class="input" id="salary" type="number" min="0" placeholder="850.000"></div></label><label><span>Jornada semanal</span><div class="calc-input select-field"><select class="select" id="weekly"><option value="45">45 horas</option><option value="44">44 horas</option><option value="40">40 horas</option><option value="48">48 horas</option></select></div></label><label><span>Horas extra al 50%</span><div class="calc-input suffix-field"><input class="input" id="h50" type="number" min="0" value="0"><span>hs</span></div></label><label><span>Horas extra al 100%</span><div class="calc-input suffix-field"><input class="input" id="h100" type="number" min="0" value="0"><span>hs</span></div></label><button class="demo calc-submit" type="submit"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M16 15h0"></path></svg>Calcular ahora</button><div class="calc-note"><span>i</span><p>Ingres&aacute; tu sueldo, jornada semanal y cantidad de horas extra para obtener una referencia clara del total bruto estimado.</p></div></form></div><div class="card calc-card calc-result"><div class="calc-card-head"><span class="calc-icon"><svg viewBox="0 0 24 24"><path d="M6 20V10"></path><path d="M12 20V4"></path><path d="M18 20V7"></path></svg></span><h3>Resultado estimado</h3></div><div class="result-list"><div class="result-row"><span class="result-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span><span>Valor hora ordinaria</span><b id="hourValue">$0</b></div><div class="result-row"><span class="result-icon"><svg viewBox="0 0 24 24"><path d="M19 5 5 19"></path><circle cx="7" cy="7" r="2"></circle><circle cx="17" cy="17" r="2"></circle></svg></span><span>Horas extra al 50%</span><b id="total50">$0</b></div><div class="result-row"><span class="result-icon"><svg viewBox="0 0 24 24"><path d="m13 2-8 12h6l-1 8 9-13h-6z"></path></svg></span><span>Horas extra al 100%</span><b id="total100">$0</b></div></div><div class="result-total"><span class="result-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"></rect><path d="M3 10h18M16 15h2"></path></svg></span><strong>Total bruto por extras</strong><b id="grandTotal">$0</b></div></div></div></div></section>
+<section class="section calc-story"><div class="wrap calc-story-grid he-story-grid"><div class="calc-story-copy"><h2>Horas extra simples para cada equipo</h2><p>Registr&aacute; y revis&aacute; horas al 50% y al 100% con datos conectados <br> a turnos, fichadas y liquidaci&oacute;n.</p><div class="calc-story-list"><div><span>&rarr;</span>Valid&aacute; cantidad, fecha y tipo de recargo.</div><div><span>&rarr;</span>Conect&aacute; cada hora con turnos y ausencias.</div><div><span>&rarr;</span>Dej&aacute; las novedades listas para liquidaci&oacute;n.</div></div><a class="demo" href="agendar-demo-esueldos.html">Contactanos</a></div><div class="calc-story-visual"><div class="he-mock"><div class="he-mock-head"><b>Recargos calculados</b><span>Junio</span></div><div class="he-summary"><div><strong>8.5 h</strong><small>al 50%</small></div><div><strong>4 h</strong><small>al 100%</small></div><div><strong>$124k</strong><small>estimado</small></div></div><div class="he-lines"><div class="he-line"><div>Horas aprobadas<div class="he-bar"><i style="width:82%"></i></div></div><span>82%</span></div><div class="he-line"><div>Turnos conectados<div class="he-bar"><i style="width:68%"></i></div></div><span>listo</span></div></div></div></div></div></section>
+<section class="section calc-story alt"><div class="wrap calc-story-grid reverse he-story-grid"><div class="calc-story-visual payroll-visual-card"><div class="he-mock"><div class="he-mock-head"><b>Novedades para liquidar</b><span>Validaci&oacute;n</span></div><div class="he-approval"><div class="he-approval-row"><div>Martina Paz<small>2 h al 50%</small></div><span>Control</span><span>Junio</span><span class="he-status">ok</span></div><div class="he-approval-row"><div>Diego Ramos<small>1.5 h al 100%</small></div><span>Turno</span><span>Junio</span><span class="he-status">revisar</span></div><div class="he-approval-row"><div>Laura Mena<small>3 h al 50%</small></div><span>Fichada</span><span>Junio</span><span class="he-status">ok</span></div></div></div></div><div class="calc-story-copy"><h2>Valid&aacute; cada novedad sin depender de planillas</h2><p>Pas&aacute; de una estimaci&oacute;n aislada a un circuito claro para revisar, aprobar y liquidar horas extra.</p><div class="calc-story-list"><div><span>&rarr;</span>Guard&aacute; el detalle de cada recargo y su origen.</div><div><span>&rarr;</span>Defin&iacute; responsables antes de impactar en sueldos.</div><div><span>&rarr;</span>Consult&aacute; registros exportables cuando los necesites.</div></div><a class="demo" href="agendar-demo-esueldos.html">Contactanos</a></div></div></section>
+<section class="section demo-form"><div class="wrap"><h2>&iquest;Interesado en <strong>gestionar horas extra</strong>?</h2><p class="demo-sub">Recibe orientaci&oacute;n personalizada de uno de nuestros expertos y descubre e-Sueldos en acci&oacute;n.</p><form class="demo-fields"><div class="demo-field"><label>Nombre<span>*</span></label><input type="text"></div><div class="demo-field"><label>Apellido<span>*</span></label><input type="text"></div><div class="demo-field full"><label>Email empresarial<span>*</span></label><input type="email"></div><div class="demo-field"><label>Nombre de la empresa<span>*</span></label><input type="text"></div><div class="demo-field"><label>Cantidad de empleados<span>*</span></label><select><option></option><option>1 a 50</option><option>51 a 200</option><option>201 a 500</option><option>+500</option></select></div><div class="demo-field"><label>Pa&iacute;s<span>*</span></label><select><option>Argentina</option></select></div><div class="demo-field"><label>N&uacute;mero de tel&eacute;fono</label><input type="tel" value="+54"></div><button class="demo" type="submit">Agendar Demo</button></form></div></section>
 </main>
 <footer class="footer"><div class="wrap"><div class="footer-top"><div><img class="footer-logo" src="fondoBlanco.png" alt="e-Sueldos"><p>Payroll + RR.HH. impulsados por Leia. El ecosistema de gesti&oacute;n humana para empresas y organismos p&uacute;blicos de Argentina.</p></div><div><h4>Producto</h4><a href="e-sueldos-landing-completa.html">Portal Liquidaci&oacute;n</a><a href="portal-rrhh-landing.html">Portal RRHH</a><a href="control-horario-esueldos.html">Control Horario</a><a href="brief-esueldos.html">Leia IA</a></div><div><h4>Soluciones</h4><a href="soluciones-esueldos.html#perfil">Por perfil</a><a href="soluciones-esueldos.html#area">Por &aacute;rea</a><a href="soluciones-esueldos.html#industria">Por industria</a><a href="planes-esueldos.html">Planes</a></div><div><h4>Recursos</h4><a href="calculadora-horas-extras.html">Calculadora</a><a href="brief-esueldos.html">Brief</a><a href="recursos-esueldos.html">Soporte</a><a href="agendar-demo-esueldos.html">Demo</a></div><div><h4>Contacto</h4><a href="#">hola@e-sueldos.com</a><a href="#">+54 9 11 7110 3105</a><a href="#">Lun a Vie &middot; 9 a 17 hs</a></div></div><div class="footer-bottom"><span>&copy; 2026 e-Sueldos. Todos los derechos reservados.</span><span>T&eacute;rminos &middot; Privacidad &middot; Media Kit</span></div></div></footer>
 <script>
@@ -732,31 +1125,6 @@ function calculate(){
 document.getElementById('calcForm').addEventListener('submit', e => { e.preventDefault(); calculate(); });
 ['salary','weekly','h50','h100'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
 calculate();
-const testimonials=[
-  {brand:"e-SUELDOS",text:"\"Antes calcul&aacute;bamos horas extra en planillas separadas y despu&eacute;s revis&aacute;bamos diferencias a mano. Con e-Sueldos podemos validar recargos, turnos y novedades en un flujo m&aacute;s claro antes de liquidar.\"",name:"Equipo de Liquidaci&oacute;n",role:"Empresa de servicios"},
-  {brand:"CONTROL",text:"\"Las horas extra dejaron de depender de mensajes sueltos. Ahora revisamos el tipo de recargo, el turno y la aprobaci&oacute;n antes de enviarlo al cierre mensual.\"",name:"Responsable de Operaciones",role:"Industria"},
-  {brand:"RR.HH.",text:"\"La calculadora nos sirve para explicar el impacto estimado y ordenar la conversaci&oacute;n con los equipos antes de registrar la novedad definitiva.\"",name:"Gerencia de RR.HH.",role:"Empresa nacional"}
-];
-let testimonialIndex=0;
-const testimonialBrand=document.querySelector("[data-testimonial-brand]");
-const testimonialText=document.querySelector("[data-testimonial-text]");
-const testimonialName=document.querySelector("[data-testimonial-name]");
-const testimonialRole=document.querySelector("[data-testimonial-role]");
-function showTestimonial(index){
-  const item=testimonials[index];
-  testimonialBrand.innerHTML=item.brand;
-  testimonialText.innerHTML=item.text;
-  testimonialName.innerHTML=item.name;
-  testimonialRole.innerHTML=item.role;
-}
-document.querySelector("[data-testimonial-prev]").addEventListener("click",()=>{
-  testimonialIndex=(testimonialIndex-1+testimonials.length)%testimonials.length;
-  showTestimonial(testimonialIndex);
-});
-document.querySelector("[data-testimonial-next]").addEventListener("click",()=>{
-  testimonialIndex=(testimonialIndex+1)%testimonials.length;
-  showTestimonial(testimonialIndex);
-});
 </script>
 <script>
 document.querySelectorAll(".mega").forEach((mega)=>{
