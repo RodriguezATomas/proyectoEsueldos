@@ -157,7 +157,7 @@ img,svg{display:block}
 .ai-core:after{content:"";position:absolute;inset:-14px;border-radius:50%;border:1px solid #DCE6FF;opacity:.9}
 .ai-bot{width:120px;height:120px;border-radius:36px;background:#EEF3FF;border:12px solid #5C76E8;display:flex;align-items:center;justify-content:center;color:#5C76E8;font-size:52px;font-weight:900}
 .ai-bot:before{content:"• •";letter-spacing:8px}
-.ai-prompt-card{position:absolute;width:220px}.ai-prompt-card.one{left:20px;top:18px}.ai-prompt-card.two{left:0;bottom:28px}.ai-prompt-card.three{right:0;top:82px}.ai-prompt-card.four{right:24px;bottom:0}
+.ai-prompt-card{position:absolute;width:220px}.ai-prompt-card.one{left:20px;top:18px}.ai-prompt-card.two{left:0;bottom:28px}.ai-prompt-card.three{right:0;top:46px}.ai-prompt-card.four{right:24px;bottom:0}
 .ai-chat{width:min(100%,330px);display:grid;gap:12px}
 .ai-bubble{padding:16px 18px;border-radius:16px;background:#F0F4FF;color:#6B7280;font-size:18px;line-height:1.16;font-weight:900}
 .ai-bubble.answer{background:#fff;border:1px solid #E7ECF8;box-shadow:0 18px 46px rgba(35,85,232,.08)}
@@ -586,24 +586,31 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
 .ai-grid{grid-template-columns:1fr 1fr!important;gap:72px!important;align-items:center!important}
 .ai-copy,.ai-copy.center{max-width:none!important;margin:0!important;text-align:left!important}
 .ai-copy h2,.ai-copy.center h2{
-  font-family:var(--font-primary)!important;
-  font-size:40px!important;
+  font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;
+  font-size:43px!important;
   font-weight:600!important;
-  line-height:1.08!important;
-  letter-spacing:-1.55px!important;
+  line-height:1.07!important;
+  letter-spacing:-1.35px!important;
   color:#020617!important;
   max-width:620px!important;
   margin:0 0 22px!important
 }
 .ai-copy p,.ai-copy.center p{
   font-family:var(--font-primary)!important;
-  font-size:19px!important;
+  font-size:16px!important;
   font-weight:400!important;
-  line-height:1.38!important;
-  letter-spacing:-.55px!important;
+  line-height:1.35!important;
+  letter-spacing:-.35px!important;
   color:#475467!important;
   max-width:640px!important;
   margin:0!important
+}
+.ai-card p,.ai-bubble{
+  font-family:var(--font-primary)!important;
+  font-size:16px!important;
+  font-weight:400!important;
+  line-height:1.35!important;
+  letter-spacing:-.35px!important
 }
 
 /* Casos de uso: composición de Humand, conservando el fondo de e-Sueldos */
@@ -983,8 +990,5 @@ document.querySelectorAll(".mega").forEach((mega)=>{
 </script>
 </body>
 </html>
-
-
-
 
 
