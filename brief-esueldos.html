@@ -561,25 +561,93 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
   .logo-tile{font-size:24px!important;line-height:30px!important;letter-spacing:-1.2px!important}
 }
 
-/* Hero Leia alineado con Portal RR.HH. y Portal Liquidación */
-.hero{background:#F7F7F7!important;padding-top:158px!important;padding-bottom:96px!important}
-.hero-grid{width:1120px!important;max-width:1120px!important;grid-template-columns:460px 560px!important;gap:100px!important;align-items:start!important}
-.hero-grid > div:first-child{transform:none!important;padding-top:0!important}
-.hero-kicker{display:inline-flex!important;align-items:center!important;border:1px solid #4A67EA!important;border-radius:999px!important;color:#4A67EA!important;background:transparent!important;font-family:"SF UI",Arial,sans-serif!important;font-size:12px!important;font-weight:500!important;line-height:1!important;padding:6px 12px!important;margin-bottom:18px!important}
-.hero h1{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:43px!important;font-weight:600!important;line-height:1.07!important;letter-spacing:-1.35px!important;max-width:460px!important;color:#020617!important;margin:0!important}
-.hero h1 em{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-weight:600!important;color:#020617!important}
-.hero-sub{font-family:"SF UI",Arial,sans-serif!important;max-width:450px!important;font-size:16px!important;font-weight:400!important;line-height:1.35!important;letter-spacing:-.35px!important;color:#475467!important;margin:18px 0 0!important}
-.hero-actions{margin-top:24px!important}
-.hero .demo{height:46px!important;padding:0 28px!important;width:auto!important;min-width:0!important;border-radius:15px!important;font-size:14px!important;font-weight:600!important;line-height:16.8px!important;letter-spacing:-.5px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
-.hero-visual{position:relative!important;width:560px!important;min-height:380px!important;display:flex!important;align-items:flex-start!important;justify-content:center!important;justify-self:center!important;padding-top:0!important;box-sizing:border-box!important}
-.hero-visual img{width:460px!important;height:auto!important;border-radius:18px!important;box-shadow:none!important;filter:brightness(.72) saturate(.95)!important}
-.image-copy{left:68px!important;top:38px!important;max-width:240px!important;text-align:left!important}
-.image-copy .suite-tag{display:inline-flex!important;align-items:center!important;justify-content:center!important;height:26px!important;padding:0 13px!important;margin:0 0 10px!important;line-height:1!important;font-size:12px!important}
-.image-copy .suite-title{display:block!important;margin:0!important;font-size:23px!important;line-height:1.02!important;text-align:left!important;white-space:nowrap!important}
-.hero-visual .suite-card{transform:scale(.96)!important;transform-origin:center!important}
-.hero-visual .suite-card.left{left:42px!important;bottom:32px!important}
-.hero-visual .suite-card.right{right:42px!important;bottom:32px!important}
+/* Hero Leia inspirado en Sammy IA */
+.hero{background:linear-gradient(180deg,#DDE7FF 0%,#fff 54%,#fff 100%)!important;padding-top:128px!important;padding-bottom:46px!important;text-align:center!important;overflow:hidden!important}
+.hero-grid{width:min(1180px,calc(100% - 48px))!important;max-width:1180px!important;display:grid!important;grid-template-columns:1fr!important;gap:56px!important;align-items:center!important;justify-items:center!important}
+.hero-grid > div:first-child{transform:none!important;padding-top:0!important;display:flex!important;flex-direction:column!important;align-items:center!important}
+.hero-kicker{display:inline-flex!important;align-items:center!important;justify-content:center!important;border:0!important;border-radius:999px!important;color:#fff!important;background:#05070B!important;font-family:"SF UI",Arial,sans-serif!important;font-size:12px!important;font-weight:700!important;line-height:1!important;letter-spacing:1.6px!important;text-transform:uppercase!important;padding:9px 18px!important;margin-bottom:22px!important;box-shadow:0 0 0 2px rgba(74,103,234,.16)!important}
+.hero h1{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:69px!important;font-weight:600!important;line-height:.96!important;letter-spacing:-4.6px!important;max-width:590px!important;color:#020617!important;margin:0!important}
+.hero h1 em{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-style:normal!important;font-weight:700!important;color:#020617!important}
+.hero-sub{font-family:"SF UI",Arial,sans-serif!important;max-width:760px!important;font-size:19px!important;font-weight:400!important;line-height:1.35!important;letter-spacing:-.35px!important;color:#475467!important;margin:22px auto 0!important}
+.hero-actions{margin-top:30px!important}
+.hero .demo{height:50px!important;padding:0 36px!important;width:auto!important;min-width:0!important;border-radius:12px!important;background:#050B18!important;color:#fff!important;border:1px solid #2355E8!important;font-size:15px!important;font-weight:600!important;line-height:18px!important;letter-spacing:-.5px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;box-shadow:0 0 0 3px rgba(35,85,232,.16),0 18px 44px rgba(74,103,234,.20)!important}
+.hero-visual{position:relative!important;width:min(100%,970px)!important;min-height:460px!important;border:1px solid #E6ECFF!important;border-radius:44px!important;background:rgba(238,243,255,.58)!important;padding:36px!important;display:flex!important;align-items:center!important;justify-content:center!important;justify-self:center!important;box-sizing:border-box!important}
+.hero-visual img{display:block!important;width:100%!important;height:388px!important;object-fit:cover!important;object-position:center!important;border-radius:28px!important;box-shadow:0 24px 60px rgba(35,85,232,.18)!important;filter:saturate(.94) brightness(.9)!important}
+.hero-visual:after{content:"";position:absolute;inset:36px;border-radius:28px;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(8,15,35,.18));pointer-events:none}
+.image-copy,.hero-visual .suite-card{display:none!important}
+.leia-screen{position:relative;width:100%;height:388px;border-radius:28px;background:#1F1F1F;overflow:hidden;display:grid;place-items:center;color:#fff}
+.leia-screen h2{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif;font-size:44px;font-weight:700;line-height:1;letter-spacing:-1.3px;color:#6F8CFF;margin:0}
+.leia-question{position:absolute;background:#fff;color:#344054;border-radius:10px;padding:14px 18px;box-shadow:0 14px 34px rgba(0,0,0,.16);font-size:13px;line-height:1.2;text-align:left}
+.leia-question b{display:block;color:#14215D;font-size:13px;margin-bottom:4px}.leia-question.one{left:31%;top:32%}.leia-question.two{left:16%;top:54%}.leia-question.three{right:11%;top:52%}.leia-caption{position:absolute;left:20%;bottom:28px;color:#fff;background:rgba(0,0,0,.72);font-size:22px;font-weight:700;line-height:1.08;text-align:left;padding:4px 8px}
 .logos{padding:44px 0 70px!important;overflow:hidden!important}.logos h2{font-size:34px!important;line-height:1.18!important;color:#020617!important;font-weight:400!important;margin-bottom:34px!important}.logos h2 strong{font-weight:800!important}.logos p{display:none!important}.logo-marquee{width:100vw!important;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;gap:20px!important;overflow:hidden!important}.logo-track{gap:64px!important;min-width:max-content!important;width:max-content!important;padding:0 28px!important}.logo-tile{min-width:150px!important;height:48px!important;font-size:28px!important;font-weight:700!important;line-height:34px!important;letter-spacing:-1.8px!important;color:#8E8E8E!important;opacity:.68!important}
+.why-leia{background:linear-gradient(180deg,#fff 0%,#EEF3FF 100%)!important;padding:24px 0 82px!important}
+.why-leia h2{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:36px!important;font-weight:400!important;line-height:1.14!important;letter-spacing:-1.55px!important;color:#020617!important;text-align:center!important;margin:0 0 52px!important}
+.why-leia h2 strong{font-weight:700!important}
+.why-grid{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:22px!important;max-width:1020px!important;margin:0 auto!important;align-items:stretch!important;grid-auto-rows:205px!important}
+.why-card{background:#fff!important;border:1px solid #E7ECF8!important;border-radius:12px!important;padding:28px 28px!important;height:205px!important;min-height:205px!important;box-shadow:0 14px 34px rgba(35,85,232,.06)!important;overflow:hidden!important}
+.why-card{display:grid!important;grid-template-columns:38px 1fr!important;grid-template-rows:auto 1fr!important;column-gap:16px!important;align-items:start!important}
+.why-icon{display:flex!important;align-items:center!important;justify-content:center!important;width:38px!important;height:38px!important;border-radius:50%!important;background:#DDE7FF!important;color:#6F8CFF!important;margin:0!important}
+.why-icon svg{width:19px!important;height:19px!important;stroke:currentColor!important;fill:none!important;stroke-width:2!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+.why-card h3{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:19px!important;font-weight:700!important;line-height:1.08!important;letter-spacing:-.55px!important;color:#020617!important;margin:0 0 16px!important;max-width:260px!important}
+.why-card p{grid-column:1/-1!important;font-family:var(--font-primary)!important;font-size:16px!important;font-weight:400!important;line-height:1.32!important;letter-spacing:-.3px!important;color:#475467!important;margin:16px 0 0!important}
+.leia-tabs{background:#fff!important;padding:58px 0 88px!important;font-family:var(--font-primary)!important}
+.leia-tab-nav{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:24px!important;max-width:980px!important;margin:0 auto 54px!important}
+.leia-tab-nav button{height:42px!important;border:0!important;border-bottom:2px solid #E5E7EB!important;background:transparent!important;color:#C3C6CE!important;font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:16px!important;font-weight:600!important;line-height:1!important;letter-spacing:-.3px!important;cursor:pointer!important}
+.leia-tab-nav button.active{color:#020617!important;border-bottom-color:#020617!important}
+.leia-panel{display:none!important;grid-template-columns:1fr 420px!important;gap:74px!important;align-items:center!important;max-width:980px!important;margin:0 auto!important}
+.leia-panel.active{display:grid!important}
+.leia-panel-copy h2{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:39px!important;font-weight:600!important;line-height:1.07!important;letter-spacing:-1.2px!important;color:#020617!important;margin:0 0 18px!important;max-width:470px!important}
+.leia-panel-copy p{font-family:var(--font-primary)!important;font-size:16px!important;font-weight:400!important;line-height:1.35!important;letter-spacing:-.35px!important;color:#475467!important;margin:0 0 22px!important;max-width:520px!important}
+.leia-checks{display:grid!important;gap:12px!important;margin:0 0 30px!important;padding:0!important;list-style:none!important}
+.leia-checks li{font-family:var(--font-primary)!important;font-size:15px!important;font-weight:400!important;line-height:1.35!important;letter-spacing:-.3px!important;color:#475467!important}
+.leia-checks li:before{content:"✓";color:#667085!important;margin-right:12px!important}
+.leia-panel-copy .demo{height:46px!important;padding:0 34px!important;border-radius:12px!important;background:#050B18!important;color:#fff!important;border:1px solid #2355E8!important;font-size:14px!important;font-weight:600!important;line-height:16.8px!important;letter-spacing:-.5px!important;box-shadow:0 0 0 3px rgba(35,85,232,.16),0 18px 44px rgba(74,103,234,.2)!important}
+.leia-visual{height:380px!important;border-radius:0!important;background:transparent!important;position:relative!important;overflow:visible!important;padding:0!important}
+.leia-ui-card{position:absolute!important;background:rgba(255,255,255,.96)!important;border:1px solid rgba(231,236,248,.95)!important;border-radius:14px!important;box-shadow:0 18px 42px rgba(35,85,232,.14)!important;color:#020617!important}
+.leia-chat-card,.leia-chat-card.left,.leia-alert{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:13px!important;font-weight:600!important;line-height:1.28!important;letter-spacing:-.25px!important;color:#111827!important;background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(248,250,255,.96))!important;border:1px solid #DCE6FF!important;box-shadow:0 18px 42px rgba(35,85,232,.14)!important}
+.leia-config{left:50%!important;top:28px!important;width:260px!important;padding:22px!important;text-align:left!important;transform:translateX(-50%)!important}
+.leia-config b{display:block!important;text-align:center!important;font-size:14px!important;margin:0 0 12px!important}.leia-bot-icon{width:48px!important;height:48px!important;border-radius:50%!important;background:#DDE7FF!important;color:#4A67EA!important;margin:0 auto 12px!important;display:grid!important;place-items:center!important;font-weight:800!important}
+.leia-input{height:28px!important;border:1px solid #E7ECF8!important;border-radius:7px!important;margin:10px 0!important}.leia-toggle{display:flex!important;justify-content:space-between!important;align-items:center!important;border-top:1px solid #EEF2FA!important;padding-top:13px!important;margin-top:13px!important;font-size:13px!important;color:#475467!important}.leia-switch{width:36px!important;height:20px!important;border-radius:999px!important;background:#4A67EA!important}
+.leia-photo{position:absolute!important;right:-28px!important;top:-18px!important;width:488px!important;height:368px!important;object-fit:cover!important;border-radius:12px!important;filter:saturate(.92) brightness(.96)!important}
+.leia-chat-card{left:auto!important;right:-54px!important;top:302px!important;width:230px!important;padding:15px 17px!important;font-size:13px!important;line-height:1.25!important}.leia-chat-card.left{left:auto!important;right:-54px!important;top:302px!important;width:230px!important}.leia-doc{left:50%!important;top:34px!important;width:300px!important;padding:22px!important;transform:translateX(-50%)!important}.leia-doc b,.leia-insights b{display:block!important;font-size:28px!important;line-height:1!important;margin-bottom:8px!important}.leia-lines{display:grid!important;gap:9px!important;margin-top:14px!important}.leia-lines span{height:9px!important;border-radius:999px!important;background:#DDE7FF!important}.leia-lines span:nth-child(2){width:82%!important}.leia-lines span:nth-child(3){width:70%!important}.leia-insights{left:44px!important;top:36px!important;width:288px!important;padding:24px!important}.leia-alert{left:auto!important;right:-54px!important;top:326px!important;bottom:auto!important;width:230px!important;padding:15px 17px!important;font-size:13px!important}
+.leia-steps-title{text-align:center!important;margin:88px auto 0!important;max-width:760px!important}
+.leia-steps-title h2{font-family:var(--font-primary)!important;font-size:38px!important;font-weight:700!important;line-height:1.05!important;letter-spacing:-1.2px!important;color:#020617!important;margin:0 0 18px!important}
+.leia-steps-title p{font-family:var(--font-primary)!important;font-size:18px!important;font-weight:400!important;line-height:1.35!important;letter-spacing:-.35px!important;color:#475467!important;margin:0!important}
+.leia-work-grid{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:30px!important;max-width:980px!important;margin:58px auto 0!important}
+.leia-work-card{background:#fff!important;border:1px solid #E7ECF8!important;border-radius:12px!important;min-height:330px!important;padding:26px 24px!important;box-shadow:0 18px 42px rgba(11,18,32,.12)!important}
+.leia-work-visual{height:160px!important;border-radius:10px!important;background:#F3F6FF!important;position:relative!important;margin-bottom:28px!important;overflow:hidden!important}
+.leia-mini-badge{position:absolute!important;background:#fff!important;border:1px solid #DCE6FF!important;border-radius:10px!important;padding:12px 14px!important;font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:12px!important;font-weight:600!important;line-height:1.24!important;letter-spacing:-.2px!important;color:#1F2A44!important;box-shadow:0 14px 30px rgba(35,85,232,.12)!important}
+.leia-mini-badge.one{right:18px!important;top:12px!important;width:185px!important}.leia-mini-badge.two{left:18px!important;bottom:12px!important;width:185px!important}.leia-mini-badge.three{left:18px!important;top:18px!important;background:#050B18!important;color:#fff!important;width:174px!important}.leia-mini-badge.four{right:18px!important;bottom:20px!important;width:180px!important}.leia-mini-badge.five{right:16px!important;top:12px!important;width:174px!important}.leia-mini-badge.six{left:16px!important;bottom:12px!important;width:178px!important}
+.leia-mini-dot{position:absolute!important;width:30px!important;height:30px!important;border-radius:50%!important;background:#DDE7FF!important;border:1px solid #C8D7FF!important;display:grid!important;place-items:center!important;color:#4A67EA!important;font-size:10px!important;font-weight:800!important}
+.leia-mini-dot.one,.leia-mini-dot.two{display:none!important}
+.leia-work-card h3{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:24px!important;font-weight:700!important;line-height:1.1!important;letter-spacing:-.75px!important;color:#020617!important;margin:0 0 14px!important}
+.leia-work-card p{font-family:var(--font-primary)!important;font-size:16px!important;font-weight:400!important;line-height:1.35!important;letter-spacing:-.35px!important;color:#475467!important;margin:0!important}
+.leia-integrated{text-align:center!important;max-width:780px!important;margin:48px auto 0!important}
+.leia-integrated h2{font-family:var(--font-primary)!important;font-size:38px!important;font-weight:700!important;line-height:1.05!important;letter-spacing:-1.2px!important;color:#020617!important;margin:0 0 18px!important}
+.leia-integrated p{font-family:var(--font-primary)!important;font-size:20px!important;font-weight:400!important;line-height:1.35!important;letter-spacing:-.45px!important;color:#475467!important;margin:0!important}
+.leia-faq{background:#fff!important;padding:0px 0 36px!important;font-family:var(--font-primary)!important}
+.leia-faq-grid{display:grid!important;grid-template-columns:310px 1fr!important;gap:96px!important;max-width:980px!important;margin:0 auto!important}
+.leia-faq h2{font-family:var(--font-primary)!important;font-size:38px!important;font-weight:700!important;line-height:1.05!important;letter-spacing:-1.2px!important;color:#020617!important;margin:0 0 20px!important}
+.leia-faq p{font-family:var(--font-primary)!important;font-size:18px!important;font-weight:400!important;line-height:1.32!important;letter-spacing:-.4px!important;color:#475467!important;margin:0!important}
+.faq-list{display:grid!important;border-top:1px solid #D9DEE8!important}
+.faq-item{border-bottom:1px solid #D9DEE8!important}
+.faq-item summary{list-style:none!important;cursor:pointer!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important;padding:22px 0!important;font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:16px!important;font-weight:700!important;line-height:1.18!important;letter-spacing:-.4px!important;color:#020617!important}
+.faq-item summary::-webkit-details-marker{display:none!important}
+.faq-item summary:after{content:""!important;display:inline-block!important;width:14px!important;height:14px!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:center!important;background-size:14px!important}
+.faq-item[open] summary:after{content:"⌃"}
+.faq-item div{font-family:var(--font-primary)!important;font-size:16px!important;font-weight:400!important;line-height:1.35!important;letter-spacing:-.35px!important;color:#475467!important;padding:0 0 24px!important}
+.demo-form{background:#fff!important;padding:82px 0 96px!important;font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important}
+.demo-shell{display:grid!important;grid-template-columns:390px 1fr!important;gap:80px!important;align-items:start!important;justify-content:center!important;max-width:980px!important;margin:0 auto!important}
+.demo-copy{padding-top:6px!important}.demo-copy h2{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:42px!important;font-weight:700!important;line-height:1.05!important;letter-spacing:-1.35px!important;color:#020617!important;margin:0 0 26px!important;text-align:left!important;max-width:340px!important}
+.demo-copy p{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:20px!important;font-weight:400!important;line-height:1.32!important;letter-spacing:-.45px!important;color:#475467!important;margin:0!important;max-width:320px!important}
+.demo-card{background:#F7F7F7!important;border:1px solid #E1E4E9!important;border-radius:12px!important;padding:56px 54px 52px!important}
+.demo-fields{width:100%!important;margin:0!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:22px 28px!important}
+.demo-field.full{grid-column:1/-1!important}.demo-field label{display:block!important;font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:12px!important;font-weight:500!important;line-height:1.2!important;letter-spacing:-.15px!important;color:#475467!important;margin:0 0 8px!important}.demo-field label span{color:#E11D48!important}
+.demo-field input,.demo-field select{width:100%!important;height:34px!important;border:1px solid #D7DCE5!important;border-radius:7px!important;background:#fff!important;padding:0 10px!important;font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:14px!important;color:#344054!important;box-shadow:none!important}
+.phone-row{display:grid!important;grid-template-columns:58px 1fr!important;gap:8px!important}
+.captcha-box{grid-column:1/-1!important;width:210px!important;height:52px!important;background:#fff!important;border:1px solid #D7DCE5!important;display:flex!important;align-items:center!important;justify-content:center!important;color:#4A67EA!important;font-size:12px!important;font-weight:700!important}
+.demo-legal{grid-column:1/-1!important;font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:10px!important;line-height:1.35!important;letter-spacing:-.1px!important;color:#667085!important;margin:0!important}
+.demo-fields .demo{grid-column:1/-1!important;justify-self:start!important;width:auto!important;height:46px!important;padding:0 40px!important;margin:24px 0 0!important;border-radius:10px!important;background:#4A67EA!important;color:#fff!important;border:0!important;font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:14px!important;font-weight:600!important;box-shadow:none!important}
 
 /* Tipografía y proporciones exactas de las secciones de Portal Liquidación */
 .ai-section{font-family:var(--font-primary)!important}
@@ -671,60 +739,24 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
 }
 
 /* Formulario con la escala y composición visual de Humand */
-.demo-form{
-  background:#F7F7F8!important;
-  padding:92px 0 96px!important;
-  font-family:var(--font-primary)!important
-}
-.demo-form h2{
-  max-width:650px!important;
-  margin:0 auto 88px!important;
-  font-family:var(--font-primary)!important;
-  font-size:38px!important;
-  font-weight:400!important;
-  line-height:1.16!important;
-  letter-spacing:-1.25px!important;
-  color:#020617!important;
-  text-align:center!important
-}
-.demo-form h2 strong{font-weight:700!important}
-.demo-fields{
-  width:min(100%,700px)!important;
-  grid-template-columns:1fr 1fr!important;
-  gap:20px 30px!important
-}
-.demo-field label{
-  margin-bottom:8px!important;
-  font-family:var(--font-primary)!important;
-  font-size:14px!important;
-  font-weight:400!important;
-  line-height:1.25!important;
-  letter-spacing:-.25px!important;
-  color:#475467!important
-}
-.demo-field input,.demo-field select{
-  height:42px!important;
-  border:1px solid #D7DCE5!important;
-  border-radius:9px!important;
-  background:#fff!important;
-  padding:0 12px!important;
-  font-family:var(--font-primary)!important;
-  font-size:14px!important;
-  font-weight:400!important;
-  color:#344054!important
-}
-.demo-fields .demo{
-  height:46px!important;
-  padding:0 28px!important;
-  margin-top:18px!important;
-  border-radius:15px!important;
-  font-family:var(--font-primary)!important;
-  font-size:14px!important;
-  font-weight:600!important
-}
+.demo-form{background:#fff!important;padding:44px 0 96px!important;font-family:var(--font-primary)!important}
+.demo-shell{display:grid!important;grid-template-columns:340px 640px!important;gap:86px!important;align-items:start!important;justify-content:start!important;max-width:980px!important;margin:0 auto!important}
+.demo-copy{padding-top:6px!important}
+.demo-copy h2{width:380px!important;max-width:380px!important;margin:0 0 24px!important;font-family:var(--font-primary)!important;font-size:38px!important;font-weight:700!important;line-height:1.05!important;letter-spacing:-1.2px!important;color:#020617!important;text-align:left!important}
+.demo-copy p{max-width:310px!important;margin:0!important;font-family:var(--font-primary)!important;font-size:18px!important;font-weight:400!important;line-height:1.32!important;letter-spacing:-.4px!important;color:#475467!important}
+.demo-card{background:#F7F7F7!important;border:1px solid #E1E4E9!important;border-radius:12px!important;padding:56px 54px 52px!important}
+.demo-fields{width:100%!important;margin:0!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:22px 28px!important}
+.demo-field label{display:block!important;margin:0 0 8px!important;font-family:var(--font-primary)!important;font-size:12px!important;font-weight:500!important;line-height:1.2!important;letter-spacing:-.15px!important;color:#475467!important}
+.demo-field input,.demo-field select{width:100%!important;height:34px!important;border:1px solid #D7DCE5!important;border-radius:7px!important;background:#fff!important;padding:0 10px!important;font-family:var(--font-primary)!important;font-size:14px!important;font-weight:400!important;color:#344054!important;box-shadow:none!important}
+.demo-field select{appearance:none!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:right 10px center!important;background-size:14px!important;padding-right:30px!important}
+.phone-row{display:grid!important;grid-template-columns:58px 1fr!important;gap:8px!important}
+.captcha-box{grid-column:1/-1!important;width:210px!important;height:52px!important;background:#fff!important;border:1px solid #D7DCE5!important;display:flex!important;align-items:center!important;justify-content:center!important;color:#4A67EA!important;font-size:12px!important;font-weight:700!important}
+.demo-legal{grid-column:1/-1!important;margin:0!important;font-family:var(--font-primary)!important;font-size:10px!important;line-height:1.35!important;letter-spacing:-.1px!important;color:#667085!important}
+.demo-fields .demo{grid-column:1/-1!important;justify-self:start!important;width:auto!important;height:46px!important;padding:0 40px!important;margin:24px 0 0!important;border-radius:10px!important;background:#4A67EA!important;color:#fff!important;border:0!important;font-family:var(--font-primary)!important;font-size:14px!important;font-weight:600!important;box-shadow:none!important}
 @media(max-width:767px){
   .demo-form{padding:68px 0 76px!important}
-  .demo-form h2{font-size:32px!important;margin-bottom:52px!important}
+  .demo-shell{grid-template-columns:1fr!important;gap:34px!important}
+  .demo-copy h2{font-size:32px!important}
   .demo-fields{grid-template-columns:1fr!important}
   .demo-field.full{grid-column:auto!important}
 }
@@ -811,18 +843,15 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <span class="hero-kicker">Leia AI</span>
-        <h1>IA que acompaña <br> a tu<em> equipo</em></h1>
-        <p class="hero-sub">Leia responde consultas de sueldos, RR.HH. y control horario con datos conectados del ecosistema e-Sueldos, para reducir interrupciones y acelerar cada trámite. Centralizá respuestas, automatizá tareas frecuentes y ofrecé a cada colaborador información clara y disponible cuando la necesita.</p>
+        <span class="hero-kicker">Asistente de IA para RR.HH.</span>
+        <h1>Deja de buscar.<br>Pregúntale a Leia.</h1>
+        <p class="hero-sub">Leia es un asistente impulsado por IA que brinda respuestas instant&aacute;neas y confiables basadas en el conocimiento de tu empresa. Reduce consultas repetitivas, alivia la carga del equipo de RR.HH. y mejora la experiencia de todos los colaboradores.</p>
         <div class="hero-actions">
           <a class="demo" href="agendar-demo-esueldos.html">Agend&aacute; una demo</a>
         </div>
       </div>
       <div class="hero-visual">
         <img src="assets/hero-leia.png" alt="Leia IA e-Sueldos">
-        <div class="image-copy"><span class="suite-tag">Leia IA</span><div class="suite-title">Asistente operativo</div></div>
-        <div class="suite-card right"><span>Consultas resueltas</span><b>42</b><small>Recibos y vacaciones</small></div>
-        <div class="suite-card left"><span>Disponibilidad</span><b>24/7</b><small>Para cada colaborador</small></div>
       </div>
     </div>
   </section>
@@ -872,75 +901,134 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
     </div>
   </section>
 
-  <section class="ai-section">
-    <div class="wrap ai-grid">
-      <div class="ai-copy center">
-        <h2>Respuestas claras y actualizadas</h2>
-        <p>Leia aprende de convenios, recibos, legajos y solicitudes para dar respuestas consistentes. Cada consulta se enruta al agente correcto y vuelve con contexto real del ecosistema.</p>
-      </div>
-      <div class="ai-visual">
-        <div class="ai-card ai-prompt-card one"><b>Liquidaci&oacute;n</b><p>Cu&aacute;ndo se publica mi recibo de junio.</p></div>
-        <div class="ai-card ai-prompt-card two"><b>Convenios</b><p>Qu&eacute; escala aplica para esta categor&iacute;a.</p></div>
-        <div class="ai-core">Leia</div>
-        <div class="ai-card ai-prompt-card three"><b>Soporte RR.HH.</b><p>Necesito cargar una licencia m&eacute;dica.</p></div>
-        <div class="ai-card ai-prompt-card four"><b>Control horario</b><p>Revis&aacute; mis horas extra de la semana.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="ai-section">
-    <div class="wrap ai-grid">
-      <div class="ai-visual">
-        <div class="ai-chat">
-          <div class="ai-bubble">Hola, Leia. Necesito entender por qu&eacute; este recibo tiene una diferencia.</div>
-          <div class="ai-bubble answer">Te muestro el concepto asociado y el convenio aplicado.<div class="ai-lines"><span></span><span></span></div><small>11:01</small></div>
-        </div>
-      </div>
-      <div class="ai-copy">
-        <h2>Ayuda clara, sin esperas</h2>
-        <p>Leia no funciona como un chatbot r&iacute;gido. Comprende el contexto laboral, responde con lenguaje claro y escala a una persona cuando el caso requiere intervenci&oacute;n humana.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="ai-section">
-    <div class="wrap ai-grid">
-      <div class="ai-copy center">
-        <h2>Activaci&oacute;n simple, impacto inmediato</h2>
-        <p>Activ&aacute; Leia sobre tus m&oacute;dulos actuales de e-Sueldos. Se conecta con liquidaci&oacute;n, RR.HH. y control horario para responder sin duplicar datos ni cambiar tus procesos.</p>
-      </div>
-      <div class="ai-visual">
-        <div class="ai-card ai-doc"><b>Pol&iacute;tica de beneficios</b><p>Salud, bienestar, licencias y documentaci&oacute;n interna.</p><div class="ai-lines"><span></span><span></span></div></div>
-        <div class="ai-card ai-doc-chat"><b>Leia</b><p>&iexcl;Hola! Ya puedo responder usando esta pol&iacute;tica y los datos del legajo.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="ai-use-cases">
+  <section class="why-leia">
     <div class="wrap">
-      <h2>Trabaj&aacute; junto a Leia para impulsar tu organizaci&oacute;n</h2>
-      <p>Explor&aacute; los casos de uso de e-Sueldos AI</p>
-      <div class="use-grid">
-        <div class="use-card"><i>&#10022;</i><h3>Liquidaci&oacute;n</h3><p>Responde dudas sobre recibos, escalas, conceptos, cierres y novedades mensuales.</p></div>
-        <div class="use-card"><i>&#10022;</i><h3>RR.HH.</h3><p>Acompa&ntilde;a solicitudes, legajos, documentos, licencias y comunicaciones internas.</p></div>
-        <div class="use-card"><i>&#10022;</i><h3>Operaciones</h3><p>Ayuda con asistencia, horarios, horas extra y consultas frecuentes del equipo.</p></div>
+      <h2>&iquest;Por qu&eacute; los equipos eligen <strong>Leia?</strong></h2>
+      <div class="why-grid">
+        <article class="why-card"><span class="why-icon"><svg viewBox="0 0 24 24"><path d="M8 11h8M8 15h5"/><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3h-5l-5 3v-3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h12Z"/></svg></span><h3>Los empleados obtienen respuestas en segundos</h3><p>Hac&eacute; una pregunta y obten&eacute; respuestas instant&aacute;neas, sin buscar ni esperar.</p></article>
+        <article class="why-card"><span class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v5l3 2"/></svg></span><h3>Ahorra horas cada semana</h3><p>Reduce las consultas repetitivas para que RR.HH. se enfoque en tareas estrat&eacute;gicas.</p></article>
+        <article class="why-card"><span class="why-icon"><svg viewBox="0 0 24 24"><path d="M6 5h12v14H6z"/><path d="M9 9h6M9 13h4"/></svg></span><h3>Respuestas con conocimiento</h3><p>Brinda acceso instant&aacute;neo a pol&iacute;ticas, procedimientos y documentos.</p></article>
+        <article class="why-card"><span class="why-icon"><svg viewBox="0 0 24 24"><path d="M7 7a7 7 0 0 1 10 0l2 2"/><path d="M19 4v5h-5"/><path d="M17 17a7 7 0 0 1-10 0l-2-2"/><path d="M5 20v-5h5"/></svg></span><h3>Disponible 24/7, donde sea que ocurra el trabajo</h3><p>Apoya a equipos y colaboradores desde cualquier dispositivo.</p></article>
+        <article class="why-card"><span class="why-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="11" cy="17" r="2"/></svg></span><h3>Personalizable y f&aacute;cil de configurar</h3><p>Configura el conocimiento, tono y comportamiento de Leia sin expertos.</p></article>
+        <article class="why-card"><span class="why-icon"><svg viewBox="0 0 24 24"><path d="M5 17 10 12l4 4 5-7"/><path d="M15 9h4v4"/></svg></span><h3>Mejora continua</h3><p>Aprende de cada consulta y mantiene la base de conocimiento actualizada.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="leia-tabs">
+    <div class="wrap">
+      <div class="leia-tab-nav" role="tablist">
+        <button class="active" type="button" data-leia-tab="0">Configuraci&oacute;n</button>
+        <button type="button" data-leia-tab="1">Respuestas</button>
+        <button type="button" data-leia-tab="2">Conocimiento</button>
+        <button type="button" data-leia-tab="3">Insights</button>
+      </div>
+
+      <div class="leia-panel active" data-leia-panel="0">
+        <div class="leia-panel-copy">
+          <h2>Crea un asistente de IA que refleje a tu empresa</h2>
+          <p>Sube el conocimiento de tu empresa, personaliza el nombre, el tono y el comportamiento de Leia, y define c&oacute;mo responde a los colaboradores.</p>
+          <ul class="leia-checks"><li>Implementaci&oacute;n r&aacute;pida.</li><li>Conocimiento confiable en cada respuesta.</li><li>No requiere programaci&oacute;n ni experiencia t&eacute;cnica.</li></ul>
+          <a class="demo" href="agendar-demo-esueldos.html">Agend&aacute; una demo</a>
+        </div>
+        <div class="leia-visual"><img class="leia-photo" src="assets/hero-suite.png" alt="Configuraci&oacute;n de Leia"><div class="leia-ui-card leia-chat-card">Configur&aacute; el tono, conocimiento y comportamiento de Leia.</div></div>
+      </div>
+
+      <div class="leia-panel" data-leia-panel="1">
+        <div class="leia-panel-copy">
+          <h2>Obten&eacute; respuestas al instante con una simple conversaci&oacute;n</h2>
+          <p>Los colaboradores ya no necesitan buscar informaci&oacute;n. Solo preguntan y Leia responde con informaci&oacute;n confiable basada en el conocimiento de tu empresa.</p>
+          <ul class="leia-checks"><li>Conocimiento confiable en cada respuesta.</li><li>Disponible en cualquier momento, desde computadora y dispositivos m&oacute;viles.</li></ul>
+          <a class="demo" href="agendar-demo-esueldos.html">Agend&aacute; una demo</a>
+        </div>
+        <div class="leia-visual"><img class="leia-photo" src="assets/hero-rrhh.png" alt="Leia responde consultas de RR.HH."><div class="leia-ui-card leia-chat-card">&iexcl;Hola Leia! &iquest;Pod&eacute;s decirme cu&aacute;ndo se actualiza mi saldo de vacaciones?</div></div>
+      </div>
+
+      <div class="leia-panel" data-leia-panel="2">
+        <div class="leia-panel-copy">
+          <h2>Transforma documentos en respuestas confiables</h2>
+          <p>Leia convierte tu documentaci&oacute;n en una fuente &uacute;nica de informaci&oacute;n confiable para que los colaboradores encuentren respuestas al instante.</p>
+          <ul class="leia-checks"><li>Pol&iacute;ticas y procedimientos siempre al alcance.</li><li>Manuales y gu&iacute;as para empleados en un solo lugar.</li><li>Documentos convertidos en respuestas confiables.</li></ul>
+          <a class="demo" href="agendar-demo-esueldos.html">Agend&aacute; una demo</a>
+        </div>
+        <div class="leia-visual"><img class="leia-photo" src="assets/hero-liquidacion.png" alt="Conocimiento conectado con Leia"><div class="leia-ui-card leia-chat-card left">La licencia por maternidad incluye 3 meses consecutivos con goce de sueldo.</div></div>
+      </div>
+
+      <div class="leia-panel" data-leia-panel="3">
+        <div class="leia-panel-copy">
+          <h2>Aprende de cada interacci&oacute;n</h2>
+          <p>Cada conversaci&oacute;n revela lo que m&aacute;s necesitan los colaboradores, identifica brechas de conocimiento y mejora continuamente tu documentaci&oacute;n.</p>
+          <ul class="leia-checks"><li>Informaci&oacute;n &uacute;til para optimizar el soporte interno.</li><li>Brechas de conocimiento para mejorar documentos.</li><li>Mejora continua impulsada por conversaciones reales.</li></ul>
+          <a class="demo" href="agendar-demo-esueldos.html">Agend&aacute; una demo</a>
+        </div>
+        <div class="leia-visual"><img class="leia-photo" src="assets/hero-leia.png" alt="Insights de Leia"><div class="leia-ui-card leia-alert">Informaci&oacute;n faltante detectada</div></div>
+      </div>
+
+      <div class="leia-steps-title">
+        <h2>Tu asistente de trabajo, en cada paso</h2>
+        <p>Desde responder preguntas cotidianas hasta ayudar a los equipos a mantenerse productivos, Leia apoya a los colaboradores donde sea que trabajen.</p>
+      </div>
+      <div class="leia-work-grid">
+        <article class="leia-work-card">
+          <div class="leia-work-visual"><span class="leia-mini-badge one">Dejame buscar tu &uacute;ltimo recibo</span><span class="leia-mini-badge two">Te quedan 12 d&iacute;as de vacaciones hasta el 31 de diciembre.</span><span class="leia-mini-dot one">AI</span></div>
+          <h3>Los empleados se mantienen productivos</h3>
+          <p>Encuentra respuestas confiables al instante para que el trabajo nunca se detenga.</p>
+        </article>
+        <article class="leia-work-card">
+          <div class="leia-work-visual"><span class="leia-mini-badge three">Ayudame con...</span><span class="leia-mini-badge four">Hola Leia, &iquest;pod&eacute;s enviarme mi &uacute;ltimo recibo de pago?</span></div>
+          <h3>Los equipos se mantienen enfocados</h3>
+          <p>Reduce las consultas repetitivas para que RR.HH., IT y soporte se concentren en tareas de mayor valor.</p>
+        </article>
+        <article class="leia-work-card">
+          <div class="leia-work-visual"><span class="leia-mini-badge five">Hola Leia, &iquest;cu&aacute;l es el proceso de mi equipo?</span><span class="leia-mini-badge six">No ten&eacute;s acceso a esa informaci&oacute;n seg&uacute;n tus permisos.</span><span class="leia-mini-dot two">AI</span></div>
+          <h3>Dise&ntilde;ado para un acceso seguro</h3>
+          <p>Leia solo responde con informaci&oacute;n que cada colaborador tiene permiso para consultar.</p>
+        </article>
+      </div>
+      <div class="leia-integrated">
+        <br>
+        <h2>Integrado en la experiencia e-Sueldos</h2>
+        <p>Leia est&aacute; integrado en e-Sueldos y brinda acceso instant&aacute;neo al conocimiento de tu empresa, sin salir de la plataforma.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="leia-faq">
+    <div class="wrap leia-faq-grid">
+      <div>
+        <h2>Preguntas frecuentes</h2>
+        <p>Resuelve las dudas m&aacute;s comunes sobre el funcionamiento, la configuraci&oacute;n y la seguridad de Leia.</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item"><summary>&iquest;Leia puede reemplazar a mi equipo de RR.HH. o de soporte?</summary><div>No. Leia reduce consultas repetitivas y ayuda a responder m&aacute;s r&aacute;pido, pero permite escalar a una persona cuando el caso lo requiere.</div></details>
+        <details class="faq-item"><summary>&iquest;Cu&aacute;l es la diferencia entre Leia y un chatbot de IA gen&eacute;rico?</summary><div>Leia trabaja con el conocimiento y los datos conectados de e-Sueldos, por eso responde con contexto laboral real.</div></details>
+        <details class="faq-item"><summary>&iquest;Puedo controlar a qu&eacute; informaci&oacute;n pueden acceder los colaboradores?</summary><div>S&iacute;. Las respuestas respetan permisos, roles y alcance de informaci&oacute;n definido para cada colaborador.</div></details>
+        <details class="faq-item"><summary>&iquest;La informaci&oacute;n de mi empresa est&aacute; segura?</summary><div>S&iacute;. Leia opera dentro del ecosistema e-Sueldos y mantiene trazabilidad sobre las consultas y respuestas.</div></details>
+        <details class="faq-item"><summary>&iquest;Leia es compatible con m&uacute;ltiples idiomas?</summary><div>Puede responder en lenguaje claro y adaptarse al tono definido por la empresa.</div></details>
       </div>
     </div>
   </section>
 
   <section class="demo-form">
-    <div class="wrap">
-      <h2>&iexcl;Descubr&iacute; c&oacute;mo <strong>Leia AI<br>puede transformar tu empresa!</strong></h2>
-      <form class="demo-fields">
-        <div class="demo-field"><label>Nombre<span>*</span></label><input type="text"></div>
-        <div class="demo-field"><label>Apellido<span>*</span></label><input type="text"></div>
-        <div class="demo-field full"><label>Email empresarial<span>*</span></label><input type="email"></div>
-        <div class="demo-field"><label>Nombre de la empresa<span>*</span></label><input type="text"></div>
-        <div class="demo-field"><label>Cantidad de empleados<span>*</span></label><select><option></option><option>1 a 50</option><option>51 a 200</option><option>201 a 500</option><option>+500</option></select></div>
-        <div class="demo-field"><label>Pa&iacute;s<span>*</span></label><select><option>Argentina</option></select></div>
-        <div class="demo-field"><label>N&uacute;mero de tel&eacute;fono</label><input type="tel" value="+54"></div>
-        <button class="demo" type="submit">Agendar Demo</button>
-      </form>
+    <div class="wrap demo-shell">
+      <div class="demo-copy">
+        <h2>&iquest;Listo para conocer a tu nuevo asistente de trabajo?</h2>
+        <p>Descubre c&oacute;mo Leia simplifica el trabajo diario en toda tu organizaci&oacute;n.</p>
+      </div>
+      <div class="demo-card">
+        <form class="demo-fields">
+          <div class="demo-field"><label>Nombre<span>*</span></label><input type="text"></div>
+          <div class="demo-field"><label>Apellido<span>*</span></label><input type="text"></div>
+          <div class="demo-field full"><label>Email empresarial<span>*</span></label><input type="email"></div>
+          <div class="demo-field"><label>Nombre de la empresa<span>*</span></label><input type="text"></div>
+          <div class="demo-field"><label>Cantidad de empleados<span>*</span></label><select><option></option><option>1 a 50</option><option>51 a 200</option><option>201 a 500</option><option>+500</option></select></div>
+          <div class="demo-field"><label>Pa&iacute;s<span>*</span></label><select><option></option><option>Argentina</option></select></div>
+          <div class="demo-field"><label>N&uacute;mero de tel&eacute;fono</label><div class="phone-row"><select><option>AR</option></select><input type="tel" value="+54"></div></div>
+          <div class="demo-field full"><label>&iquest;C&oacute;mo nos conociste?<span>*</span></label><select><option>LinkedIn</option><option>Google</option><option>Referido</option></select></div>
+          <p class="demo-legal">Al enviar este formulario, aceptas los T&eacute;rminos y Condiciones de e-Sueldos y reconoces que tus datos ser&aacute;n procesados para gestionar tu solicitud y evaluar una posible colaboraci&oacute;n.</p>
+          <button class="demo" type="submit">Enviar</button>
+        </form>
+      </div>
     </div>
   </section>
 
@@ -987,8 +1075,14 @@ document.querySelectorAll(".mega").forEach((mega)=>{
   mega.closest(".nav-item")?.addEventListener("mouseenter",()=>showGroup(sideLinks.findIndex((link)=>link.classList.contains("active"))||0));
 });
 
+document.querySelectorAll("[data-leia-tab]").forEach((tab)=>{
+  tab.addEventListener("click",()=>{
+    const index=tab.dataset.leiaTab;
+    document.querySelectorAll("[data-leia-tab]").forEach((item)=>item.classList.toggle("active",item===tab));
+    document.querySelectorAll("[data-leia-panel]").forEach((panel)=>panel.classList.toggle("active",panel.dataset.leiaPanel===index));
+  });
+});
+
 </script>
 </body>
 </html>
-
-
