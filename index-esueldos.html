@@ -741,9 +741,23 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
   font-weight:800!important;
 }
 
-    /* Ajuste visual del inicio: contenido algo más bajo, como en la referencia. */
+/* Ajuste visual del inicio: tipografía y posición como Humand. */
+.hero h1{
+  font-family:var(--font-primary)!important;
+  font-size:72px!important;
+  font-weight:400!important;
+  line-height:78px!important;
+  letter-spacing:-4.32px!important;
+}
+.hero-sub{
+  font-family:var(--font-primary)!important;
+  font-size:20px!important;
+  font-weight:400!important;
+  line-height:24px!important;
+  letter-spacing:-1px!important;
+}
 @media (min-width:621px){
-  .hero{padding-top:180px}
+  .hero{padding-top:220px}
 }
 
     /* Las dos filas de empresas permanecen grises, también al pasar el mouse. */
@@ -827,7 +841,7 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <h1>Sistema de sueldos<br><em>y recibo digital</em></h1>
+      <h1>Sistema de sueldos<br><em><strong>y recibo digital</strong></em></h1>
       <p class="hero-sub">Fusionamos IA, firma digital, datos biom&eacute;tricos y geolocalizaci&oacute;n para transformar la liquidaci&oacute;n de sueldos y la gesti&oacute;n de RR.HH.</p>
       <div class="store-rating"><span class="stars">★★★★<span class="star-half">★</span></span><span>4.9/5 en equipos de RR.HH., estudios contables y empresas argentinas</span></div>
       <div class="hero-actions"><a class="demo" href="agendar-demo-esueldos.html">Agend&aacute; una demo</a></div>
@@ -925,7 +939,6 @@ document.querySelector(".client-arrow.next")?.addEventListener("click",()=>showC
 </script>
 </body>
 </html>
-
 
 
 
