@@ -763,7 +763,11 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
 @media(max-width:1100px){.hero-grid{width:auto!important;max-width:92vw!important;grid-template-columns:1fr!important;gap:34px!important}.hero-grid > div:first-child{transform:none!important}.hero-visual{width:100%!important;margin-top:34px!important}.hero-visual img{width:100%!important;max-width:460px!important}}
 @media(max-width:620px){.hero{padding-top:70px!important}.hero h1{font-size:36px!important}.image-copy{left:max(18px,calc(50% - 162px))!important;top:20px!important}.hero-visual .suite-card{position:static!important;transform:none!important;width:100%!important;margin-top:14px!important}.hero-visual{display:grid!important;min-height:auto!important}.hero .demo{width:100%!important}}
 
-</style>
+.footer{position:relative!important;overflow:hidden!important;background:#0057FC!important;color:#fff!important;padding:56px 0 28px!important}
+.footer:before{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;background:rgba(93,174,239,.38)}
+.footer:after{content:"";position:absolute;left:42%;bottom:-180px;width:420px;height:420px;border-radius:50%;background:rgba(244,251,255,.14)}
+.footer .wrap{position:relative;z-index:1}.footer-top{display:grid;grid-template-columns:1.25fr repeat(4,1fr);gap:28px;border-bottom:1px solid rgba(255,255,255,.22);padding-bottom:40px}
+.footer-logo{height:38px;width:auto;margin-bottom:18px}.footer p{line-height:1.6;color:rgba(255,255,255,.9)!important}.footer h4{color:#fff!important;text-transform:uppercase;font-size:14px;font-weight:700;letter-spacing:.08em}.footer a{display:block;color:#fff!important;margin:10px 0;font-size:14px}.footer-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;font-size:13px;color:rgba(255,255,255,.82)!important}</style>
 </head>
 <body>
 
@@ -1035,16 +1039,7 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
 </main>
 
 <footer class="footer">
-  <div class="wrap">
-    <div class="footer-top">
-      <div><img class="footer-logo" src="fondoBlanco.png" alt="e-Sueldos"><p>Payroll + RR.HH. impulsados por Leia. El ecosistema de gestión humana para empresas y organismos públicos de Argentina.</p></div>
-      <div><h4>Producto</h4><a href="e-sueldos-landing-completa.html">Portal Liquidación</a><a href="portal-rrhh-landing.html">Portal RRHH</a><a href="control-horario-esueldos.html">Control Horario</a><a href="brief-esueldos.html">Leia IA</a></div>
-      <div><h4>Soluciones</h4><a href="soluciones-esueldos.html#perfil">Por perfil</a><a href="soluciones-esueldos.html#area">Por área</a><a href="soluciones-esueldos.html#industria">Por industria</a><a href="planes-esueldos.html">Planes</a></div>
-      <div><h4>Recursos</h4><a href="calculadora-horas-extras.html">Calculadora</a><a href="brief-esueldos.html">Brief</a><a href="recursos-esueldos.html">Soporte</a><a href="agendar-demo-esueldos.html">Demo</a></div>
-      <div><h4>Contacto</h4><a href="#">hola@e-sueldos.com</a><a href="#">+54 9 11 7110 3105</a><a href="#">Lun a Vie · 9 a 17 hs</a></div>
-    </div>
-    <div class="footer-bottom"><span>© 2026 e-Sueldos. Todos los derechos reservados.</span><span>Términos · Privacidad · Media Kit</span></div>
-  </div>
+  <div class="wrap"><div class="footer-top"><div><img class="footer-logo" src="fondoBlanco.png" alt="e-Sueldos"><p>Payroll + RR.HH. impulsados por Leia. El ecosistema de gestión humana para empresas y organismos públicos de Argentina.</p></div><div><h4>Producto</h4><a href="e-sueldos-landing-completa.html">Portal Liquidación</a><a href="portal-rrhh-landing.html">Portal RRHH</a><a href="control-horario-esueldos.html">Control Horario</a><a href="brief-esueldos.html">Leia IA</a></div><div><h4>Soluciones</h4><a href="soluciones-esueldos.html#perfil">Por perfil</a><a href="soluciones-esueldos.html#area">Por área</a><a href="soluciones-esueldos.html#industria">Por industria</a><a href="planes-esueldos.html">Planes</a></div><div><h4>Recursos</h4><a href="calculadora-horas-extras.html">Calculadora</a><a href="brief-esueldos.html">Brief</a><a href="recursos-esueldos.html">Soporte</a><a href="agendar-demo-esueldos.html">Demo</a></div><div><h4>Contacto</h4><a href="#">hola@e-sueldos.com</a><a href="#">+54 9 11 7110 3105</a><a href="#">Lun a Vie · 9 a 17 hs</a></div></div><div class="footer-bottom"><span>© 2026 e-Sueldos. Todos los derechos reservados.</span><span>Términos · Privacidad · Media Kit</span></div></div>
 </footer>
 
 <script>
@@ -1086,3 +1081,5 @@ document.querySelectorAll("[data-leia-tab]").forEach((tab)=>{
 </script>
 </body>
 </html>
+
+
