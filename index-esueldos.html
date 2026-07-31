@@ -59,9 +59,9 @@ img,svg{display:block}
 .mini-chart{height:88px;display:flex;align-items:end;gap:8px;margin-top:14px}
 .mini-chart span{flex:1;height:45%;border-radius:8px 8px 0 0;background:linear-gradient(180deg,var(--blue-2),var(--blue))}
 .mini-chart span:nth-child(2){height:78%}.mini-chart span:nth-child(3){height:52%}.mini-chart span:nth-child(4){height:92%}.mini-chart span:nth-child(5){height:63%}
-.hero{position:relative;overflow:hidden;background:radial-gradient(circle at 82% 88%,rgba(93,174,239,.42) 0 28%,transparent 28.4%),radial-gradient(circle at 18% 18%,rgba(46,115,247,.42) 0 20%,transparent 20.4%),linear-gradient(180deg,#0057FC 0%,#2E73F7 38%,#5DAEEF 72%,#F4FBFF 100%);padding:118px 0 0;color:#fff}
-.hero:before{content:"";position:absolute;right:-180px;bottom:58px;width:560px;height:560px;border-radius:50%;background:rgba(244,251,255,.16)}
-.hero:after{content:"";position:absolute;left:-160px;bottom:120px;width:420px;height:420px;border-radius:50%;background:rgba(93,174,239,.18)}
+.hero{position:relative;overflow:hidden;background:radial-gradient(ellipse at 23% 25%,rgba(244,251,255,.11) 0 10%,transparent 23%),radial-gradient(ellipse at 76% 34%,rgba(244,251,255,.08) 0 9%,transparent 22%),radial-gradient(ellipse at 45% 73%,rgba(244,251,255,.09) 0 12%,transparent 28%),radial-gradient(ellipse at 62% 46%,rgba(93,174,239,.28) 0 22%,transparent 48%),linear-gradient(180deg,#0057FC 0%,#1768F7 52%,#5DAEEF 92%,#F4FBFF 100%);padding:118px 0 0;color:#fff}
+.hero:before{content:"";position:absolute;right:-320px;bottom:-96px;width:560px;height:320px;border-radius:50% 50% 44% 56%;background:rgba(244,251,255,.18);box-shadow:-150px 58px 0 34px rgba(244,251,255,.11),-54px -34px 0 -22px rgba(244,251,255,.12),-258px 88px 0 18px rgba(244,251,255,.08)}
+.hero:after{content:"";position:absolute;left:-105px;top:-70px;width:370px;height:215px;border-radius:52% 48% 55% 45%;background:rgba(244,251,255,.12);box-shadow:100px 36px 0 20px rgba(244,251,255,.08),205px 60px 0 -2px rgba(244,251,255,.06),42px 82px 0 -12px rgba(244,251,255,.07)}
 .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:42px;align-items:center;justify-items:center;text-align:center}
 .hero h1{font-size:clamp(2.5rem,4.9vw,4.9rem);line-height:.98;letter-spacing:-.035em;margin:0;color:#fff;font-weight:900;max-width:860px}
 .hero h1 em{font-style:normal;color:#fff}
@@ -775,7 +775,20 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
       opacity:1!important;
       filter:grayscale(1)!important;
     }
-</style>
+.nav-shell{position:relative!important;width:min(1140px,calc(100% - 24px))!important;margin:10px auto!important;border:1px solid var(--line)!important;border-radius:999px!important;background:#fff!important;box-shadow:0 12px 34px rgba(11,18,32,.06)!important}
+.nav{height:66px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;padding:0 30px!important;gap:28px!important}
+.logo img{width:170px!important;height:46px!important;object-fit:contain!important;object-position:left center!important}
+.nav-links{display:flex!important;align-items:center!important;gap:30px!important;flex:1!important}
+.nav-btn,.nav-link{border:0!important;background:transparent!important;font:inherit!important;font-size:14px!important;font-weight:700!important;line-height:20px!important;letter-spacing:-0.1px!important;color:#0046CC!important;text-transform:none!important;display:flex!important;align-items:center!important;gap:7px!important;cursor:pointer!important;padding:22px 0!important}
+.nav-btn svg{width:14px!important;height:14px!important;stroke:currentColor!important;fill:none!important;stroke-width:2.4!important;transition:.2s!important}
+.nav-actions{display:flex!important;align-items:center!important;gap:16px!important;flex-shrink:0!important}
+.nav-actions .demo{height:46px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;background:#FF333E!important;color:#fff!important;border:1px solid #FF333E!important;border-radius:16px!important;padding:0 28px!important;font-size:14px!important;font-weight:600!important;line-height:16.8px!important;letter-spacing:-0.5px!important;text-transform:none!important;transition:background .18s,color .18s,border-color .18s!important}
+.nav-actions .demo:hover{background:#fff!important;color:#FF333E!important;border-color:#FF333E!important}.topbar{position:absolute!important;top:0!important;left:0!important;right:0!important;z-index:90!important;background:#0057FC!important;color:#fff!important}
+.utility{position:absolute!important;top:0!important;left:0!important;right:0!important;background:transparent!important;border-bottom:0!important;z-index:95!important;pointer-events:none!important}
+.utility .wrap{height:34px!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:22px!important;color:#fff!important}
+.utility a{pointer-events:auto!important;color:#fff!important;font-size:13px!important;font-weight:400!important;line-height:22.8px!important;letter-spacing:0!important}
+.header{top:34px!important}.demo,.hero .demo,.nav-actions .demo,.ai-cta .demo,.demo-fields .demo,.calc-story-copy .demo,.access-actions .demo,.py-form-grid .demo{height:46px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;background:#FF333E!important;color:#fff!important;border:1px solid #FF333E!important;border-radius:16px!important;padding:0 28px!important;font-size:14px!important;font-weight:600!important;line-height:16.8px!important;letter-spacing:-0.5px!important;text-transform:none!important;text-decoration:none!important;white-space:nowrap!important;width:auto!important;min-width:max-content!important;box-shadow:none!important;transition:background .18s,color .18s,border-color .18s!important}
+.demo:hover,.hero .demo:hover,.nav-actions .demo:hover,.ai-cta .demo:hover,.demo-fields .demo:hover,.calc-story-copy .demo:hover,.access-actions .demo:hover,.py-form-grid .demo:hover{background:#fff!important;color:#FF333E!important;border-color:#FF333E!important}</style>
 </head>
 <body>
 <div class="topbar"><div class="wrap"><span class="pill">Nuevo</span><span>e-Sueldos Leia automatiza consultas, procesos y reportes de RR.HH.</span></div></div>
@@ -946,6 +959,14 @@ document.querySelector(".client-arrow.next")?.addEventListener("click",()=>showC
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
 
 
 
