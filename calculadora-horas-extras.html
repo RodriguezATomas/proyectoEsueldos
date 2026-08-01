@@ -856,6 +856,97 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
   line-height:1.35!important;
   letter-spacing:-.2px!important;
 }
+#calculator-page #calculadora .calc-card{
+  position:relative!important;
+  overflow:hidden!important;
+  background:radial-gradient(ellipse at 22% 16%,rgba(244,251,255,.12) 0 12%,transparent 31%),radial-gradient(ellipse at 88% 90%,rgba(244,251,255,.16) 0 14%,transparent 34%),linear-gradient(180deg,#0057FC 0%,#1768F7 58%,#5DAEEF 100%)!important;
+  border:0!important;
+  color:#fff!important;
+}
+#calculator-page #calculadora .calc-card:before{
+  content:""!important;
+  position:absolute!important;
+  right:-62px!important;
+  bottom:-46px!important;
+  width:178px!important;
+  height:88px!important;
+  border-radius:54% 46% 50% 50%!important;
+  background:rgba(244,251,255,.13)!important;
+  box-shadow:-48px 23px 0 12px rgba(244,251,255,.07),-94px 34px 0 -8px rgba(244,251,255,.05)!important;
+  pointer-events:none!important;
+}
+#calculator-page #calculadora .calc-card > *{
+  position:relative!important;
+  z-index:1!important;
+}
+#calculator-page #calculadora .calc-card h3,
+#calculator-page #calculadora .calc-card .calc-form label,
+#calculator-page #calculadora .result-row,
+#calculator-page #calculadora .result-total,
+#calculator-page #calculadora .result-total strong{
+  color:#fff!important;
+}
+#calculator-page #calculadora .calc-card h3:after{
+  background:#fff!important;
+}
+#calculator-page #calculadora .calc-icon,
+#calculator-page #calculadora .result-icon,
+#calculator-page #calculadora .calc-note span{
+  background:rgba(255,255,255,.18)!important;
+  border-color:rgba(255,255,255,.32)!important;
+  color:#fff!important;
+}
+#calculator-page #calculadora .calc-input,
+#calculator-page #calculadora .result-list,
+#calculator-page #calculadora .result-row,
+#calculator-page #calculadora .result-total{
+  background:rgba(255,255,255,.16)!important;
+  border-color:rgba(255,255,255,.34)!important;
+}
+#calculator-page #calculadora .calc-input .input,
+#calculator-page #calculadora .calc-input .select{
+  background:transparent!important;
+  color:#fff!important;
+  outline:0!important;
+  box-shadow:none!important;
+  color-scheme:light!important;
+}
+#calculator-page #calculadora .money-field span,
+#calculator-page #calculadora .suffix-field span{
+  background:transparent!important;
+  border-color:transparent!important;
+  color:#fff!important;
+}
+#calculator-page #calculadora .calc-input:focus-within{
+  border-color:rgba(255,255,255,.78)!important;
+  box-shadow:0 0 0 3px rgba(255,255,255,.18)!important;
+}
+#calculator-page #calculadora .calc-input .select option{
+  background:#fff!important;
+  color:#344054!important;
+}
+#calculator-page #calculadora .calc-input .input::placeholder{
+  color:rgba(255,255,255,.76)!important;
+}
+#calculator-page #calculadora .select-field:after{
+  color:#fff!important;
+}
+#calculator-page #calculadora .result-row b,
+#calculator-page #calculadora .result-total b{
+  color:#fff!important;
+}
+#calculator-page #calculadora .calc-note{
+  background:rgba(255,255,255,.14)!important;
+  border:1px solid rgba(255,255,255,.24)!important;
+  color:#fff!important;
+}
+#calculator-page #calculadora .calc-note p{
+  color:#fff!important;
+}
+#calculator-page #calculadora .calc-submit{
+  width:36%!important;
+  font-size:15px!important;
+}
 
 /* Formulario con la misma escala y composición de Portal Liquidación */
 #calculator-page .demo-form{
@@ -1157,7 +1248,7 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
 <main>
 <section class="hero"><div class="wrap hero-grid"><div><div class="hero-kicker">Calculadora</div><h1>Calculadora de horas extras en <em>Argentina</em></h1><p class="hero-sub">Calcul&aacute; el valor ordinario, las horas trabajadas al 50% y al 100%, y el total bruto correspondiente. Obten&eacute; una referencia clara antes de incorporar cada recargo a la liquidaci&oacute;n.</p><div class="hero-actions"><a class="demo" href="#calculadora">Agenda una demo</a></div></div><div class="hero-visual calculator-visual"><img src="assets/hero-suite.png" alt="Calculadora de horas extras e-Sueldos"><div class="image-copy"><span class="showcase-tag">Calculadora</span><div class="showcase-title">Resultado estimado</div></div><div class="showcase-card left"><span>Horas calculadas</span><b>0 hs</b><small>Recargos al 50% y 100%</small></div><div class="showcase-card right"><span>Total a pagar</span><b id="heroTotal">$0</b><small>Monto bruto sin retenciones</small></div></div></div></section>
 <section class="logos"><div class="wrap"><h2>Con la confianza de m&aacute;s de <strong>500 empresas</strong></h2><div class="logo-marquee"><div class="logo-track"><a class="logo-tile" href="https://www.cerveceriaandes.com/" target="_blank" rel="noopener">Andes</a><a class="logo-tile" href="https://www.pirelli.com/" target="_blank" rel="noopener">Pirelli</a><a class="logo-tile" href="https://www.lumen.com/" target="_blank" rel="noopener">Lumen</a><a class="logo-tile" href="https://www.ogilvy.com/" target="_blank" rel="noopener">Ogilvy</a><a class="logo-tile" href="https://www.pecom.com.ar/" target="_blank" rel="noopener">Pecom</a><a class="logo-tile" href="https://securion.com.ar/" target="_blank" rel="noopener">Securion</a><a class="logo-tile" href="https://www.gestamp.com/" target="_blank" rel="noopener">Gestamp</a><a class="logo-tile" href="https://www.franui.store/es/" target="_blank" rel="noopener">Franu&iacute;</a><a class="logo-tile" href="https://www.cerveceriaandes.com/" target="_blank" rel="noopener">Andes</a><a class="logo-tile" href="https://www.pirelli.com/" target="_blank" rel="noopener">Pirelli</a><a class="logo-tile" href="https://www.lumen.com/" target="_blank" rel="noopener">Lumen</a><a class="logo-tile" href="https://www.ogilvy.com/" target="_blank" rel="noopener">Ogilvy</a><a class="logo-tile" href="https://www.pecom.com.ar/" target="_blank" rel="noopener">Pecom</a><a class="logo-tile" href="https://securion.com.ar/" target="_blank" rel="noopener">Securion</a><a class="logo-tile" href="https://www.gestamp.com/" target="_blank" rel="noopener">Gestamp</a><a class="logo-tile" href="https://www.franui.store/es/" target="_blank" rel="noopener">Franu&iacute;</a></div><div class="logo-track reverse"><a class="logo-tile" href="https://www.hospitalitaliano.org.ar/" target="_blank" rel="noopener">Hospital Italiano</a><a class="logo-tile" href="https://corporate.arcelormittal.com/" target="_blank" rel="noopener">ArcelorMittal</a><a class="logo-tile" href="https://www.viva.com.ar/" target="_blank" rel="noopener">Viva</a><a class="logo-tile" href="https://www.grupowerthein.com/" target="_blank" rel="noopener">Werthein</a><a class="logo-tile" href="https://www.llaollao.com/" target="_blank" rel="noopener">Llao Llao</a><a class="logo-tile" href="https://www.vicentelopez.gov.ar/" target="_blank" rel="noopener">Vicente L&oacute;pez</a><a class="logo-tile" href="soluciones-esueldos.html#industria">Retail</a><a class="logo-tile" href="soluciones-esueldos.html#industria">Industria</a><a class="logo-tile" href="https://www.hospitalitaliano.org.ar/" target="_blank" rel="noopener">Hospital Italiano</a><a class="logo-tile" href="https://corporate.arcelormittal.com/" target="_blank" rel="noopener">ArcelorMittal</a><a class="logo-tile" href="https://www.viva.com.ar/" target="_blank" rel="noopener">Viva</a><a class="logo-tile" href="https://www.grupowerthein.com/" target="_blank" rel="noopener">Werthein</a><a class="logo-tile" href="https://www.llaollao.com/" target="_blank" rel="noopener">Llao Llao</a><a class="logo-tile" href="https://www.vicentelopez.gov.ar/" target="_blank" rel="noopener">Vicente L&oacute;pez</a><a class="logo-tile" href="soluciones-esueldos.html#industria">Retail</a><a class="logo-tile" href="soluciones-esueldos.html#industria">Industria</a></div></div></div></section>
-<section class="section feature" id="calculadora"><div class="wrap"><div class="feature-intro"><h2>Estim&aacute; el valor de tus <strong>horas extra</strong></h2><p>Ingres&aacute; sueldo, jornada semanal y cantidad de horas para obtener una referencia clara del total bruto estimado.</p></div><div class="calc-grid"><div class="card calc-card"><div class="calc-card-head"><span class="calc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"></circle><path d="M5 21v-2a7 7 0 0 1 14 0v2"></path></svg></span><h3>Datos del trabajador</h3></div><form class="form calc-form" id="calcForm"><label><span>Sueldo bruto mensual</span><div class="calc-input money-field"><span>$</span><input class="input" id="salary" type="number" min="0" placeholder="850.000"></div></label><label><span>Jornada semanal</span><div class="calc-input select-field"><select class="select" id="weekly"><option value="45">45 horas</option><option value="44">44 horas</option><option value="40">40 horas</option><option value="48">48 horas</option></select></div></label><label><span>Horas extra al 50%</span><div class="calc-input suffix-field"><input class="input" id="h50" type="number" min="0" value="0"><span>hs</span></div></label><label><span>Horas extra al 100%</span><div class="calc-input suffix-field"><input class="input" id="h100" type="number" min="0" value="0"><span>hs</span></div></label><button class="demo calc-submit" type="submit">Agenda una demo</button><div class="calc-note"><span>i</span><p>Ingres&aacute; tu sueldo, jornada semanal y cantidad de horas extra para obtener una referencia clara del total bruto estimado.</p></div></form></div><div class="card calc-card calc-result"><div class="calc-card-head"><span class="calc-icon"><svg viewBox="0 0 24 24"><path d="M6 20V10"></path><path d="M12 20V4"></path><path d="M18 20V7"></path></svg></span><h3>Resultado estimado</h3></div><div class="result-list"><div class="result-row"><span class="result-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span><span>Valor hora ordinaria</span><b id="hourValue">$0</b></div><div class="result-row"><span class="result-icon"><svg viewBox="0 0 24 24"><path d="M19 5 5 19"></path><circle cx="7" cy="7" r="2"></circle><circle cx="17" cy="17" r="2"></circle></svg></span><span>Horas extra al 50%</span><b id="total50">$0</b></div><div class="result-row"><span class="result-icon"><svg viewBox="0 0 24 24"><path d="m13 2-8 12h6l-1 8 9-13h-6z"></path></svg></span><span>Horas extra al 100%</span><b id="total100">$0</b></div></div><div class="result-total"><span class="result-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"></rect><path d="M3 10h18M16 15h2"></path></svg></span><strong>Total bruto por extras</strong><b id="grandTotal">$0</b></div></div></div></div></section>
+<section class="section feature" id="calculadora"><div class="wrap"><div class="feature-intro"><h2>Estim&aacute; el valor de tus <strong>horas extra</strong></h2><p>Ingres&aacute; sueldo, jornada semanal y cantidad de horas para obtener una referencia clara del total bruto estimado.</p></div><div class="calc-grid"><div class="card calc-card"><div class="calc-card-head"><span class="calc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"></circle><path d="M5 21v-2a7 7 0 0 1 14 0v2"></path></svg></span><h3>Datos del trabajador</h3></div><form class="form calc-form" id="calcForm"><label><span>Sueldo bruto mensual</span><div class="calc-input money-field"><span>$</span><input class="input" id="salary" type="number" min="0" placeholder="850.000"></div></label><label><span>Jornada semanal</span><div class="calc-input select-field"><select class="select" id="weekly"><option value="45">45 horas</option><option value="44">44 horas</option><option value="40">40 horas</option><option value="48">48 horas</option></select></div></label><label><span>Horas extra al 50%</span><div class="calc-input suffix-field"><input class="input" id="h50" type="number" min="0" value="0"><span>hs</span></div></label><label><span>Horas extra al 100%</span><div class="calc-input suffix-field"><input class="input" id="h100" type="number" min="0" value="0"><span>hs</span></div></label><button class="demo calc-submit" type="submit">Calcular valor</button><div class="calc-note"><span>i</span><p>Ingres&aacute; tu sueldo, jornada semanal y cantidad de horas extra para obtener una referencia clara del total bruto estimado.</p></div></form></div><div class="card calc-card calc-result"><div class="calc-card-head"><span class="calc-icon"><svg viewBox="0 0 24 24"><path d="M6 20V10"></path><path d="M12 20V4"></path><path d="M18 20V7"></path></svg></span><h3>Resultado estimado</h3></div><div class="result-list"><div class="result-row"><span class="result-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span><span>Valor hora ordinaria</span><b id="hourValue">$0</b></div><div class="result-row"><span class="result-icon"><svg viewBox="0 0 24 24"><path d="M19 5 5 19"></path><circle cx="7" cy="7" r="2"></circle><circle cx="17" cy="17" r="2"></circle></svg></span><span>Horas extra al 50%</span><b id="total50">$0</b></div><div class="result-row"><span class="result-icon"><svg viewBox="0 0 24 24"><path d="m13 2-8 12h6l-1 8 9-13h-6z"></path></svg></span><span>Horas extra al 100%</span><b id="total100">$0</b></div></div><div class="result-total"><span class="result-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"></rect><path d="M3 10h18M16 15h2"></path></svg></span><strong>Total bruto por extras</strong><b id="grandTotal">$0</b></div></div></div></div></section>
 <section class="section calc-story"><div class="wrap calc-story-grid he-story-grid"><div class="calc-story-copy"><h2>Horas extra simples para cada equipo</h2><p>Registr&aacute; y revis&aacute; horas al 50% y al 100% con datos conectados <br> a turnos, fichadas y liquidaci&oacute;n.</p><div class="calc-story-list"><div><span>&rarr;</span>Valid&aacute; cantidad, fecha y tipo de recargo.</div><div><span>&rarr;</span>Conect&aacute; cada hora con turnos y ausencias.</div><div><span>&rarr;</span>Dej&aacute; las novedades listas para liquidaci&oacute;n.</div></div><a class="demo" href="agendar-demo-esueldos.html">Agenda una demo</a></div><div class="calc-story-visual"><div class="he-mock"><div class="he-mock-head"><b>Recargos calculados</b><span>Junio</span></div><div class="he-summary"><div><strong>8.5 h</strong><small>al 50%</small></div><div><strong>4 h</strong><small>al 100%</small></div><div><strong>$124k</strong><small>estimado</small></div></div><div class="he-lines"><div class="he-line"><div>Horas aprobadas<div class="he-bar"><i style="width:82%"></i></div></div><span>82%</span></div><div class="he-line"><div>Turnos conectados<div class="he-bar"><i style="width:68%"></i></div></div><span>listo</span></div></div></div></div></div></section>
 <section class="section calc-story alt"><div class="wrap calc-story-grid reverse he-story-grid"><div class="calc-story-visual payroll-visual-card"><div class="he-mock"><div class="he-mock-head"><b>Novedades para liquidar</b><span>Validaci&oacute;n</span></div><div class="he-approval"><div class="he-approval-row"><div>Martina Paz<small>2 h al 50%</small></div><span>Control</span><span>Junio</span><span class="he-status">ok</span></div><div class="he-approval-row"><div>Diego Ramos<small>1.5 h al 100%</small></div><span>Turno</span><span>Junio</span><span class="he-status">revisar</span></div><div class="he-approval-row"><div>Laura Mena<small>3 h al 50%</small></div><span>Fichada</span><span>Junio</span><span class="he-status">ok</span></div></div></div></div><div class="calc-story-copy"><h2>Valid&aacute; cada novedad sin depender de planillas</h2><p>Pas&aacute; de una estimaci&oacute;n aislada a un circuito claro para revisar, aprobar y liquidar horas extra.</p><div class="calc-story-list"><div><span>&rarr;</span>Guard&aacute; el detalle de cada recargo y su origen.</div><div><span>&rarr;</span>Defin&iacute; responsables antes de impactar en sueldos.</div><div><span>&rarr;</span>Consult&aacute; registros exportables cuando los necesites.</div></div><a class="demo" href="agendar-demo-esueldos.html">Agenda una demo</a></div></div></section>
 <section class="section demo-form"><div class="wrap"><h2>&iquest;Interesado en <strong>gestionar horas extra</strong>?</h2><p class="demo-sub">Recibe orientaci&oacute;n personalizada de uno de nuestros expertos y descubre e-Sueldos en acci&oacute;n.</p><form class="demo-fields"><div class="demo-field"><label>Nombre<span>*</span></label><input type="text"></div><div class="demo-field"><label>Apellido<span>*</span></label><input type="text"></div><div class="demo-field full"><label>Email empresarial<span>*</span></label><input type="email"></div><div class="demo-field"><label>Nombre de la empresa<span>*</span></label><input type="text"></div><div class="demo-field"><label>Cantidad de empleados<span>*</span></label><select><option></option><option>1 a 50</option><option>51 a 200</option><option>201 a 500</option><option>+500</option></select></div><div class="demo-field"><label>Pa&iacute;s<span>*</span></label><select><option>Argentina</option></select></div><div class="demo-field"><label>N&uacute;mero de tel&eacute;fono</label><input type="tel" value="+54"></div><button class="demo" type="submit">Agenda una demo</button></form></div></section>
