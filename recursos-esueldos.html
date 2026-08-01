@@ -720,10 +720,34 @@ html,body,button,input,select,textarea,a{font-family:var(--font-primary)!importa
 .support-contact h3,.support-contact p,.support-contact a,.support-chat-form label,.support-chat-form p{color:#fff!important}
 .support-contact{padding:0 0 76px!important;background:#fff!important;color:#17233F!important}
 .support-contact:before,.support-contact:after,.support-contact .wrap:before,.support-contact .wrap:after{display:none!important}
-.support-contact h2{color:#4A67EA!important}
+.support-contact h2{color:#020617!important}
 .support-contact h3{color:#14215D!important}
 .support-contact p{color:#475467!important}
 .support-contact a{color:inherit!important}
+.support-hero{padding:175px 0 68px!important}
+.support-card,.contact-card{
+  position:relative!important;
+  overflow:hidden!important;
+  background:radial-gradient(ellipse at 22% 20%,rgba(244,251,255,.12) 0 13%,transparent 30%),radial-gradient(ellipse at 86% 82%,rgba(244,251,255,.18) 0 15%,transparent 34%),linear-gradient(180deg,#0057FC 0%,#1768F7 58%,#5DAEEF 100%)!important;
+  border:0!important;
+  color:#fff!important;
+  box-shadow:0 18px 44px rgba(0,87,252,.12)!important;
+}
+.support-card:before,.contact-card:before{
+  content:""!important;
+  position:absolute!important;
+  right:-88px!important;
+  bottom:-52px!important;
+  width:190px!important;
+  height:100px!important;
+  border-radius:54% 46% 50% 50%!important;
+  background:rgba(244,251,255,.14)!important;
+  box-shadow:-48px 22px 0 12px rgba(244,251,255,.07),-92px 38px 0 -8px rgba(244,251,255,.05)!important;
+  pointer-events:none!important;
+}
+.support-card > *,.contact-card > *{position:relative!important;z-index:1!important}
+.support-card svg,.contact-card svg{stroke:#fff!important}
+.support-card h3,.support-card p,.contact-card h3,.contact-card p{color:#fff!important}
 </style>
 </head>
 <body>

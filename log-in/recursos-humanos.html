@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Iniciar sesión | e-Sueldos</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:"Nunito Sans",Arial,sans-serif;
+  color:#020617;
+  position:relative;
+  overflow-x:hidden;
+  background:
+    radial-gradient(ellipse at 10% 14%,rgba(244,251,255,.15) 0 16%,transparent 34%),
+    radial-gradient(ellipse at 7% 52%,rgba(244,251,255,.16) 0 9%,transparent 18%),
+    radial-gradient(ellipse at 18% 78%,rgba(244,251,255,.13) 0 14%,transparent 29%),
+    radial-gradient(ellipse at 14% 92%,rgba(244,251,255,.17) 0 10%,transparent 21%),
+    radial-gradient(ellipse at 30% 42%,rgba(244,251,255,.1) 0 11%,transparent 25%),
+    radial-gradient(ellipse at 42% 24%,rgba(244,251,255,.13) 0 8%,transparent 18%),
+    radial-gradient(ellipse at 58% 18%,rgba(244,251,255,.12) 0 13%,transparent 27%),
+    radial-gradient(ellipse at 70% 66%,rgba(244,251,255,.1) 0 12%,transparent 28%),
+    radial-gradient(ellipse at 78% 38%,rgba(244,251,255,.14) 0 8%,transparent 18%),
+    radial-gradient(ellipse at 92% 12%,rgba(244,251,255,.17) 0 10%,transparent 21%),
+    radial-gradient(ellipse at 88% 84%,rgba(244,251,255,.2) 0 18%,transparent 40%),
+    linear-gradient(180deg,#0057FC 0%,#1768F7 56%,#5DAEEF 100%);
+}
+body:before,
+body:after{
+  content:"";
+  position:fixed;
+  pointer-events:none;
+  z-index:0;
+  opacity:.55;
+}
+body:before{
+  left:-130px;
+  top:104px;
+  width:620px;
+  height:230px;
+  background:
+    radial-gradient(ellipse at 14% 62%,rgba(244,251,255,.16) 0 30%,transparent 31%),
+    radial-gradient(ellipse at 40% 44%,rgba(244,251,255,.15) 0 31%,transparent 32%),
+    radial-gradient(ellipse at 68% 57%,rgba(244,251,255,.13) 0 29%,transparent 30%),
+    radial-gradient(ellipse at 88% 68%,rgba(244,251,255,.1) 0 22%,transparent 23%);
+}
+body:after{
+  right:-155px;
+  bottom:38px;
+  width:680px;
+  height:270px;
+  background:
+    radial-gradient(ellipse at 18% 66%,rgba(244,251,255,.13) 0 28%,transparent 29%),
+    radial-gradient(ellipse at 45% 46%,rgba(244,251,255,.18) 0 32%,transparent 33%),
+    radial-gradient(ellipse at 72% 58%,rgba(244,251,255,.14) 0 30%,transparent 31%),
+    radial-gradient(ellipse at 92% 72%,rgba(244,251,255,.1) 0 22%,transparent 23%);
+}
+.login-page{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:minmax(420px,1.08fr) minmax(360px,.92fr);
+  gap:64px;
+  align-items:center;
+  padding:70px 72px;
+  position:relative;
+  z-index:1;
+}
+.login-page:before,
+.login-page:after{
+  content:"";
+  position:fixed;
+  pointer-events:none;
+  z-index:0;
+}
+.login-page:before{
+  right:-90px;
+  top:72px;
+  width:360px;
+  height:130px;
+  opacity:.42;
+  background:
+    radial-gradient(ellipse at 18% 62%,rgba(244,251,255,.22) 0 32%,transparent 33%),
+    radial-gradient(ellipse at 48% 45%,rgba(244,251,255,.2) 0 34%,transparent 35%),
+    radial-gradient(ellipse at 78% 62%,rgba(244,251,255,.18) 0 30%,transparent 31%);
+}
+.login-page:after{
+  left:-76px;
+  bottom:36px;
+  width:420px;
+  height:150px;
+  opacity:.38;
+  background:
+    radial-gradient(ellipse at 16% 64%,rgba(244,251,255,.2) 0 30%,transparent 31%),
+    radial-gradient(ellipse at 46% 46%,rgba(244,251,255,.18) 0 32%,transparent 33%),
+    radial-gradient(ellipse at 76% 62%,rgba(244,251,255,.16) 0 30%,transparent 31%);
+}
+.login-visual{display:flex;align-items:center;justify-content:center}
+.visual-phone{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:700px;
+  height:auto;
+  border-radius:22px;
+  filter:drop-shadow(0 28px 58px rgba(0,28,92,.22));
+}
+.login-card{
+  width:min(100%,462px);
+  justify-self:start;
+  position:relative;
+  overflow:hidden;
+  padding:48px;
+  border-radius:22px;
+  background:linear-gradient(180deg,rgba(0,87,252,.5),rgba(42,132,247,.32));
+  border:1px solid rgba(255,255,255,.58);
+  box-shadow:
+    0 34px 90px rgba(0,28,92,.34),
+    inset 0 1px 0 rgba(255,255,255,.45),
+    0 0 0 1px rgba(0,87,252,.18),
+    0 0 18px rgba(255,255,255,.2);
+  backdrop-filter:blur(10px);
+}
+.brand{
+  display:block;
+  width:184px;
+  margin:0 0 34px;
+}
+h1{
+  margin:0 0 36px;
+  font-size:32px;
+  line-height:1.12;
+  font-weight:800;
+  letter-spacing:-.2px;
+  color:#fff;
+}
+.field{margin-bottom:26px}
+.field label{
+  display:block;
+  margin-bottom:8px;
+  color:#fff;
+  font-size:16px;
+  font-weight:900;
+}
+.field input{
+  width:100%;
+  height:56px;
+  border:1px solid #0057FC;
+  border-radius:8px;
+  padding:0 14px;
+  color:#14215D;
+  font:inherit;
+  font-size:17px;
+  outline:0;
+  background:#fff;
+}
+.field input:focus{
+  border-color:#0057FC;
+  box-shadow:0 0 0 3px rgba(0,87,252,.12);
+}
+.submit{
+  width:100%;
+  height:50px;
+  border:1px solid #FF333E;
+  border-radius:8px;
+  background:#FF333E;
+  color:#fff;
+  font:inherit;
+  font-size:17px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 14px 28px rgba(255,51,62,.16);
+}
+.divider{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  gap:12px;
+  align-items:center;
+  margin:34px 0 22px;
+  color:#fff;
+  font-size:18px;
+}
+.divider:before,
+.divider:after{
+  content:"";
+  height:1px;
+  background:#D9E2F4;
+}
+.providers{display:flex;justify-content:center;gap:48px}
+.provider{
+  display:grid;
+  gap:9px;
+  justify-items:center;
+  color:#fff;
+  font-size:14px;
+}
+.provider-icon{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#F4F7FF;
+  border:1px solid #E5ECFF;
+  color:#0057FC;
+  font-size:22px;
+  font-weight:900;
+}
+.terms{
+  margin-top:38px;
+  color:rgba(255,255,255,.86);
+  font-size:15px;
+  line-height:1.45;
+}
+.terms a{color:#fff;font-weight:800;text-decoration:underline}
+@media(max-width:900px){
+  .login-page{grid-template-columns:1fr;gap:34px;padding:28px}
+  .login-visual{min-height:340px}
+  .login-card{justify-self:stretch}
+}
+</style>
+</head>
+<body>
+<main class="login-page">
+  <section class="login-visual" aria-label="e-Sueldos">
+    <img class="visual-phone" src="../assets/hero-suite.png" alt="Portal e-Sueldos">
+  </section>
+  <section class="login-card">
+    <img class="brand" src="../fondoBlanco.png" alt="e-Sueldos">
+    <h1>Inicia sesión en tu comunidad</h1>
+    <form>
+      <div class="field">
+        <label for="user">Usuario</label>
+        <input id="user" name="user" type="text" autocomplete="username">
+      </div>
+      <button class="submit" type="submit">Continuar</button>
+    </form>
+    <div class="divider">O inicia sesión con</div>
+    <div class="providers">
+      <div class="provider"><span class="provider-icon">M</span><span>Microsoft</span></div>
+      <div class="provider"><span class="provider-icon">G</span><span>Google</span></div>
+    </div>
+    <p class="terms">Al ingresar, estás aceptando nuestros <a href="#">Términos de uso</a> y <a href="#">Privacidad</a>.</p>
+  </section>
+</main>
+</body>
+</html>
