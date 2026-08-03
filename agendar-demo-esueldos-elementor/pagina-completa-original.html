@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda una demo | e-Sueldos</title>
+<meta name="description" content="Agenda una demostración personalizada de e-Sueldos.">
+<style>
+:root{
+  --blue:#4A67EA;
+  --blue-dark:#153281;
+  --ink:#17233F;
+  --text:#475467;
+  --line:#D9DDE5;
+  --panel:#F7F7F7;
+  --font:"SF UI","Inter","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:var(--font);color:var(--ink)}
+body{background:#fff}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit}
+.contact-page{min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
+
+/* Columna institucional */
+.contact-story{background:#F6F6F6;display:flex;justify-content:flex-end;padding:94px 78px 24px 32px}
+.story-inner{width:520px;min-height:calc(100vh - 96px);display:flex;flex-direction:column}
+.brand{display:inline-flex;width:145px;height:43px;margin-bottom:20px}
+.brand img{width:100%;height:100%;object-fit:contain;object-position:left center}
+.story-title{max-width:500px;margin:0;color:#5D78E6;font-size:36px;font-weight:400;line-height:1.02;letter-spacing:-1.45px}
+.story-title strong{font-weight:700}
+.story-copy{max-width:500px;margin:14px 0 24px;color:#475467;font-size:15px;line-height:1.38;letter-spacing:-.28px}
+.photo-grid{width:520px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:126px 126px;gap:10px}
+.photo-grid img{width:100%;height:100%;object-fit:cover;border-radius:15px}
+.photo-grid img:nth-child(1){object-position:center}
+.photo-grid img:nth-child(2){object-position:center}
+.photo-grid img:nth-child(3){object-position:center}
+.photo-grid img:nth-child(4){object-position:62% center}
+.rating{display:flex;align-items:center;gap:10px;margin-top:20px;color:#475467;font-size:13px;font-weight:600}
+.stars{color:#F2A542;font-size:20px;letter-spacing:-2px}
+.stores{display:flex;align-items:center;gap:14px;margin-left:12px;color:#8A8F98;font-size:13px}
+.stores span{display:flex;align-items:center;gap:5px;white-space:nowrap}
+.trust-label{margin:22px 0 15px;color:#475467;font-size:13px}
+.companies{display:grid;grid-template-columns:repeat(5,1fr);align-items:center;gap:18px;width:100%;margin-top:auto;padding:8px 0 32px}
+.companies span{color:#666;font-size:16px;font-weight:700;text-align:center;letter-spacing:-.7px}
+.story-footer{display:flex;align-items:center;gap:12px;color:#153281;font-size:12px;padding-top:12px}
+.story-footer a,.story-footer span{display:flex;align-items:center;gap:6px}
+.story-footer .divider{width:1px;height:18px;background:#153281}
+
+/* Columna formulario */
+.contact-form-side{background:#fff;display:flex;justify-content:flex-start;padding:40px 32px 34px 80px}
+.form-shell{width:520px}
+.choice-label{text-align:center;margin:0 0 16px;color:#475467;font-size:14px}
+.choice-switch{width:max-content;margin:0 auto 26px;padding:5px;background:#F4F4F5;border-radius:999px;display:flex;gap:4px}
+.choice-switch button{height:36px;padding:0 20px;border-radius:999px;border:1px solid var(--blue);background:#fff;color:#475467;font-size:13px;cursor:pointer}
+.choice-switch button.active{background:var(--blue);color:#fff}
+.form-heading{text-align:center;margin-bottom:24px}
+.form-heading h1{margin:0;color:#020617;font-size:20px;font-weight:600;line-height:1.16;letter-spacing:-.65px}
+.form-heading p{max-width:390px;margin:3px auto 0;color:#475467;font-size:13px;line-height:1.3}
+.form-card{background:var(--panel);border-radius:22px;padding:38px 40px 32px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:20px 30px}
+.field.full{grid-column:1/-1}
+.field label{display:block;margin-bottom:8px;color:#475467;font-size:14px;line-height:1.2}
+.field label em{font-style:normal;color:#D92D20}
+.field input,.field select{width:100%;height:41px;border:1px solid var(--line);border-radius:9px;background:#fff;padding:0 12px;color:#344054;font-size:14px;outline:none}
+.field input:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(74,103,234,.10)}
+.phone-control{height:41px;border:1px solid var(--line);border-radius:9px;background:#fff;display:grid;grid-template-columns:54px 1fr;overflow:hidden}
+.phone-control span{display:flex;align-items:center;justify-content:center;border-right:1px solid var(--line);font-size:12px;color:#17233F}
+.phone-control input{height:39px;border:0;border-radius:0}
+.legal{margin:24px 0 0;color:#344054;font-size:10px;line-height:1.35}
+.legal a{color:#153281;text-decoration:underline}
+.submit{min-width:146px;height:45px;margin-top:26px;border:0;border-radius:11px;background:var(--blue);color:#fff;font-size:14px;font-weight:600;cursor:pointer}
+.submit:hover{background:#3856DC}
+.help-bubble{position:fixed;right:20px;bottom:20px;z-index:10;width:62px;height:62px;border-radius:50%;background:#5D78E6;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(21,50,129,.22);font-size:25px;font-weight:700}
+
+@media(max-width:1100px){
+  .contact-story{padding-right:42px}
+  .contact-form-side{padding-left:42px}
+  .story-inner,.form-shell,.photo-grid{width:100%}
+}
+@media(max-width:850px){
+  .contact-page{grid-template-columns:1fr}
+  .contact-story,.contact-form-side{justify-content:center;padding:52px 24px}
+  .story-inner,.form-shell{width:min(100%,560px);min-height:auto}
+  .photo-grid{width:100%}
+  .companies{margin-top:24px}
+}
+@media(max-width:540px){
+  .contact-story,.contact-form-side{padding:38px 18px}
+  .story-title{font-size:31px}
+  .photo-grid{grid-template-rows:105px 105px;gap:7px}
+  .rating{align-items:flex-start;flex-wrap:wrap}
+  .stores{margin-left:0}
+  .companies{grid-template-columns:repeat(3,1fr)}
+  .form-card{padding:28px 20px}
+  .fields{grid-template-columns:1fr;gap:18px}
+  .field.full{grid-column:auto}
+  .choice-switch button{padding:0 13px}
+}
+.demo,.hero .demo,.nav-actions .demo,.ai-cta .demo,.demo-fields .demo,.calc-story-copy .demo,.access-actions .demo,.py-form-grid .demo{height:46px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;background:#FF333E!important;color:#fff!important;border:1px solid #FF333E!important;border-radius:16px!important;padding:0 28px!important;font-size:14px!important;font-weight:600!important;line-height:16.8px!important;letter-spacing:-0.5px!important;text-transform:none!important;text-decoration:none!important;white-space:nowrap!important;width:auto!important;min-width:max-content!important;box-shadow:none!important;transition:background .18s,color .18s,border-color .18s!important}
+.demo:hover,.hero .demo:hover,.nav-actions .demo:hover,.ai-cta .demo:hover,.demo-fields .demo:hover,.calc-story-copy .demo:hover,.access-actions .demo:hover,.py-form-grid .demo:hover{background:#fff!important;color:#FF333E!important;border-color:#FF333E!important}</style>
+<style>
+.contact-form-side{position:relative!important;overflow:hidden!important;background:radial-gradient(ellipse at 20% 22%,rgba(244,251,255,.12) 0 12%,transparent 28%),radial-gradient(ellipse at 76% 76%,rgba(244,251,255,.16) 0 14%,transparent 32%),radial-gradient(ellipse at 54% 48%,rgba(93,174,239,.26) 0 18%,transparent 46%),linear-gradient(180deg,#0057FC 0%,#1768F7 58%,#5DAEEF 100%)!important;color:#fff!important}
+.contact-form-side:before{content:"";position:absolute;right:-174px!important;bottom:-72px!important;width:340px!important;height:180px!important;border-radius:54% 46% 50% 50%!important;background:rgba(244,251,255,.125)!important;box-shadow:-76px 44px 0 20px rgba(244,251,255,.07),-160px 70px 0 -8px rgba(244,251,255,.05),-52px -26px 0 -10px rgba(244,251,255,.07),-212px 38px 0 8px rgba(244,251,255,.04)!important;pointer-events:none}
+.contact-form-side:after{content:"";position:absolute;left:-92px!important;top:-48px!important;width:250px!important;height:136px!important;border-radius:54% 46% 52% 48%!important;background:rgba(244,251,255,.105)!important;box-shadow:66px 36px 0 16px rgba(244,251,255,.06),134px 54px 0 -8px rgba(244,251,255,.044),36px -22px 0 -8px rgba(244,251,255,.06)!important;pointer-events:none}
+.contact-form-side .form-shell{position:relative!important;z-index:1!important}
+.contact-form-side .form-shell:before{content:"";position:absolute;right:18%;bottom:46px;width:230px;height:118px;border-radius:54% 46% 52% 48%;background:rgba(244,251,255,.06);box-shadow:62px 22px 0 9px rgba(244,251,255,.038),-40px 18px 0 7px rgba(244,251,255,.032),22px -18px 0 -9px rgba(244,251,255,.048);pointer-events:none;z-index:-1}
+.contact-form-side .form-shell:after{content:"";position:absolute;left:12%;top:150px;width:205px;height:104px;border-radius:52% 48% 55% 45%;background:rgba(244,251,255,.052);box-shadow:56px 20px 0 8px rgba(244,251,255,.034),-36px 16px 0 6px rgba(244,251,255,.03),20px -16px 0 -9px rgba(244,251,255,.044);pointer-events:none;z-index:-1}
+.contact-form-side h1,.contact-form-side p,.contact-form-side label{color:#fff!important}
+.form-card{background:transparent!important}
+.field input,.field select,.phone-control{background:#fff!important;border-color:rgba(255,255,255,.72)!important;color:#344054!important}
+.choice-label,.legal,.legal a,.phone-control span,.field label em{color:#fff!important}
+.story-title{color:#0057FC!important}
+.story-title strong{font-weight:800!important}
+.choice-label{margin-top:22px!important;margin-bottom:12px!important;font-weight:600!important}
+.choice-switch{background:#fff!important;border:3px solid #fff!important;border-radius:18px!important;box-shadow:0 14px 34px rgba(0,87,252,.18)!important;gap:4px!important}
+.choice-switch button{border:1px solid #0057FC!important;border-radius:14px!important;background:#fff!important;color:#0057FC!important;font-weight:500!important}
+.choice-switch button.active{background:#0057FC!important;color:#fff!important}
+.submit{background:#FF333E!important;border:1px solid #FF333E!important;color:#fff!important;border-radius:16px!important}
+.submit:hover{background:#fff!important;color:#FF333E!important;border-color:#FF333E!important}
+</style>
+</head>
+<body>
+<main class="contact-page">
+  <section class="contact-story">
+    <div class="story-inner">
+      <a class="brand" href="index-esueldos.html" aria-label="Ir al inicio de e-Sueldos">
+        <img src="fondo.png" alt="e-Sueldos">
+      </a>
+
+      <h2 class="story-title">Aumentá la productividad y la colaboración <strong>en toda tu organización.</strong></h2>
+      <p class="story-copy">Descubrí cómo e-Sueldos puede simplificar tus procesos de liquidación, RR.HH. y control horario. Agendá una sesión con un especialista que adaptará la demostración a las necesidades de tu empresa.</p>
+
+      <div class="photo-grid" aria-label="Soluciones e-Sueldos para distintos equipos">
+        <img src="assets/hero-control-horario.png" alt="Control horario para equipos operativos">
+        <img src="assets/hero-liquidacion.png" alt="Liquidación de sueldos">
+        <img src="assets/hero-rrhh.png" alt="Gestión de recursos humanos">
+        <img src="assets/hero-leia.png" alt="Asistencia inteligente Leia">
+      </div>
+
+      <div class="rating">
+        <span class="stars">★★★★★</span>
+        <span>4.9/5 en más de 500 empresas</span>
+        <div class="stores"><span>● App móvil</span><span>▶ Portal web</span></div>
+      </div>
+
+      <p class="trust-label">Empresas que confían en nosotros:</p>
+      <div class="companies">
+        <span>Ogilvy</span><span>Pecom</span><span>Gestamp</span><span>Pirelli</span><span>Lumen</span>
+      </div>
+
+      <div class="story-footer">
+        <span>◎ ES⌄</span><i class="divider"></i>
+        <a href="recursos-esueldos.html">ⓘ Soporte</a><i class="divider"></i>
+        <a href="log-in/recursos-humanos.html">♙ Iniciar sesión</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-form-side">
+    <div class="form-shell">
+      <div class="form-heading">
+        <h1>¿Tenés preguntas sobre e-Sueldos?</h1>
+        <p>Completá el formulario y uno de nuestros especialistas se pondrá en contacto con vos a la brevedad.</p>
+      </div>
+
+      <p class="choice-label">Seleccioná una opción</p>
+      <div class="choice-switch" role="group" aria-label="Tipo de contacto">
+        <button class="active" type="button">Agenda una demo</button>
+        <button type="button">Convertite en partner</button>
+      </div>
+
+      <form class="form-card">
+        <div class="fields">
+          <div class="field">
+            <label for="nombre">Nombre<em>*</em></label>
+            <input id="nombre" name="nombre" type="text" required>
+          </div>
+          <div class="field">
+            <label for="apellido">Apellido<em>*</em></label>
+            <input id="apellido" name="apellido" type="text" required>
+          </div>
+          <div class="field full">
+            <label for="email">Email empresarial<em>*</em></label>
+            <input id="email" name="email" type="email" required>
+          </div>
+          <div class="field">
+            <label for="empresa">Nombre de la empresa<em>*</em></label>
+            <input id="empresa" name="empresa" type="text" required>
+          </div>
+          <div class="field">
+            <label for="empleados">Cantidad de empleados<em>*</em></label>
+            <select id="empleados" name="empleados" required>
+              <option value=""></option>
+              <option>1 a 50</option>
+              <option>51 a 200</option>
+              <option>201 a 500</option>
+              <option>Más de 500</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="pais">País<em>*</em></label>
+            <select id="pais" name="pais" required>
+              <option>Argentina</option>
+              <option>Uruguay</option>
+              <option>Chile</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="telefono">Número de teléfono</label>
+            <div class="phone-control"><span>AR⌄</span><input id="telefono" name="telefono" type="tel" value="+54"></div>
+          </div>
+          <div class="field full">
+            <label for="origen">¿Cómo nos conociste?<em>*</em></label>
+            <select id="origen" name="origen" required>
+              <option>LinkedIn</option>
+              <option>Google</option>
+              <option>Recomendación</option>
+              <option>Evento</option>
+              <option>Otro</option>
+            </select>
+          </div>
+        </div>
+
+        <p class="legal">Al enviar este formulario, aceptás los <a href="#">Términos y Condiciones</a> de e-Sueldos y reconocés que tus datos serán procesados para gestionar tu solicitud y evaluar una posible colaboración. Para más detalles, consultá nuestra <a href="#">Política de Privacidad</a>.</p>
+        <button class="submit" type="submit">Enviar</button>
+      </form>
+    </div>
+  </section>
+</main>
+<a class="help-bubble" href="recursos-esueldos.html" aria-label="Ayuda de Leia">L</a>
+
+<script>
+const switchButtons=document.querySelectorAll(".choice-switch button");
+switchButtons.forEach((button)=>{
+  button.addEventListener("click",()=>{
+    switchButtons.forEach((item)=>item.classList.remove("active"));
+    button.classList.add("active");
+  });
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

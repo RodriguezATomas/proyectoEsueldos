@@ -1,0 +1,37 @@
+PÁGINA: agendar-demo-esueldos.html
+
+ORDEN DE BLOQUES
+1. bloques/02-contact-story.html — CONTACT STORY
+2. bloques/03-contact-form-side.html — CONTACT FORM SIDE
+3. bloques/04-help-bubble.html — HELP BUBBLE
+
+CSS GLOBAL
+Cargar css/estilos.css una sola vez después del CSS de Elementor, mediante el tema hijo, Elementor Custom Code o un plugin de CSS personalizado.
+
+JAVASCRIPT GLOBAL
+Cargar js/scripts.js una sola vez al final del body o con defer, después de insertar todos los bloques.
+
+CONFIGURACIÓN DE ELEMENTOR
+- Usar Elementor Canvas o ancho completo para evitar header/footer duplicados.
+- Un contenedor por bloque, ancho 100%.
+- Margin, padding, gap y separación entre widgets en 0.
+- No aplicar fondos, tipografías, bordes, anchos máximos ni efectos desde Elementor.
+- Desactivar el título de página y los espaciados automáticos del tema.
+
+RECURSOS LOCALES COPIADOS
+- fondo.png
+- assets/hero-control-horario.png
+- assets/hero-liquidacion.png
+- assets/hero-rrhh.png
+- assets/hero-leia.png
+
+DEPENDENCIAS EXTERNAS
+- Sin dependencias externas detectadas en src/href.
+
+RIESGOS
+- WordPress puede requerir reemplazar rutas relativas por URLs de la Biblioteca de medios.
+- El tema o Elementor pueden agregar estilos globales; usar Canvas y espaciados en cero.
+- Cargar scripts.js después del HTML para conservar menús, sliders, formularios y acordeones.
+
+RESPALDO
+pagina-completa-original.html es una copia intacta del archivo fuente al momento de la separación.

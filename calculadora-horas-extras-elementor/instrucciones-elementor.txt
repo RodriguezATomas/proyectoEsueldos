@@ -1,0 +1,60 @@
+PÁGINA: calculadora-horas-extras.html
+
+ORDEN DE BLOQUES
+1. bloques/01-header.html — HEADER Y NAVEGACIÓN
+2. bloques/02-hero.html — HERO
+3. bloques/03-logos-y-empresas.html — LOGOS Y EMPRESAS
+4. bloques/04-calculadora.html — CALCULADORA
+5. bloques/05-calc-story.html — CALC STORY
+6. bloques/06-calc-story.html — CALC STORY
+7. bloques/07-formulario-demo.html — FORMULARIO DEMO
+8. bloques/99-footer.html — FOOTER
+
+CSS GLOBAL
+Cargar css/estilos.css una sola vez después del CSS de Elementor, mediante el tema hijo, Elementor Custom Code o un plugin de CSS personalizado.
+
+JAVASCRIPT GLOBAL
+Cargar js/scripts.js una sola vez al final del body o con defer, después de insertar todos los bloques.
+
+CONFIGURACIÓN DE ELEMENTOR
+- Usar Elementor Canvas o ancho completo para evitar header/footer duplicados.
+- Un contenedor por bloque, ancho 100%.
+- Margin, padding, gap y separación entre widgets en 0.
+- No aplicar fondos, tipografías, bordes, anchos máximos ni efectos desde Elementor.
+- Desactivar el título de página y los espaciados automáticos del tema.
+
+RECURSOS LOCALES COPIADOS
+- fondo.png
+- assets/hero-suite.png
+- fondoBlanco.png
+- assets/hero-liquidacion.png
+- assets/hero-rrhh.png
+- assets/hero-leia.png
+- assets/hero-control-horario.png
+- assets/hero-planes.png
+
+DEPENDENCIAS EXTERNAS
+- https://fonts.googleapis.com
+- https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap
+- https://www.cerveceriaandes.com/
+- https://www.pirelli.com/
+- https://www.lumen.com/
+- https://www.ogilvy.com/
+- https://www.pecom.com.ar/
+- https://securion.com.ar/
+- https://www.gestamp.com/
+- https://www.franui.store/es/
+- https://www.hospitalitaliano.org.ar/
+- https://corporate.arcelormittal.com/
+- https://www.viva.com.ar/
+- https://www.grupowerthein.com/
+- https://www.llaollao.com/
+- https://www.vicentelopez.gov.ar/
+
+RIESGOS
+- WordPress puede requerir reemplazar rutas relativas por URLs de la Biblioteca de medios.
+- El tema o Elementor pueden agregar estilos globales; usar Canvas y espaciados en cero.
+- Cargar scripts.js después del HTML para conservar menús, sliders, formularios y acordeones.
+
+RESPALDO
+pagina-completa-original.html es una copia intacta del archivo fuente al momento de la separación.

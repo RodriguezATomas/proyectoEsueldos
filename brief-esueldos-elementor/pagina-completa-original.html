@@ -1,0 +1,1168 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>e-Sueldos AI — Brief de plataforma</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Leia orquesta agentes especializados de payroll, RR.HH., compliance y operaciones sobre una misma base de datos. Conocé la arquitectura del ecosistema e-Sueldos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   1. DESIGN TOKENS
+   ============================================================ */
+:root{
+  --blue:#2355E8; --blue-2:#5C82F5; --blue-3:#8FADFC;
+  --navy:#071124; --navy-2:#0B1220; --navy-3:#121B2E;
+  --ink:#081A4D; --text:#1D2939; --muted:#667085;
+  --line:#E1E4E9; --soft:#F7F8FA; --soft-blue:#EEF3FF;
+  --teal:#0EA5A0; --orange:#D97706; --violet:#7B6CF0; --cyan:#22D3EE;
+  --shadow:0 24px 70px rgba(11,18,32,.14);
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Nunito Sans",sans-serif;background:#fff;color:var(--ink)}
+a{text-decoration:none;color:inherit}
+img,svg{display:block}
+.wrap{width:min(1180px,calc(100% - 48px));margin:auto}
+.section{padding:92px 0}
+.section-head{text-align:center;max-width:860px;margin:0 auto 46px}
+.eyebrow{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);font-weight:900;margin-bottom:12px}
+.section h2{font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.12;letter-spacing:-.025em;color:#14215D;margin:0}
+.section-head p{font-size:16px;color:#475467;line-height:1.6;margin:18px auto 0;max-width:760px}
+
+/* ============================================================
+   2. TOPBAR + UTILITY BAR
+   ============================================================ */
+.topbar{background:linear-gradient(90deg,#405EEA,#6C7AF8);color:#fff;font-size:14px;font-weight:800}
+.topbar .wrap{height:34px;display:flex;align-items:center;justify-content:center;gap:10px}
+.pill{border:1px solid rgba(255,255,255,.78);border-radius:999px;padding:2px 14px;font-size:12px;text-transform:uppercase}
+.utility{background:#fff;border-bottom:1px solid var(--line)}
+.utility .wrap{height:42px;display:flex;align-items:center;justify-content:flex-end;gap:22px;font-size:14px;color:var(--ink);font-weight:700}
+
+/* ============================================================
+   3. HEADER / NAV STICKY CON MEGA MENÚ
+   ============================================================ */
+.header{position:fixed;top:76px;left:0;right:0;z-index:80;background:transparent;border-bottom:0}
+.nav-shell{position:relative;width:min(1140px,calc(100% - 24px));margin:10px auto;border:1px solid var(--line);border-radius:999px;background:#fff;box-shadow:0 12px 34px rgba(11,18,32,.06)}
+.nav{height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;gap:28px}
+.logo{display:flex;align-items:center;padding:0}
+.logo img{width:170px;height:46px;object-fit:contain;object-position:left center}
+.nav-links{display:flex;align-items:center;gap:30px;flex:1}
+.nav-item{position:static}
+.nav-btn,.nav-link{border:0;background:transparent;font:inherit;font-size:17px;font-weight:700;color:#020617;letter-spacing:0;display:flex;align-items:center;gap:7px;cursor:pointer;padding:22px 0}
+.nav-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.4;transition:.2s}
+.nav-item:hover .nav-btn svg{transform:rotate(180deg)}
+.nav-actions{display:flex;align-items:center;gap:16px;flex-shrink:0}
+.login{font-size:15px;font-weight:700;color:var(--ink)}
+.demo{height:46px;display:inline-flex;align-items:center;justify-content:center;background:#FF333E;color:#fff;border-radius:15px;padding:0 28px;font-size:16px;font-weight:800}
+.mega{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(12px);width:min(1140px,calc(100vw - 30px));background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:10px;opacity:0;pointer-events:none;transition:.18s;display:grid;grid-template-columns:190px 1fr 300px;gap:10px}
+.nav-item:hover .mega,.nav-item:focus-within .mega{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.mega-side{background:#fff;border-radius:16px;padding:10px}
+.mega-side a{display:flex;justify-content:space-between;align-items:center;padding:12px 12px;border-radius:12px;color:#020617;font-weight:700;font-size:16px;letter-spacing:0;white-space:nowrap}
+.mega-side a:hover,.mega-side a.active{background:var(--soft-blue);color:#4A67EA}
+.mega-main{background:#F7F8FA;border-radius:16px;padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.mega-card{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start}
+.mega-icon{width:24px;height:24px;border-radius:8px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;color:#4A67EA;font-weight:900}
+.mega-card b{display:block;font-size:16px;color:#475467;margin-bottom:5px}
+.mega-card small{display:block;font-size:13px;line-height:1.4;color:#98A2B3}
+.mega-visual{border-radius:16px;background:linear-gradient(145deg,#EEF3FF,#F8FBFF);padding:22px;display:flex;align-items:center;justify-content:center;min-height:250px}
+.mini-screen{width:220px;background:#fff;border:1px solid #DCE6FF;border-radius:18px;box-shadow:0 18px 48px rgba(35,85,232,.16);padding:18px}
+.mini-bar{height:12px;border-radius:999px;background:#EEF3FF;margin:10px 0}
+.industry-badge{font-size:42px;line-height:1.05;color:#0057FC;font-weight:900;text-align:center}
+
+/* ============================================================
+   4. HERO
+   ============================================================ */
+.hero{position:relative;overflow:hidden;background:#fff;padding:96px 0 84px}
+.hero-grid{display:grid;grid-template-columns:1fr 500px;gap:54px;align-items:center}
+.hero-kicker{display:inline-flex;align-items:center;border:1px solid #4A67EA;border-radius:999px;color:#4A67EA;padding:8px 14px;font-size:15px;font-weight:900;margin-bottom:22px}
+.hero h1{font-size:clamp(2.25rem,4.6vw,4.4rem);line-height:1;letter-spacing:-.035em;margin:0;color:#14215D;font-weight:900;max-width:640px}
+.hero h1 em{font-style:normal;color:#4A67EA}
+.hero-sub{font-size:18px;line-height:1.5;color:#344054;margin:24px 0 0;max-width:720px}
+.hero-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.hero-tabs span{background:#fff;border:1px solid #DCE6FF;border-radius:999px;padding:8px 13px;color:#4A67EA;font-size:13px;font-weight:900}
+.hero-actions{display:flex;align-items:center;gap:18px;margin-top:34px;flex-wrap:wrap}
+.store-rating{display:flex;align-items:center;gap:14px;margin-top:28px;color:#475467;font-size:14px;font-weight:800}
+.stars{color:var(--blue);letter-spacing:2px}
+.hero-visual{position:relative;width:min(100%,500px);min-height:420px;display:flex;align-items:flex-start;justify-content:center;justify-self:center;padding-top:24px;box-sizing:border-box}
+.hero-visual img{width:100%;height:auto;border-radius:30px;box-shadow:0 30px 70px rgba(35,85,232,.22);filter:brightness(.58) saturate(.92)}
+.image-copy{position:absolute;left:44px;top:48px;z-index:2;color:#fff;max-width:260px}
+.image-copy .suite-tag{background:rgba(255,255,255,.24);border:1px solid rgba(255,255,255,.34);backdrop-filter:blur(10px)}
+.image-copy .suite-title{font-size:24px;line-height:1.05;text-shadow:0 12px 28px rgba(0,0,0,.32)}
+
+/* Visual propio del hero: Leia como asistente operativo */
+.suite-visual{position:relative;width:100%;display:grid;gap:16px}
+.suite-main{background:linear-gradient(155deg,#14215D,#2355E8);border-radius:26px;padding:30px;color:#fff;box-shadow:var(--shadow)}
+.suite-tag{display:inline-flex;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:7px 12px;font-size:11px;font-weight:900;text-transform:none;letter-spacing:0;margin-bottom:18px;backdrop-filter:blur(12px)}
+.suite-title{font-size:22px;font-weight:800;margin:18px 0 20px}
+.suite-bars{display:grid;gap:8px}
+.suite-bars span{display:block;height:8px;border-radius:999px;background:rgba(255,255,255,.22)}
+.suite-card{position:absolute;background:#fff;border:1px solid #DCE6FF;border-radius:18px;padding:15px 15px 15px 48px;box-shadow:0 18px 44px rgba(11,18,32,.14);text-align:left;backdrop-filter:blur(12px);min-width:188px;color:#14215D;font-size:13px;font-weight:900}
+.suite-card:before{content:"";position:absolute;left:16px;top:18px;width:18px;height:18px;border-radius:7px;background:linear-gradient(145deg,#2355E8,#8FADFC);box-shadow:0 8px 18px rgba(35,85,232,.24)}
+.suite-card span{display:block;font-size:13px;color:#102052;font-weight:900;text-transform:none;letter-spacing:0}
+.suite-card b{display:block;font-size:24px;color:var(--blue);line-height:1;margin-top:7px}
+.suite-card small{display:block;color:#667085;font-size:11px;margin-top:5px;font-weight:800;line-height:1.35}
+.suite-card.right{right:0;bottom:54px}
+.suite-card.left{left:0;bottom:54px;top:auto;text-align:left}
+
+/* ============================================================
+   5. LOGOS / MARQUEE
+   ============================================================ */
+.logos{padding:42px 0 76px;background:#fff}
+.logos h2{text-align:center;font-size:28px;line-height:1.2;margin:0;color:#14215D}
+.logos p{text-align:center;color:var(--muted);margin:12px 0 26px;font-size:15px}
+.logo-marquee{overflow:hidden;margin-top:28px;display:grid;gap:18px}
+.logo-track{display:flex;gap:48px;width:max-content;animation:marquee 34s linear infinite}
+.logo-track.reverse{animation-direction:reverse;animation-duration:40s}
+.logo-tile{min-width:160px;height:54px;display:flex;align-items:center;justify-content:center;color:#8A94A6;font-size:26px;font-weight:900;filter:grayscale(1);opacity:.72;transition:.22s ease;text-align:center}
+.logo-tile:hover{color:var(--blue);filter:grayscale(0);opacity:1;transform:translateY(-2px)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============================================================
+   6. PANEL DE PRODUCTO / IA
+   ============================================================ */
+.feature{background:#F7F8FF;padding-top:46px}
+.feature-intro{text-align:center;max-width:900px;margin:0 auto 34px}
+.feature-intro h2{font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.12;color:#14215D;margin:0}
+.feature-intro p{margin:14px auto 0;color:#475467;font-size:16px;line-height:1.55}
+.feature-grid{display:grid;grid-template-columns:minmax(0,520px) minmax(0,600px);gap:28px;align-items:center;justify-content:center}
+.feature-panel{width:min(100%,520px);background:#fff;border:1px solid #DCE6FF;border-radius:26px;padding:30px;box-shadow:var(--shadow)}
+.feature-panel h3{font-size:28px;margin:0 0 14px;color:#14215D}
+.feature-panel p{color:#475467;line-height:1.6;font-size:15px}
+.feature-list{display:grid;gap:14px;margin-top:22px}
+.feature-list div{display:flex;gap:12px;align-items:flex-start;border:1px solid #E7ECF8;border-radius:16px;padding:15px;background:#FAFCFF}
+.feature-list b{display:block;color:#14215D}.feature-list small{color:#667085;line-height:1.4}
+.feature-visual{width:min(100%,600px);min-height:400px;justify-self:center;border-radius:26px;background:#fff;border:1px solid #DCE6FF;box-shadow:var(--shadow);overflow:hidden;color:#14215D;display:flex;align-items:center;justify-content:center;padding:24px}
+
+/* Mockup de chat para el panel de Leia */
+.chat-mock{width:100%;display:grid;gap:12px}
+.chat-mock .bot,.chat-mock .user{max-width:82%;padding:13px 16px;border-radius:16px;font-size:14px;line-height:1.5}
+.chat-mock .bot{background:#F0F4FF;color:#14215D;border:1px solid #DCE6FF;justify-self:start;border-bottom-left-radius:4px}
+.chat-mock .user{background:#14215D;color:#EAF0FF;justify-self:end;border-bottom-right-radius:4px}
+.chat-mock .bot b{color:var(--blue)}
+
+.ai-section{background:#fff;padding:52px 0;font-family:"Inter","Nunito Sans",sans-serif}
+.ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.ai-copy{text-align:left}.ai-copy.center{text-align:center;max-width:640px;margin:0 auto}
+.ai-copy h2{font-size:clamp(1.85rem,2.85vw,2.85rem);line-height:1.05;color:#020617;margin:0 0 22px;font-weight:700;letter-spacing:0;max-width:460px}
+.ai-copy.center h2{margin-left:auto;margin-right:auto}
+.ai-copy p{font-size:20px;line-height:1.45;color:#475467;margin:0}
+.ai-visual{position:relative;min-height:330px;display:flex;align-items:center;justify-content:center}
+.ai-card{background:#fff;border:1px solid #DCE6FF;border-radius:18px;box-shadow:0 18px 46px rgba(35,85,232,.08);padding:20px;color:#020617}
+.ai-card b{display:block;font-size:18px;margin-bottom:10px}.ai-card p{margin:0;color:#344054;line-height:1.35}
+.ai-core{position:relative;width:132px;height:132px;border-radius:50%;background:linear-gradient(145deg,#EEF3FF,#fff);border:2px solid #C8D7FF;box-shadow:0 24px 58px rgba(35,85,232,.16);display:flex;align-items:center;justify-content:center;color:#4A67EA;font-size:20px;font-weight:800}
+.ai-core:before{content:"";position:absolute;inset:14px;border-radius:50%;border:10px solid #5C76E8;opacity:.95}
+.ai-core:after{content:"";position:absolute;inset:-14px;border-radius:50%;border:1px solid #DCE6FF;opacity:.9}
+.ai-bot{width:120px;height:120px;border-radius:36px;background:#EEF3FF;border:12px solid #5C76E8;display:flex;align-items:center;justify-content:center;color:#5C76E8;font-size:52px;font-weight:900}
+.ai-bot:before{content:"• •";letter-spacing:8px}
+.ai-prompt-card{position:absolute;width:220px}.ai-prompt-card.one{left:20px;top:18px}.ai-prompt-card.two{left:0;bottom:28px}.ai-prompt-card.three{right:0;top:46px}.ai-prompt-card.four{right:24px;bottom:0}
+.ai-chat{width:min(100%,330px);display:grid;gap:12px}
+.ai-bubble{padding:16px 18px;border-radius:16px;background:#F0F4FF;color:#6B7280;font-size:18px;line-height:1.16;font-weight:900}
+.ai-bubble.answer{background:#fff;border:1px solid #E7ECF8;box-shadow:0 18px 46px rgba(35,85,232,.08)}
+.ai-bubble small{display:block;text-align:right;font-size:13px;color:#8A94A6;margin-top:10px}.ai-lines{display:grid;gap:8px;margin-top:14px}.ai-lines span{height:9px;border-radius:999px;background:linear-gradient(90deg,#C8D7FF,#4A67EA)}
+.ai-doc{width:320px;transform:translate(-42px,-44px)}.ai-doc-chat{position:absolute;right:18px;bottom:24px;width:360px}
+.ai-use-cases{background:linear-gradient(110deg,#315DE8 0%,#233A8F 50%,#06101F 100%);color:#fff;padding:96px 0;overflow:hidden}
+.ai-use-cases h2{text-align:center;font-size:clamp(2rem,3vw,3.35rem);line-height:1.05;margin:0;color:#fff}.ai-use-cases p{text-align:center;color:#fff;font-size:20px;margin:22px 0 34px}
+.use-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:38px}
+.use-card{background:#fff;border-radius:18px;padding:34px 30px;min-height:250px;color:#344054}.use-card i{display:block;color:#5C76E8;font-size:42px;font-style:normal;margin-bottom:28px}.use-card h3{font-size:24px;color:#475467;margin:0 0 12px}.use-card p{text-align:left;color:#475467;font-size:17px;line-height:1.45;margin:0}
+.demo-form{background:#fff;padding:92px 0}.demo-form h2{text-align:center;font-family:"Inter","Nunito Sans",sans-serif;font-size:clamp(1.8rem,2.7vw,2.85rem);font-weight:700;line-height:1.16;color:#020617;margin:0 auto 64px;max-width:760px}.demo-fields{width:min(100%,760px);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:22px 34px}.demo-field.full{grid-column:1/-1}.demo-field label{display:block;color:#475467;font-size:16px;margin-bottom:10px}.demo-field label span{color:#E11D48}.demo-field input,.demo-field select{width:100%;height:44px;border:1px solid #D0D5DD;border-radius:10px;background:#fff;font:inherit;padding:0 14px}.demo-fields .demo{border:1px solid #FF333E;cursor:pointer;grid-column:1/-1;width:max-content;margin:18px auto 0}
+
+/* ============================================================
+   7. SECCIÓN OSCURA — diferenciales
+   ============================================================ */
+.dark-section{background:#091225;color:#fff;overflow:hidden}
+.dark-section .section-head h2,.dark-section .section-head p{color:#fff}
+.dark-grid{display:grid;grid-template-columns:480px 560px;gap:34px;align-items:center;justify-content:center}
+.dark-copy h3{font-size:32px;line-height:1.08;margin:0 0 18px}.dark-copy p{color:#CBD5E8;font-size:15px;line-height:1.6}
+.dark-tags{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}
+.dark-tags span{border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;text-align:center;color:#EAF0FF;font-weight:900}
+.dark-visual{position:relative;min-height:360px;border-radius:26px;background:linear-gradient(135deg,#17203A,#0B1220);border:1px solid rgba(255,255,255,.1);padding:28px 30px;display:grid;align-content:center;gap:12px;overflow:hidden}
+.feed-card{position:relative;margin-left:42px;padding:8px 0 8px 22px;color:#fff}
+.feed-card:before{content:"?";position:absolute;left:-36px;top:10px;width:24px;height:24px;border-radius:8px;background:rgba(74,103,234,.16);border:1px solid rgba(74,103,234,.38);color:#8FADFC;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.feed-card b{display:flex;align-items:center;gap:8px;font-size:17px;margin-bottom:5px}
+.feed-card p{margin:0;color:#CBD5E8;line-height:1.45}
+
+/* ============================================================
+   8. RESULTADOS / KPIs
+   ============================================================ */
+.results{background:#fff}
+.results-board{border:1px solid #DCE6FF;border-radius:26px;background:rgba(255,255,255,.92);box-shadow:0 24px 70px rgba(35,85,232,.08);overflow:hidden;display:grid;grid-template-columns:300px 1fr}
+.results-main{background:linear-gradient(135deg,#142B78,#4A67EA);color:#fff;padding:32px;display:flex;flex-direction:column;justify-content:space-between;min-height:290px}
+.results-main small{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:900;color:#C8D7FF}
+.results-main b{display:block;font-size:52px;line-height:.95;margin-top:36px;font-weight:800}
+.results-main span{display:block;color:#EAF0FF;font-size:16px;font-weight:800;line-height:1.35;margin-top:12px}
+.results-list{display:grid;grid-template-columns:repeat(2,1fr);gap:0 32px;padding:24px 34px}
+.result{display:grid;grid-template-columns:72px 1fr;align-items:center;gap:16px;padding:15px 0;border-bottom:1px solid #E7ECF8}
+.result:nth-last-child(-n+2){border-bottom:0}
+.result b{width:max-content;background:#EEF3FF;border:1px solid #DCE6FF;border-radius:999px;padding:7px 10px;font-size:18px;color:var(--blue);line-height:1;font-weight:900}
+.result span{color:#14215D;font-weight:800;line-height:1.35;font-size:14px}
+
+/* ============================================================
+   9. GRID DE MÓDULOS (ecosistema)
+   ============================================================ */
+.modules{background:#F7F8FA}
+.modules-shell{display:grid;grid-template-columns:220px 1fr;gap:18px;align-items:start}
+.module-side{background:#fff;border:1px solid #DCE6FF;border-radius:20px;padding:10px;align-self:stretch;box-shadow:0 14px 34px rgba(35,85,232,.06);display:grid}
+.module-side a{display:flex;align-items:center;padding:14px 15px;border-radius:13px;color:#020617;font-size:15px;font-weight:800}
+.module-side a:hover,.module-side a.active{background:var(--soft-blue);color:var(--blue)}
+.module-grid{background:#fff;border:1px solid #DCE6FF;border-radius:20px;padding:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;box-shadow:0 18px 46px rgba(35,85,232,.07)}
+.module-card{position:relative;border:1px solid #E7ECF8;border-radius:14px;padding:14px 20px 14px 18px;background:linear-gradient(180deg,#fff,#FAFCFF);display:block;transition:.2s;min-height:64px}
+.module-card:hover{border-color:#BFD0FF;box-shadow:0 16px 38px rgba(35,85,232,.1);transform:translateY(-2px)}
+.module-card h3{font-size:16px;margin:0 0 6px;color:#14215D}
+.module-card p{font-size:13px;margin:0;color:#667085;line-height:1.4}
+
+/* ============================================================
+   10. GRID DE CASOS DE USO
+   ============================================================ */
+.industries{background:#fff}
+.industry-grid{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:stretch}
+.industry-list{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.industry-list div{position:relative;min-height:170px;padding:24px 24px 44px;border-radius:18px;background:#fff;border:1px solid #E7ECF8;box-shadow:0 18px 48px rgba(11,18,32,.06);transition:.2s}
+.industry-list div:hover{border-color:#BFD0FF;box-shadow:0 24px 58px rgba(35,85,232,.14);transform:translateY(-3px)}
+.industry-list i{display:flex;width:48px;height:48px;border-radius:14px;background:#EEF3FF;color:var(--blue);align-items:center;justify-content:center;margin-bottom:16px;font-style:normal;font-size:25px;font-weight:900}
+.industry-list h3{margin:0 0 9px;color:#071124;font-size:18px}.industry-list p{margin:0;color:#475467;line-height:1.45}
+.industry-list span{position:absolute;right:24px;bottom:20px;color:var(--blue);font-size:25px;font-weight:900}
+.industry-visual{position:relative;overflow:hidden;border-radius:18px;background:linear-gradient(160deg,#EAF7FF,#EEF3FF 56%,#DCE6FF);display:flex;align-items:center;justify-content:center;padding:34px;box-shadow:0 24px 58px rgba(35,85,232,.12)}
+
+/* ============================================================
+   11. TESTIMONIOS
+   ============================================================ */
+.testimonials{background:linear-gradient(180deg,#EEF3FF,#F8FAFF)}
+.quote-grid{overflow:hidden;display:flex;gap:18px}
+.quote-track{display:flex;gap:18px;width:max-content;animation:quoteMarquee 32s linear infinite}
+.quote-grid:hover .quote-track{animation-play-state:paused}
+.quote{position:relative;width:360px;min-height:190px;flex:0 0 360px;background:rgba(255,255,255,.9);border:1px solid #DCE6FF;border-radius:20px;padding:26px;box-shadow:0 18px 46px rgba(35,85,232,.08);overflow:hidden}
+.quote:before{content:"”";position:absolute;right:22px;top:8px;color:#E1E8FF;font-size:72px;font-weight:900;line-height:1}
+.quote p{position:relative;margin:0;color:#344054;line-height:1.65;font-size:15px;font-weight:700}
+.quote-author{display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:center;margin-top:22px}
+.quote-author:before{content:"";width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#EEF3FF,#DCE6FF);border:1px solid #C8D7FF}
+.quote-author b,.quote-author small{margin:0;display:block}
+.quote-author small{color:#667085;margin-top:3px;font-weight:800}
+@keyframes quoteMarquee{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 9px))}}
+
+/* ============================================================
+   12. CTA FINAL
+   ============================================================ */
+.cta-section{background:#091225;color:#fff;text-align:center;padding:90px 0}
+.cta-section h2{font-size:clamp(1.65rem,2.8vw,2.8rem);line-height:1.12;margin:0 0 20px;color:#fff}
+.cta-section p{font-size:16px;color:#EAF0FF;margin:0 auto 30px;max-width:720px}
+.cta-section .demo{margin-top:40px}
+
+/* ============================================================
+   13. FOOTER
+   ============================================================ */
+.footer{background:#050B16;color:#8FA0BD;padding:56px 0 28px}
+.footer-top{display:grid;grid-template-columns:1.25fr repeat(4,1fr);gap:28px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:40px}
+.footer-logo{height:38px;width:auto;margin-bottom:18px}
+.footer p{line-height:1.6;color:#8FA0BD}
+.footer h4{color:#5C6B8A;text-transform:uppercase;font-size:14px;font-weight:700;letter-spacing:.08em}
+.footer a{display:block;color:#CBD5E8;margin:10px 0;font-size:14px}
+.footer-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;font-size:13px;color:#667085}
+
+/* ============================================================
+   14. RESPONSIVE
+   ============================================================ */
+@media(max-width:980px){
+  .topbar,.utility,.nav-links,.login{display:none}
+  .header{top:0}
+  .nav-shell{border-radius:0;width:100%;margin:0;border-left:0;border-right:0}
+  .hero-grid,.feature-grid,.dark-grid,.industry-grid,.modules-shell,.results-board,.ai-grid{grid-template-columns:1fr}
+  .module-grid{grid-template-columns:1fr 1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .dark-visual{grid-template-columns:1fr;height:auto}
+  .suite-card{position:static;margin-top:14px;text-align:left!important}
+  .ai-copy{text-align:center}.ai-prompt-card,.ai-doc-chat{position:static;width:100%;margin-top:14px}.use-grid{grid-template-columns:1fr}.ai-doc{transform:none}
+}
+@media(max-width:620px){
+  .wrap{width:min(100% - 28px,1180px)}
+  .hero{padding-top:70px}
+  .hero-actions{align-items:stretch}
+  .demo{width:100%}
+  .industry-list,.footer-top,.results-list,.demo-fields{grid-template-columns:1fr}
+  .module-grid{grid-template-columns:1fr}
+  .quote{width:300px;flex-basis:300px}
+  .result:nth-last-child(-n+2){border-bottom:1px solid #E7ECF8}
+  .result:last-child{border-bottom:0}
+  .section{padding:68px 0}
+  .hero h1{font-size:2.55rem}
+}</style>
+<style>
+@font-face{font-family:"SF UI";font-style:normal;font-weight:300;font-display:auto;src:url("https://humand.co/wp-content/uploads/2024/08/sfuitext-light-webfont.woff2") format("woff2"),url("https://humand.co/wp-content/uploads/2024/08/sfuitext-light-webfont.woff") format("woff")}
+@font-face{font-family:"SF UI";font-style:normal;font-weight:400;font-display:auto;src:url("https://humand.co/wp-content/uploads/2024/08/sfuitext-regular-webfont.woff2") format("woff2"),url("https://humand.co/wp-content/uploads/2024/08/sfuitext-regular-webfont.woff") format("woff")}
+@font-face{font-family:"SF UI";font-style:normal;font-weight:500;font-display:auto;src:url("https://humand.co/wp-content/uploads/2024/08/sfuitext-medium-webfont.woff2") format("woff2"),url("https://humand.co/wp-content/uploads/2024/08/sfuitext-medium-webfont.woff") format("woff")}
+@font-face{font-family:"SF UI";font-style:normal;font-weight:600;font-display:auto;src:url("https://humand.co/wp-content/uploads/2024/08/sfuitext-semibold-webfont.woff2") format("woff2"),url("https://humand.co/wp-content/uploads/2024/08/sfuitext-semibold-webfont.woff") format("woff")}
+@font-face{font-family:"SF UI";font-style:normal;font-weight:700;font-display:auto;src:url("https://humand.co/wp-content/uploads/2024/08/sfuitext-bold-webfont.woff2") format("woff2"),url("https://humand.co/wp-content/uploads/2024/08/sfuitext-bold-webfont-1.woff") format("woff")}
+@font-face{font-family:"SF UI";font-style:normal;font-weight:800;font-display:auto;src:url("https://humand.co/wp-content/uploads/2024/08/sfuitext-heavy-webfont.woff2") format("woff2"),url("https://humand.co/wp-content/uploads/2024/08/sfuitext-heavy-webfont.woff") format("woff")}
+html,body,button,input,select,textarea,a{font-family:"SF UI",Arial,sans-serif!important}
+.nav-actions .demo{border:1px solid #FF333E;transition:background .18s,color .18s,border-color .18s}
+.nav-actions .demo:hover{background:#fff;color:#FF333E;border-color:#FF333E}
+main .demo{border:1px solid #FF333E!important;transition:background .18s,color .18s,border-color .18s}
+main .demo:hover{background:#fff!important;color:#FF333E!important;border-color:#FF333E!important}
+body:has(.phone-scene) .hero .demo{background:#FF333E!important;color:#fff!important;border-color:#FF333E!important;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+body:has(.phone-scene) .hero .demo:hover{background:#FF333E!important;color:#fff!important;border-color:#FF333E!important}
+.mega-main{align-content:start}
+.mega .mega-card{border-radius:12px;padding:8px;transition:background .18s ease,transform .18s ease}
+.mega .mega-card b{transition:color .18s ease}
+.mega .mega-card:hover{background:#F8FAFF;transform:translateX(2px)}
+.mega .mega-card:hover b{color:#4A67EA}
+.mega{grid-template-columns:240px 1fr 300px}
+.mega-side a{white-space:normal;line-height:1.2}
+</style>
+<style>
+@font-face{
+  font-family:"SF UI";
+  font-style:normal;
+  font-weight:300;
+  font-display:auto;
+  src:url("https://humandcdn.b-cdn.net/wp-content/uploads/2024/08/sfuitext-light-webfont.woff2") format("woff2"),url("https://humandcdn.b-cdn.net/wp-content/uploads/2024/08/sfuitext-light-webfont.woff") format("woff");
+}
+@font-face{
+  font-family:"SF UI";
+  font-style:normal;
+  font-weight:400;
+  font-display:auto;
+  src:url("https://humandcdn.b-cdn.net/wp-content/uploads/2024/08/sfuitext-regular-webfont.woff2") format("woff2"),url("https://humandcdn.b-cdn.net/wp-content/uploads/2024/08/sfuitext-regular-webfont.woff") format("woff");
+}
+@font-face{
+  font-family:"SF UI";
+  font-style:normal;
+  font-weight:500;
+  font-display:auto;
+  src:url("https://humandcdn.b-cdn.net/wp-content/uploads/2024/08/sfuitext-medium-webfont.woff2") format("woff2"),url("https://humandcdn.b-cdn.net/wp-content/uploads/2024/08/sfuitext-medium-webfont.woff") format("woff");
+}
+@font-face{
+  font-family:"SF UI";
+  font-style:normal;
+  font-weight:600;
+  font-display:auto;
+  src:url("https://humandcdn.b-cdn.net/wp-content/uploads/2024/08/sfuitext-semibold-webfont.woff2") format("woff2"),url("https://humandcdn.b-cdn.net/wp-content/uploads/2024/08/sfuitext-semibold-webfont.woff") format("woff");
+}
+@font-face{
+  font-family:"SF UI";
+  font-style:normal;
+  font-weight:700;
+  font-display:auto;
+  src:url("https://humandcdn.b-cdn.net/wp-content/uploads/2024/08/sfuitext-bold-webfont.woff2") format("woff2"),url("https://humandcdn.b-cdn.net/wp-content/uploads/2024/08/sfuitext-bold-webfont-1.woff") format("woff");
+}
+@font-face{
+  font-family:"SF UI";
+  font-style:normal;
+  font-weight:800;
+  font-display:auto;
+  src:url("https://humandcdn.b-cdn.net/wp-content/uploads/2024/08/sfuitext-heavy-webfont.woff2") format("woff2"),url("https://humandcdn.b-cdn.net/wp-content/uploads/2024/08/sfuitext-heavy-webfont.woff") format("woff");
+}
+@font-face{
+  font-family:"SF Pro Display";
+  font-style:normal;
+  font-weight:400;
+  font-display:auto;
+  src:url("https://humandcdn.b-cdn.net/wp-content/uploads/2026/03/SF-Pro-Display-Regular.ttf") format("truetype");
+}
+
+:root{
+  --font-primary:"SF UI",sans-serif;
+  --font-display:"SF Pro Display",sans-serif;
+  --font-weight-light:300;
+  --font-weight-regular:400;
+  --font-weight-medium:500;
+  --font-weight-semibold:600;
+  --font-weight-bold:700;
+  --font-weight-heavy:800;
+
+  --text-display-xl:92px;
+  --line-display-xl:92px;
+  --letter-display-xl:-5.52px;
+
+  --text-hero-subtitle:28px;
+  --line-hero-subtitle:36.4px;
+  --letter-hero-subtitle:-1.68px;
+
+  --text-h2-xl:52px;
+  --line-h2-xl:57.2px;
+  --letter-h2-xl:-3.12px;
+
+  --text-h2-display:48px;
+  --line-h2-display:56.016px;
+  --letter-h2-display:-0.96px;
+
+  --text-body-xl:24px;
+  --line-body-xl:31.2px;
+  --letter-body-xl:-1.44px;
+
+  --text-body-lg:20px;
+  --line-body-lg:26px;
+  --letter-body-lg:-1.2px;
+
+  --text-body:16px;
+  --line-body:24px;
+  --letter-body:normal;
+
+  --text-body-sm:14px;
+  --line-body-sm:18.2px;
+  --letter-body-sm:-0.84px;
+
+  --text-caption:12px;
+  --line-caption:13.2px;
+  --letter-caption:-0.2px;
+
+  --text-button:14px;
+  --line-button:16.8px;
+  --letter-button:-0.5px;
+
+  --text-stat-xl:80px;
+  --line-stat-xl:104px;
+  --letter-stat-xl:-4.8px;
+
+  --text-stat-lg:75px;
+  --line-stat-lg:97.5px;
+  --letter-stat-lg:-4.5px;
+}
+
+html,body{font-family:var(--font-primary);font-size:var(--text-body);font-weight:var(--font-weight-regular);line-height:var(--line-body);letter-spacing:var(--letter-body)}
+body{margin:0}
+h1,h2,h3,h4,h5,h6,p{margin-top:0}
+h1,.text-display-xl{font-family:var(--font-primary);font-size:var(--text-display-xl);font-weight:400;line-height:var(--line-display-xl);letter-spacing:var(--letter-display-xl)}
+h2,.text-h2-xl{font-family:var(--font-primary);font-size:var(--text-h2-xl);font-weight:400;line-height:var(--line-h2-xl);letter-spacing:var(--letter-h2-xl)}
+h3,.text-h3{font-family:var(--font-primary);font-size:20px;font-weight:700;line-height:26px;letter-spacing:-1.2px}
+h4,.text-h4{font-family:var(--font-primary);font-size:16px;font-weight:700;line-height:17.6px;letter-spacing:-0.8px}
+h5,.text-h5{font-family:var(--font-primary);font-size:14px;font-weight:400;line-height:18.2px;letter-spacing:-0.5px}
+h6,.text-eyebrow{font-family:var(--font-primary);font-size:12px;font-weight:500;line-height:12px;letter-spacing:normal;text-transform:none}
+p,.text-body{font-family:var(--font-primary);font-size:var(--text-body);font-weight:400;line-height:var(--line-body);letter-spacing:var(--letter-body)}
+a{font-family:inherit;color:inherit;text-decoration:none}
+button,.text-button{font-family:var(--font-primary);font-size:var(--text-button);font-weight:600;line-height:var(--line-button);letter-spacing:var(--letter-button)}
+input,textarea,select,label{font-family:var(--font-primary)}
+
+.text-hero-subtitle{font-family:var(--font-primary);font-size:var(--text-hero-subtitle);font-weight:400;line-height:var(--line-hero-subtitle);letter-spacing:var(--letter-hero-subtitle)}
+.text-h2-display{font-family:var(--font-display);font-size:var(--text-h2-display);font-weight:400;line-height:var(--line-h2-display);letter-spacing:var(--letter-h2-display)}
+.text-body-xl{font-family:var(--font-primary);font-size:var(--text-body-xl);font-weight:400;line-height:var(--line-body-xl);letter-spacing:var(--letter-body-xl)}
+.text-body-lg{font-family:var(--font-primary);font-size:var(--text-body-lg);font-weight:400;line-height:var(--line-body-lg);letter-spacing:var(--letter-body-lg)}
+.text-body-lg-bold{font-family:var(--font-primary);font-size:var(--text-body-lg);font-weight:700;line-height:var(--line-body-lg);letter-spacing:var(--letter-body-lg)}
+.text-body-sm{font-family:var(--font-primary);font-size:var(--text-body-sm);font-weight:400;line-height:var(--line-body-sm);letter-spacing:var(--letter-body-sm)}
+.text-caption{font-family:var(--font-primary);font-size:var(--text-caption);font-weight:600;line-height:var(--line-caption);letter-spacing:var(--letter-caption)}
+.text-navbar{font-family:var(--font-primary);font-size:16px;font-weight:500;line-height:24px;letter-spacing:-0.5px}
+.text-navbar-utility{font-family:var(--font-primary);font-size:12px;font-weight:600;line-height:22.8px;letter-spacing:0.2px}
+.text-card-title{font-family:var(--font-primary);font-size:20px;font-weight:700;line-height:26px;letter-spacing:-1.2px}
+.text-card-body{font-family:var(--font-primary);font-size:18px;font-weight:400;line-height:23.4px;letter-spacing:-1.08px}
+.text-stat-xl{font-family:var(--font-primary);font-size:var(--text-stat-xl);font-weight:700;line-height:var(--line-stat-xl);letter-spacing:var(--letter-stat-xl)}
+.text-stat-lg{font-family:var(--font-primary);font-size:var(--text-stat-lg);font-weight:700;line-height:var(--line-stat-lg);letter-spacing:var(--letter-stat-lg)}
+.text-footer-title{font-family:var(--font-primary);font-size:14px;font-weight:700;line-height:18.2px;letter-spacing:-0.84px}
+.text-footer-link{font-family:var(--font-primary);font-size:14px;font-weight:400;line-height:18.2px;letter-spacing:-0.84px}
+
+@media(max-width:1100px){
+  :root{
+    --text-display-xl:70px;
+    --line-display-xl:70px;
+    --letter-display-xl:-4.2px;
+    --text-hero-subtitle:23px;
+    --line-hero-subtitle:29.9px;
+    --letter-hero-subtitle:-1.38px;
+    --text-h2-xl:30px;
+    --line-h2-xl:33px;
+    --letter-h2-xl:-1.8px;
+    --text-h2-display:29px;
+    --line-h2-display:33.843px;
+    --letter-h2-display:-0.58px;
+    --text-body-xl:16px;
+    --line-body-xl:20.8px;
+    --letter-body-xl:-0.96px;
+    --text-body-lg:15px;
+    --line-body-lg:19.5px;
+    --letter-body-lg:-0.9px;
+    --text-stat-xl:50px;
+    --line-stat-xl:58.5px;
+    --letter-stat-xl:-2.7px;
+    --text-stat-lg:45px;
+    --line-stat-lg:58.5px;
+    --letter-stat-lg:-2.7px;
+  }
+  .text-footer-title{font-size:16px;line-height:20.8px;letter-spacing:-0.96px}
+}
+
+@media(max-width:767px){
+  :root{
+    --text-display-xl:42px;
+    --line-display-xl:42px;
+    --letter-display-xl:-2.52px;
+    --text-hero-subtitle:18px;
+    --line-hero-subtitle:21.6px;
+    --letter-hero-subtitle:-1.08px;
+    --text-h2-display:24px;
+    --line-h2-display:28.008px;
+    --letter-h2-display:-0.48px;
+    --text-body-xl:18px;
+    --line-body-xl:23.4px;
+    --letter-body-xl:-1.08px;
+    --text-body-lg:16px;
+    --line-body-lg:19.2px;
+    --letter-body-lg:-0.96px;
+    --text-button:12px;
+    --line-button:14.4px;
+    --text-stat-xl:50px;
+    --line-stat-xl:60px;
+    --letter-stat-xl:-3px;
+    --text-stat-lg:50px;
+    --line-stat-lg:60px;
+    --letter-stat-lg:-3px;
+  }
+  .text-navbar{font-size:12px;font-weight:600;line-height:22.8px;letter-spacing:0.2px}
+  .text-footer-title{font-size:18px;line-height:21.6px;letter-spacing:-1.08px}
+}
+
+html,body,button,input,select,textarea,a{font-family:var(--font-primary)!important}
+.topbar,.utility,.header,.nav,.mega,.footer{font-family:var(--font-primary)!important}
+.nav-btn,.nav-link{font-size:14px!important;font-weight:500!important;line-height:20px!important;letter-spacing:-0.2px!important;text-transform:none!important}
+.utility .wrap,.utility a{font-size:12px!important;font-weight:600!important;line-height:22.8px!important;letter-spacing:0.2px!important}
+.topbar,.topbar .wrap{font-size:12px!important;font-weight:500!important;line-height:12px!important;letter-spacing:normal!important}
+.pill{font-size:12px!important;font-weight:600!important;line-height:13.2px!important;letter-spacing:-0.2px!important;text-transform:none!important}
+.mega-side a,.mega-card b{font-size:14px!important;font-weight:500!important;line-height:20px!important;letter-spacing:-0.2px!important;text-transform:none!important}
+.mega-card small{font-size:14px!important;font-weight:400!important;line-height:18.2px!important;letter-spacing:-0.84px!important}
+.demo,.hero .demo,.nav-actions .demo,.calc-submit{font-size:14px!important;font-weight:600!important;line-height:16.8px!important;letter-spacing:-0.5px!important;text-transform:none!important}
+.hero h1{font-family:var(--font-primary)!important;font-size:var(--text-display-xl)!important;font-weight:400!important;line-height:var(--line-display-xl)!important;letter-spacing:var(--letter-display-xl)!important;text-transform:none!important}
+.hero-sub{font-family:var(--font-primary)!important;font-size:var(--text-hero-subtitle)!important;font-weight:400!important;line-height:var(--line-hero-subtitle)!important;letter-spacing:var(--letter-hero-subtitle)!important;text-transform:none!important}
+.section h2,.feature-intro h2,.ai-intro h2,.demo-form h2,.cta-section h2{font-family:var(--font-primary)!important;font-size:var(--text-h2-xl)!important;font-weight:400!important;line-height:var(--line-h2-xl)!important;letter-spacing:var(--letter-h2-xl)!important;text-transform:none!important}
+.logos h2,.section-head h2{font-family:var(--font-display)!important;font-size:var(--text-h2-display)!important;font-weight:400!important;line-height:var(--line-h2-display)!important;letter-spacing:var(--letter-h2-display)!important;text-transform:none!important}
+.eyebrow{font-size:12px!important;font-weight:500!important;line-height:12px!important;letter-spacing:normal!important;text-transform:none!important}
+.section-head p,.feature-intro p,.ai-intro p,.cta-section p{font-size:var(--text-body-xl)!important;font-weight:400!important;line-height:var(--line-body-xl)!important;letter-spacing:var(--letter-body-xl)!important}
+.card h3,.module-card h3,.ai-card h3,.result-card h3,.support-card h3,.contact-card h3,.demo-side h3,.calc-card h3{font-size:var(--text-body-lg)!important;font-weight:700!important;line-height:var(--line-body-lg)!important;letter-spacing:var(--letter-body-lg)!important}
+.card p,.module-card p,.ai-card p,.result-card p,.support-card p,.contact-card p,.demo-side p,.calc-story-copy p,.desk-copy p,.quote p{font-size:18px!important;font-weight:400!important;line-height:23.4px!important;letter-spacing:-1.08px!important}
+.hero .store-rating,.stat span,.result span,.industry-list p,.desk-logos span{font-size:14px!important;font-weight:400!important;line-height:18.2px!important;letter-spacing:-0.84px!important}
+.mega-visual .industry-badge{font-size:36px!important;font-weight:700!important;line-height:40px!important;letter-spacing:-1.8px!important}
+.logo-tile{font-size:34px!important;font-weight:700!important;line-height:40px!important;letter-spacing:-1.8px!important}
+.stat b,.result b,.industry-badge,.result-box b{font-size:var(--text-stat-lg)!important;font-weight:700!important;line-height:var(--line-stat-lg)!important;letter-spacing:var(--letter-stat-lg)!important}
+.results-main b,.story-card strong{font-size:var(--text-stat-xl)!important;font-weight:700!important;line-height:var(--line-stat-xl)!important;letter-spacing:var(--letter-stat-xl)!important}
+.input,.select,.textarea,.demo-field input,.demo-field select,.calc-input .input,.calc-input .select,.support-chat-form input{font-size:16px!important;font-weight:400!important;line-height:24px!important;letter-spacing:normal!important}
+.demo-field,.calc-form label{font-size:14px!important;font-weight:600!important;line-height:18.2px!important;letter-spacing:-0.84px!important}
+.support-chat-title,.support-chat-close,.support-chat-form button{font-family:var(--font-primary)!important}
+.support-chat-title{font-size:20px!important;font-weight:700!important;line-height:26px!important;letter-spacing:-1.2px!important}
+.support-chat-title small,.support-message{font-size:14px!important;font-weight:400!important;line-height:18.2px!important;letter-spacing:-0.84px!important}
+.footer h4{font-size:14px!important;font-weight:700!important;line-height:18.2px!important;letter-spacing:-0.84px!important;text-transform:none!important}
+.footer a,.footer p,.footer-bottom{font-size:14px!important;font-weight:400!important;line-height:18.2px!important;letter-spacing:-0.84px!important}
+
+@media(max-width:1100px){
+  .hero h1{font-size:var(--text-display-xl)!important;line-height:var(--line-display-xl)!important;letter-spacing:var(--letter-display-xl)!important}
+  .hero-sub{font-size:var(--text-hero-subtitle)!important;line-height:var(--line-hero-subtitle)!important;letter-spacing:var(--letter-hero-subtitle)!important}
+  .section h2,.feature-intro h2,.ai-intro h2,.demo-form h2,.cta-section h2{font-size:var(--text-h2-xl)!important;line-height:var(--line-h2-xl)!important;letter-spacing:var(--letter-h2-xl)!important}
+  .logos h2,.section-head h2{font-size:var(--text-h2-display)!important;line-height:var(--line-h2-display)!important;letter-spacing:var(--letter-h2-display)!important}
+  .section-head p,.feature-intro p,.ai-intro p,.cta-section p{font-size:var(--text-body-xl)!important;line-height:var(--line-body-xl)!important;letter-spacing:var(--letter-body-xl)!important}
+  .card h3,.module-card h3,.ai-card h3,.result-card h3,.support-card h3,.contact-card h3,.demo-side h3,.calc-card h3{font-size:var(--text-body-lg)!important;line-height:var(--line-body-lg)!important;letter-spacing:var(--letter-body-lg)!important}
+  .mega-visual .industry-badge{font-size:30px!important;line-height:34px!important;letter-spacing:-1.5px!important}
+  .logo-tile{font-size:28px!important;line-height:34px!important;letter-spacing:-1.4px!important}
+}
+
+@media(max-width:767px){
+  .nav-btn,.nav-link{font-size:12px!important;font-weight:600!important;line-height:22.8px!important;letter-spacing:0.2px!important}
+  .demo,.hero .demo,.nav-actions .demo,.calc-submit{font-size:var(--text-button)!important;line-height:var(--line-button)!important;letter-spacing:var(--letter-button)!important}
+  .footer h4{font-size:18px!important;line-height:21.6px!important;letter-spacing:-1.08px!important}
+  .mega-visual .industry-badge{font-size:24px!important;line-height:28px!important;letter-spacing:-1.2px!important}
+  .logo-tile{font-size:24px!important;line-height:30px!important;letter-spacing:-1.2px!important}
+}
+
+/* Hero Leia inspirado en Sammy IA */
+.hero{background:linear-gradient(180deg,#DDE7FF 0%,#fff 54%,#fff 100%)!important;padding-top:128px!important;padding-bottom:126px!important;text-align:center!important;overflow:hidden!important}
+.hero-grid{width:min(1180px,calc(100% - 48px))!important;max-width:1180px!important;display:grid!important;grid-template-columns:1fr!important;gap:56px!important;align-items:center!important;justify-items:center!important}
+.hero-grid > div:first-child{transform:none!important;padding-top:0!important;display:flex!important;flex-direction:column!important;align-items:center!important}
+.hero-kicker{display:inline-flex!important;align-items:center!important;justify-content:center!important;border:0!important;border-radius:999px!important;color:#fff!important;background:#05070B!important;font-family:"SF UI",Arial,sans-serif!important;font-size:12px!important;font-weight:700!important;line-height:1!important;letter-spacing:1.6px!important;text-transform:uppercase!important;padding:9px 18px!important;margin-bottom:22px!important;box-shadow:0 0 0 2px rgba(74,103,234,.16)!important}
+.hero h1{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:69px!important;font-weight:600!important;line-height:.96!important;letter-spacing:-4.6px!important;max-width:590px!important;color:#020617!important;margin:0!important}
+.hero h1 em{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-style:normal!important;font-weight:700!important;color:#020617!important}
+.hero-sub{font-family:"SF UI",Arial,sans-serif!important;max-width:760px!important;font-size:19px!important;font-weight:400!important;line-height:1.35!important;letter-spacing:-.35px!important;color:#475467!important;margin:22px auto 0!important}
+.hero-actions{margin-top:30px!important}
+.hero .demo{height:50px!important;padding:0 36px!important;width:auto!important;min-width:0!important;border-radius:12px!important;background:#FF333E!important;color:#fff!important;border:1px solid #FF333E!important;font-size:15px!important;font-weight:600!important;line-height:18px!important;letter-spacing:-.5px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;box-shadow:0 0 0 3px rgba(35,85,232,.16),0 18px 44px rgba(74,103,234,.20)!important}
+.hero-visual{position:relative!important;width:min(100%,820px)!important;min-height:360px!important;border-radius:32px!important;background:transparent!important;padding:0!important;display:flex!important;align-items:center!important;justify-content:center!important;justify-self:center!important;box-sizing:border-box!important}
+.hero-visual img{display:block!important;width:100%!important;height:388px!important;object-fit:cover!important;object-position:center!important;border-radius:28px!important;box-shadow:0 24px 60px rgba(35,85,232,.18)!important;filter:saturate(.94) brightness(.9)!important}
+.hero-visual:after{display:none!important}
+.hero-visual video{display:block!important;width:100%!important;height:360px!important;object-fit:cover!important;object-position:center 38%!important;border-radius:32px!important;clip-path:inset(0 0 2px 0 round 32px);border:1px solid rgba(255,255,255,.62)!important;box-shadow:0 30px 64px rgba(11,18,32,.22)!important;background:#0057FC!important}
+.image-copy,.hero-visual .suite-card{display:none!important}
+.leia-screen{position:relative;width:100%;height:388px;border-radius:28px;background:#1F1F1F;overflow:hidden;display:grid;place-items:center;color:#fff}
+.leia-screen h2{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif;font-size:44px;font-weight:700;line-height:1;letter-spacing:-1.3px;color:#6F8CFF;margin:0}
+.leia-question{position:absolute;background:#fff;color:#344054;border-radius:10px;padding:14px 18px;box-shadow:0 14px 34px rgba(0,0,0,.16);font-size:13px;line-height:1.2;text-align:left}
+.leia-question b{display:block;color:#14215D;font-size:13px;margin-bottom:4px}.leia-question.one{left:31%;top:32%}.leia-question.two{left:16%;top:54%}.leia-question.three{right:11%;top:52%}.leia-caption{position:absolute;left:20%;bottom:28px;color:#fff;background:rgba(0,0,0,.72);font-size:22px;font-weight:700;line-height:1.08;text-align:left;padding:4px 8px}
+.logos{padding:44px 0 70px!important;overflow:hidden!important}.logos h2{font-size:34px!important;line-height:1.18!important;color:#020617!important;font-weight:400!important;margin-bottom:34px!important}.logos h2 strong{font-weight:800!important}.logos p{display:none!important}.logo-marquee{width:100vw!important;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;gap:20px!important;overflow:hidden!important}.logo-track{gap:64px!important;min-width:max-content!important;width:max-content!important;padding:0 28px!important}.logo-tile{min-width:150px!important;height:48px!important;font-size:28px!important;font-weight:700!important;line-height:34px!important;letter-spacing:-1.8px!important;color:#8E8E8E!important;opacity:.68!important}
+.why-leia{background:linear-gradient(180deg,#fff 0%,#EEF3FF 100%)!important;padding:24px 0 82px!important}
+.why-leia h2{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:36px!important;font-weight:400!important;line-height:1.14!important;letter-spacing:-1.55px!important;color:#020617!important;text-align:center!important;margin:0 0 52px!important}
+.why-leia h2 strong{font-weight:700!important}
+.why-grid{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:22px!important;max-width:1020px!important;margin:0 auto!important;align-items:stretch!important;grid-auto-rows:205px!important}
+.why-card{background:#fff!important;border:1px solid #E7ECF8!important;border-radius:12px!important;padding:28px 28px!important;height:205px!important;min-height:205px!important;box-shadow:0 14px 34px rgba(35,85,232,.06)!important;overflow:hidden!important}
+.why-card{display:grid!important;grid-template-columns:38px 1fr!important;grid-template-rows:auto 1fr!important;column-gap:16px!important;align-items:start!important}
+.why-icon{display:flex!important;align-items:center!important;justify-content:center!important;width:38px!important;height:38px!important;border-radius:50%!important;background:#DDE7FF!important;color:#6F8CFF!important;margin:0!important}
+.why-icon svg{width:19px!important;height:19px!important;stroke:currentColor!important;fill:none!important;stroke-width:2!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+.why-card h3{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:19px!important;font-weight:700!important;line-height:1.08!important;letter-spacing:-.55px!important;color:#020617!important;margin:0 0 16px!important;max-width:260px!important}
+.why-card p{grid-column:1/-1!important;font-family:var(--font-primary)!important;font-size:16px!important;font-weight:400!important;line-height:1.32!important;letter-spacing:-.3px!important;color:#475467!important;margin:16px 0 0!important}
+.leia-tabs{background:#fff!important;padding:58px 0 88px!important;font-family:var(--font-primary)!important}
+.leia-tab-nav{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:24px!important;max-width:980px!important;margin:0 auto 54px!important}
+.leia-tab-nav button{height:42px!important;border:0!important;border-bottom:2px solid #E5E7EB!important;background:transparent!important;color:#C3C6CE!important;font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:16px!important;font-weight:600!important;line-height:1!important;letter-spacing:-.3px!important;cursor:pointer!important}
+.leia-tab-nav button.active{color:#020617!important;border-bottom-color:#020617!important}
+.leia-panel{display:none!important;grid-template-columns:1fr 420px!important;gap:74px!important;align-items:center!important;max-width:980px!important;margin:0 auto!important}
+.leia-panel.active{display:grid!important}
+.leia-panel-copy h2{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:39px!important;font-weight:600!important;line-height:1.07!important;letter-spacing:-1.2px!important;color:#020617!important;margin:0 0 18px!important;max-width:470px!important}
+.leia-panel-copy p{font-family:var(--font-primary)!important;font-size:16px!important;font-weight:400!important;line-height:1.35!important;letter-spacing:-.35px!important;color:#475467!important;margin:0 0 22px!important;max-width:520px!important}
+.leia-checks{display:grid!important;gap:12px!important;margin:0 0 30px!important;padding:0!important;list-style:none!important}
+.leia-checks li{font-family:var(--font-primary)!important;font-size:15px!important;font-weight:400!important;line-height:1.35!important;letter-spacing:-.3px!important;color:#475467!important}
+.leia-checks li:before{content:"✓";color:#667085!important;margin-right:12px!important}
+.leia-panel-copy .demo{height:46px!important;padding:0 34px!important;border-radius:12px!important;background:#FF333E!important;color:#fff!important;border:1px solid #FF333E!important;font-size:14px!important;font-weight:600!important;line-height:16.8px!important;letter-spacing:-.5px!important;box-shadow:0 0 0 3px rgba(35,85,232,.16),0 18px 44px rgba(74,103,234,.2)!important}
+.leia-visual{height:380px!important;border-radius:0!important;background:transparent!important;position:relative!important;overflow:visible!important;padding:0!important}
+.leia-ui-card{position:absolute!important;background:rgba(255,255,255,.96)!important;border:1px solid rgba(231,236,248,.95)!important;border-radius:14px!important;box-shadow:0 18px 42px rgba(35,85,232,.14)!important;color:#020617!important}
+.leia-chat-card,.leia-chat-card.left,.leia-alert{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:13px!important;font-weight:600!important;line-height:1.28!important;letter-spacing:-.25px!important;color:#111827!important;background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(248,250,255,.96))!important;border:1px solid #DCE6FF!important;box-shadow:0 18px 42px rgba(35,85,232,.14)!important}
+.leia-config{left:50%!important;top:28px!important;width:260px!important;padding:22px!important;text-align:left!important;transform:translateX(-50%)!important}
+.leia-config b{display:block!important;text-align:center!important;font-size:14px!important;margin:0 0 12px!important}.leia-bot-icon{width:48px!important;height:48px!important;border-radius:50%!important;background:#DDE7FF!important;color:#4A67EA!important;margin:0 auto 12px!important;display:grid!important;place-items:center!important;font-weight:800!important}
+.leia-input{height:28px!important;border:1px solid #E7ECF8!important;border-radius:7px!important;margin:10px 0!important}.leia-toggle{display:flex!important;justify-content:space-between!important;align-items:center!important;border-top:1px solid #EEF2FA!important;padding-top:13px!important;margin-top:13px!important;font-size:13px!important;color:#475467!important}.leia-switch{width:36px!important;height:20px!important;border-radius:999px!important;background:#4A67EA!important}
+.leia-photo{position:absolute!important;right:-28px!important;top:-18px!important;width:488px!important;height:368px!important;object-fit:cover!important;border-radius:12px!important;filter:saturate(.92) brightness(.96)!important}
+.leia-chat-card{left:auto!important;right:-54px!important;top:302px!important;width:230px!important;padding:15px 17px!important;font-size:13px!important;line-height:1.25!important}.leia-chat-card.left{left:auto!important;right:-54px!important;top:302px!important;width:230px!important}.leia-doc{left:50%!important;top:34px!important;width:300px!important;padding:22px!important;transform:translateX(-50%)!important}.leia-doc b,.leia-insights b{display:block!important;font-size:28px!important;line-height:1!important;margin-bottom:8px!important}.leia-lines{display:grid!important;gap:9px!important;margin-top:14px!important}.leia-lines span{height:9px!important;border-radius:999px!important;background:#DDE7FF!important}.leia-lines span:nth-child(2){width:82%!important}.leia-lines span:nth-child(3){width:70%!important}.leia-insights{left:44px!important;top:36px!important;width:288px!important;padding:24px!important}.leia-alert{left:auto!important;right:-54px!important;top:326px!important;bottom:auto!important;width:230px!important;padding:15px 17px!important;font-size:13px!important}
+.leia-steps-title{text-align:center!important;margin:88px auto 0!important;max-width:760px!important}
+.leia-steps-title h2{font-family:var(--font-primary)!important;font-size:38px!important;font-weight:700!important;line-height:1.05!important;letter-spacing:-1.2px!important;color:#020617!important;margin:0 0 18px!important}
+.leia-steps-title p{font-family:var(--font-primary)!important;font-size:18px!important;font-weight:400!important;line-height:1.35!important;letter-spacing:-.35px!important;color:#475467!important;margin:0!important}
+.leia-work-grid{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:30px!important;max-width:980px!important;margin:58px auto 0!important}
+.leia-work-card{background:#fff!important;border:1px solid #E7ECF8!important;border-radius:12px!important;min-height:330px!important;padding:26px 24px!important;box-shadow:0 18px 42px rgba(11,18,32,.12)!important}
+.leia-work-card{border-color:#DCE6FF!important;border-radius:12px!important;padding:20px!important;box-shadow:0 18px 42px rgba(35,85,232,.08)!important}
+.leia-work-visual{height:160px!important;border-radius:10px!important;background:radial-gradient(ellipse at 82% 20%,rgba(93,174,239,.22) 0 14%,transparent 32%),linear-gradient(180deg,#EAF6FF 0%,#DDEFFF 100%)!important;position:relative!important;margin-bottom:28px!important;overflow:hidden!important}
+.leia-work-card:first-child .leia-work-visual{background:radial-gradient(ellipse at 78% 88%,rgba(244,251,255,.16) 0 14%,transparent 34%),linear-gradient(180deg,#0057FC 0%,#1768F7 58%,#5DAEEF 100%)!important}
+.leia-work-visual:before{content:""!important;position:absolute!important;right:-58px!important;bottom:-34px!important;width:150px!important;height:78px!important;border-radius:54% 46% 50% 50%!important;background:rgba(244,251,255,.28)!important;box-shadow:-42px 22px 0 10px rgba(244,251,255,.18),-86px 34px 0 -8px rgba(244,251,255,.12)!important;pointer-events:none!important}
+.leia-work-visual > *{position:relative!important;z-index:1!important}
+.leia-mini-badge{position:absolute!important;background:#fff!important;border:1px solid #DCE6FF!important;border-radius:10px!important;padding:12px 14px!important;font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:12px!important;font-weight:600!important;line-height:1.24!important;letter-spacing:-.2px!important;color:#1F2A44!important;box-shadow:0 14px 30px rgba(35,85,232,.12)!important}
+.leia-mini-badge.one{right:18px!important;top:12px!important;width:185px!important}.leia-mini-badge.two{left:18px!important;bottom:12px!important;width:185px!important}.leia-mini-badge.three{left:18px!important;top:18px!important;background:#0057FC!important;color:#fff!important;width:174px!important}.leia-mini-badge.four{right:18px!important;bottom:20px!important;width:180px!important}.leia-mini-badge.five{right:16px!important;top:12px!important;width:174px!important}.leia-mini-badge.six{left:16px!important;bottom:12px!important;width:178px!important}
+.leia-mini-dot{position:absolute!important;width:30px!important;height:30px!important;border-radius:50%!important;background:#DDE7FF!important;border:1px solid #C8D7FF!important;display:grid!important;place-items:center!important;color:#4A67EA!important;font-size:10px!important;font-weight:800!important}
+.leia-mini-dot.one,.leia-mini-dot.two{display:none!important}
+.leia-work-card h3{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:24px!important;font-weight:700!important;line-height:1.1!important;letter-spacing:-.75px!important;color:#020617!important;margin:0 0 14px!important}
+.leia-work-card p{font-family:var(--font-primary)!important;font-size:16px!important;font-weight:400!important;line-height:1.35!important;letter-spacing:-.35px!important;color:#475467!important;margin:0!important}
+.leia-integrated{text-align:center!important;max-width:780px!important;margin:48px auto 0!important}
+.leia-integrated h2{font-family:var(--font-primary)!important;font-size:38px!important;font-weight:700!important;line-height:1.05!important;letter-spacing:-1.2px!important;color:#020617!important;margin:0 0 18px!important}
+.leia-integrated p{font-family:var(--font-primary)!important;font-size:20px!important;font-weight:400!important;line-height:1.35!important;letter-spacing:-.45px!important;color:#475467!important;margin:0!important}
+.leia-faq{background:#fff!important;padding:0px 0 36px!important;font-family:var(--font-primary)!important}
+.leia-faq-grid{display:grid!important;grid-template-columns:310px 1fr!important;gap:96px!important;max-width:980px!important;margin:0 auto!important}
+.leia-faq h2{font-family:var(--font-primary)!important;font-size:38px!important;font-weight:700!important;line-height:1.05!important;letter-spacing:-1.2px!important;color:#020617!important;margin:0 0 20px!important}
+.leia-faq p{font-family:var(--font-primary)!important;font-size:18px!important;font-weight:400!important;line-height:1.32!important;letter-spacing:-.4px!important;color:#475467!important;margin:0!important}
+.faq-list{display:grid!important;border-top:1px solid #D9DEE8!important}
+.faq-item{border-bottom:1px solid #D9DEE8!important}
+.faq-item summary{list-style:none!important;cursor:pointer!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important;padding:22px 0!important;font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:16px!important;font-weight:700!important;line-height:1.18!important;letter-spacing:-.4px!important;color:#020617!important}
+.faq-item summary::-webkit-details-marker{display:none!important}
+.faq-item summary:after{content:""!important;display:inline-block!important;width:14px!important;height:14px!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:center!important;background-size:14px!important}
+.faq-item[open] summary:after{content:"⌃"}
+.faq-item div{font-family:var(--font-primary)!important;font-size:16px!important;font-weight:400!important;line-height:1.35!important;letter-spacing:-.35px!important;color:#475467!important;padding:0 0 24px!important}
+.demo-form{background:#fff!important;padding:82px 0 96px!important;font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important}
+.demo-shell{display:grid!important;grid-template-columns:390px 1fr!important;gap:80px!important;align-items:start!important;justify-content:center!important;max-width:980px!important;margin:0 auto!important}
+.demo-copy{padding-top:6px!important}.demo-copy h2{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:42px!important;font-weight:700!important;line-height:1.05!important;letter-spacing:-1.35px!important;color:#020617!important;margin:0 0 26px!important;text-align:left!important;max-width:340px!important}
+.demo-copy p{font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:20px!important;font-weight:400!important;line-height:1.32!important;letter-spacing:-.45px!important;color:#475467!important;margin:0!important;max-width:320px!important}
+.demo-card{background:#F7F7F7!important;border:1px solid #E1E4E9!important;border-radius:12px!important;padding:56px 54px 52px!important}
+.demo-fields{width:100%!important;margin:0!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:22px 28px!important}
+.demo-field.full{grid-column:1/-1!important}.demo-field label{display:block!important;font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:12px!important;font-weight:500!important;line-height:1.2!important;letter-spacing:-.15px!important;color:#475467!important;margin:0 0 8px!important}.demo-field label span{color:#E11D48!important}
+.demo-field input,.demo-field select{width:100%!important;height:34px!important;border:1px solid #D7DCE5!important;border-radius:7px!important;background:#fff!important;padding:0 10px!important;font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:14px!important;color:#344054!important;box-shadow:none!important}
+.phone-row{display:grid!important;grid-template-columns:58px 1fr!important;gap:8px!important}
+.captcha-box{grid-column:1/-1!important;width:210px!important;height:52px!important;background:#fff!important;border:1px solid #D7DCE5!important;display:flex!important;align-items:center!important;justify-content:center!important;color:#4A67EA!important;font-size:12px!important;font-weight:700!important}
+.demo-legal{grid-column:1/-1!important;font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:10px!important;line-height:1.35!important;letter-spacing:-.1px!important;color:#667085!important;margin:0!important}
+.demo-fields .demo{grid-column:1/-1!important;justify-self:start!important;width:auto!important;height:46px!important;padding:0 40px!important;margin:24px 0 0!important;border-radius:10px!important;background:#FF333E!important;color:#fff!important;border:1px solid #FF333E!important;font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;font-size:14px!important;font-weight:600!important;box-shadow:none!important}
+
+/* Tipografía y proporciones exactas de las secciones de Portal Liquidación */
+.ai-section{font-family:var(--font-primary)!important}
+.ai-grid{grid-template-columns:1fr 1fr!important;gap:72px!important;align-items:center!important}
+.ai-copy,.ai-copy.center{max-width:none!important;margin:0!important;text-align:left!important}
+.ai-copy h2,.ai-copy.center h2{
+  font-family:"SF UI","Inter","Helvetica Neue",Arial,sans-serif!important;
+  font-size:43px!important;
+  font-weight:600!important;
+  line-height:1.07!important;
+  letter-spacing:-1.35px!important;
+  color:#020617!important;
+  max-width:620px!important;
+  margin:0 0 22px!important
+}
+.ai-copy p,.ai-copy.center p{
+  font-family:var(--font-primary)!important;
+  font-size:16px!important;
+  font-weight:400!important;
+  line-height:1.35!important;
+  letter-spacing:-.35px!important;
+  color:#475467!important;
+  max-width:640px!important;
+  margin:0!important
+}
+.ai-card p,.ai-bubble{
+  font-family:var(--font-primary)!important;
+  font-size:16px!important;
+  font-weight:400!important;
+  line-height:1.35!important;
+  letter-spacing:-.35px!important
+}
+
+/* Casos de uso: composición de Humand, conservando el fondo de e-Sueldos */
+.ai-use-cases{
+  padding:66px 0 60px!important;
+  background:linear-gradient(110deg,#315DE8 0%,#233A8F 50%,#06101F 100%)!important
+}
+.ai-use-cases .wrap{width:min(calc(100% - 48px),1070px)!important}
+.ai-use-cases h2{
+  max-width:610px!important;
+  margin:0 auto!important;
+  font-family:var(--font-primary)!important;
+  font-size:38px!important;
+  font-weight:700!important;
+  line-height:1.08!important;
+  letter-spacing:-1.45px!important
+}
+.ai-use-cases > .wrap > p{
+  margin:20px 0 34px!important;
+  font-family:var(--font-primary)!important;
+  font-size:18px!important;
+  font-weight:400!important;
+  line-height:1.35!important;
+  letter-spacing:-.45px!important
+}
+.use-grid{grid-template-columns:repeat(3,1fr)!important;gap:31px!important}
+.use-card{
+  min-height:228px!important;
+  padding:24px 25px!important;
+  border-radius:18px!important;
+  box-shadow:none!important
+}
+.use-card i{
+  margin:0 0 16px!important;
+  font-family:var(--font-primary)!important;
+  font-size:42px!important;
+  font-weight:400!important;
+  line-height:1!important;
+  color:#6F88F1!important
+}
+.use-card h3{
+  margin:0 0 10px!important;
+  font-family:var(--font-primary)!important;
+  font-size:23px!important;
+  font-weight:600!important;
+  line-height:1.15!important;
+  letter-spacing:-.8px!important;
+  color:#475467!important
+}
+.use-card p{
+  margin:0!important;
+  font-family:var(--font-primary)!important;
+  font-size:16px!important;
+  font-weight:400!important;
+  line-height:1.45!important;
+  letter-spacing:-.25px!important;
+  color:#475467!important
+}
+
+/* Formulario con la escala y composición visual de Humand */
+.demo-form{background:#fff!important;padding:44px 0 96px!important;font-family:var(--font-primary)!important}
+.demo-shell{display:grid!important;grid-template-columns:340px 640px!important;gap:86px!important;align-items:start!important;justify-content:start!important;max-width:980px!important;margin:0 auto!important}
+.demo-copy{padding-top:6px!important}
+.demo-copy h2{width:380px!important;max-width:380px!important;margin:0 0 24px!important;font-family:var(--font-primary)!important;font-size:38px!important;font-weight:700!important;line-height:1.05!important;letter-spacing:-1.2px!important;color:#020617!important;text-align:left!important}
+.demo-copy p{max-width:310px!important;margin:0!important;font-family:var(--font-primary)!important;font-size:18px!important;font-weight:400!important;line-height:1.32!important;letter-spacing:-.4px!important;color:#475467!important}
+.demo-card{background:#F7F7F7!important;border:1px solid #E1E4E9!important;border-radius:12px!important;padding:56px 54px 52px!important}
+.demo-fields{width:100%!important;margin:0!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:22px 28px!important}
+.demo-field label{display:block!important;margin:0 0 8px!important;font-family:var(--font-primary)!important;font-size:12px!important;font-weight:500!important;line-height:1.2!important;letter-spacing:-.15px!important;color:#475467!important}
+.demo-field input,.demo-field select{width:100%!important;height:34px!important;border:1px solid #D7DCE5!important;border-radius:7px!important;background:#fff!important;padding:0 10px!important;font-family:var(--font-primary)!important;font-size:14px!important;font-weight:400!important;color:#344054!important;box-shadow:none!important}
+.demo-field select{appearance:none!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:right 10px center!important;background-size:14px!important;padding-right:30px!important}
+.phone-row{display:grid!important;grid-template-columns:58px 1fr!important;gap:8px!important}
+.captcha-box{grid-column:1/-1!important;width:210px!important;height:52px!important;background:#fff!important;border:1px solid #D7DCE5!important;display:flex!important;align-items:center!important;justify-content:center!important;color:#4A67EA!important;font-size:12px!important;font-weight:700!important}
+.demo-legal{grid-column:1/-1!important;margin:0!important;font-family:var(--font-primary)!important;font-size:10px!important;line-height:1.35!important;letter-spacing:-.1px!important;color:#667085!important}
+.demo-fields .demo{grid-column:1/-1!important;justify-self:start!important;width:auto!important;height:46px!important;padding:0 40px!important;margin:24px 0 0!important;border-radius:10px!important;background:#FF333E!important;color:#fff!important;border:1px solid #FF333E!important;font-family:var(--font-primary)!important;font-size:14px!important;font-weight:600!important;box-shadow:none!important}
+@media(max-width:767px){
+  .demo-form{padding:68px 0 76px!important}
+  .demo-shell{grid-template-columns:1fr!important;gap:34px!important}
+  .demo-copy h2{font-size:32px!important}
+  .demo-fields{grid-template-columns:1fr!important}
+  .demo-field.full{grid-column:auto!important}
+}
+@media(max-width:1100px){.hero-grid{width:auto!important;max-width:92vw!important;grid-template-columns:1fr!important;gap:34px!important}.hero-grid > div:first-child{transform:none!important}.hero-visual{width:100%!important;margin-top:34px!important}.hero-visual img{width:100%!important;max-width:460px!important}}
+@media(max-width:620px){.hero{padding-top:70px!important}.hero h1{font-size:36px!important}.image-copy{left:max(18px,calc(50% - 162px))!important;top:20px!important}.hero-visual .suite-card{position:static!important;transform:none!important;width:100%!important;margin-top:14px!important}.hero-visual{display:grid!important;min-height:auto!important}.hero .demo{width:100%!important}}
+
+.footer{position:relative!important;overflow:hidden!important;background:#0057FC!important;color:#fff!important;padding:56px 0 28px!important}
+.footer:before{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;background:rgba(93,174,239,.38)}
+.footer:after{content:"";position:absolute;left:42%;bottom:-180px;width:420px;height:420px;border-radius:50%;background:rgba(244,251,255,.14)}
+.footer .wrap{position:relative;z-index:1}.footer-top{display:grid;grid-template-columns:1.25fr repeat(4,1fr);gap:28px;border-bottom:1px solid rgba(255,255,255,.22);padding-bottom:40px}
+.footer-logo{height:38px;width:auto;margin-bottom:18px}.footer p{line-height:1.6;color:rgba(255,255,255,.9)!important}.footer h4{color:#fff!important;text-transform:uppercase;font-size:14px;font-weight:700;letter-spacing:.08em}.footer a{display:block;color:#fff!important;margin:10px 0;font-size:14px}.footer-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;font-size:13px;color:rgba(255,255,255,.82)!important}.nav-shell{position:relative!important;width:min(1140px,calc(100% - 24px))!important;margin:10px auto!important;border:1px solid var(--line)!important;border-radius:999px!important;background:#fff!important;box-shadow:0 12px 34px rgba(11,18,32,.06)!important}
+.nav{height:66px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;padding:0 30px!important;gap:28px!important}
+.logo img{width:170px!important;height:46px!important;object-fit:contain!important;object-position:left center!important}
+.nav-links{display:flex!important;align-items:center!important;gap:30px!important;flex:1!important}
+.nav-btn,.nav-link{border:0!important;background:transparent!important;font:inherit!important;font-size:14px!important;font-weight:700!important;line-height:20px!important;letter-spacing:-0.1px!important;color:#0046CC!important;text-transform:none!important;display:flex!important;align-items:center!important;gap:7px!important;cursor:pointer!important;padding:22px 0!important}
+.nav-btn svg{width:14px!important;height:14px!important;stroke:currentColor!important;fill:none!important;stroke-width:2.4!important;transition:.2s!important}
+.nav-actions{display:flex!important;align-items:center!important;gap:16px!important;flex-shrink:0!important}
+.nav-actions .demo{height:46px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;background:#FF333E!important;color:#fff!important;border:1px solid #FF333E!important;border-radius:16px!important;padding:0 28px!important;font-size:14px!important;font-weight:600!important;line-height:16.8px!important;letter-spacing:-0.5px!important;text-transform:none!important;transition:background .18s,color .18s,border-color .18s!important}
+.nav-actions .demo:hover{background:#fff!important;color:#FF333E!important;border-color:#FF333E!important}.topbar{position:absolute!important;top:0!important;left:0!important;right:0!important;z-index:90!important;background:#0057FC!important;color:#fff!important}
+.utility{position:absolute!important;top:0!important;left:0!important;right:0!important;background:transparent!important;border-bottom:0!important;z-index:95!important;pointer-events:none!important}
+.utility .wrap{height:34px!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:22px!important;color:#fff!important}
+.utility a{pointer-events:auto!important;color:#fff!important;font-size:13px!important;font-weight:400!important;line-height:22.8px!important;letter-spacing:0!important}
+.header{top:34px!important}.demo,.hero .demo,.nav-actions .demo,.ai-cta .demo,.demo-fields .demo,.calc-story-copy .demo,.access-actions .demo,.py-form-grid .demo,.leia-panel-copy .demo{height:46px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;background:#FF333E!important;color:#fff!important;border:1px solid #FF333E!important;border-radius:16px!important;padding:0 28px!important;font-size:14px!important;font-weight:600!important;line-height:16.8px!important;letter-spacing:-0.5px!important;text-transform:none!important;text-decoration:none!important;white-space:nowrap!important;width:auto!important;min-width:max-content!important;box-shadow:none!important;transition:background .18s,color .18s,border-color .18s!important}
+.demo:hover,.hero .demo:hover,.nav-actions .demo:hover,.ai-cta .demo:hover,.demo-fields .demo:hover,.calc-story-copy .demo:hover,.access-actions .demo:hover,.py-form-grid .demo:hover,.leia-panel-copy .demo:hover{background:#fff!important;color:#FF333E!important;border-color:#FF333E!important}/* Hero e-Sueldos global */
+.hero,.support-hero{position:relative!important;overflow:hidden!important;background:radial-gradient(ellipse at 62% 46%,rgba(93,174,239,.28) 0 22%,transparent 48%),linear-gradient(180deg,#0057FC 0%,#1768F7 52%,#5DAEEF 92%,#F4FBFF 100%)!important;color:#fff!important}
+.hero:before,.support-hero:before{content:"";position:absolute;right:-330px;bottom:-110px;width:520px;height:300px;border-radius:50% 50% 44% 56%;background:rgba(244,251,255,.18);box-shadow:-150px 58px 0 34px rgba(244,251,255,.11),-54px -34px 0 -22px rgba(244,251,255,.12);pointer-events:none}
+.hero:after,.support-hero:after{content:"";position:absolute;left:-120px;top:-80px;width:340px;height:200px;border-radius:52% 48% 55% 45%;background:rgba(244,251,255,.12);box-shadow:100px 36px 0 20px rgba(244,251,255,.08),205px 60px 0 -2px rgba(244,251,255,.06);pointer-events:none}
+.hero>* ,.support-hero>*{position:relative;z-index:1}
+.hero h1,.hero h1 em,.hero h1 strong,.hero-sub,.hero-grid > div:first-child p,.support-hero h1,.support-hero h1 em,.support-hero h1 strong,.support-hero .support-copy p{color:#fff!important}
+.hero-kicker,.hero-tags span,.chips span,.support-hero .eyebrow{background:rgba(255,255,255,.12)!important;border-color:rgba(255,255,255,.46)!important;color:#fff!important}
+</style>
+<style>
+.footer{position:relative!important;overflow:hidden!important;background:#0057FC!important;color:#fff!important;padding:56px 0 28px!important}
+.footer:before{content:""!important;position:absolute!important;right:-150px!important;top:-92px!important;width:360px!important;height:190px!important;border-radius:52% 48% 55% 45%!important;background:rgba(93,174,239,.34)!important;box-shadow:-92px 34px 0 18px rgba(93,174,239,.18),-164px 62px 0 -8px rgba(244,251,255,.10)!important;pointer-events:none!important}
+.footer:after{content:""!important;position:absolute!important;left:42%!important;bottom:-95px!important;width:360px!important;height:190px!important;border-radius:50% 50% 44% 56%!important;background:rgba(244,251,255,.13)!important;box-shadow:-105px 36px 0 24px rgba(244,251,255,.08),78px -24px 0 -18px rgba(244,251,255,.10)!important;pointer-events:none!important}
+.footer .wrap{position:relative!important;z-index:1!important}
+.footer .wrap:before{content:""!important;position:absolute!important;left:-170px!important;top:-82px!important;width:330px!important;height:178px!important;border-radius:52% 48% 55% 45%!important;background:rgba(244,251,255,.11)!important;box-shadow:92px 34px 0 18px rgba(244,251,255,.07),165px 54px 0 -10px rgba(93,174,239,.12)!important;pointer-events:none!important}
+.footer-top{display:grid!important;grid-template-columns:1.25fr repeat(4,1fr)!important;gap:28px!important;border-bottom:1px solid rgba(255,255,255,.22)!important;padding-bottom:40px!important}
+.footer-logo{height:38px!important;width:auto!important;margin-bottom:18px!important}
+.footer p{line-height:18.2px!important;color:rgba(255,255,255,.9)!important;font-size:14px!important;font-weight:400!important;letter-spacing:-0.84px!important}
+.footer h4{color:#fff!important;text-transform:none!important;font-size:14px!important;font-weight:700!important;line-height:18.2px!important;letter-spacing:-0.84px!important}
+.footer a{display:block!important;color:#fff!important;margin:10px 0!important;font-size:14px!important;font-weight:400!important;line-height:18.2px!important;letter-spacing:-0.84px!important;text-decoration:none!important}
+.footer-bottom{display:flex!important;justify-content:space-between!important;gap:16px!important;flex-wrap:wrap!important;padding-top:24px!important;font-size:14px!important;font-weight:400!important;line-height:18.2px!important;letter-spacing:-0.84px!important;color:rgba(255,255,255,.82)!important}
+@media(max-width:980px){.footer-top{grid-template-columns:1fr 1fr!important}}
+@media(max-width:620px){.footer-top{grid-template-columns:1fr!important}}
+</style>
+<style>
+/* Hero Portal Liquidacion replicado */
+.hero,.support-hero{position:relative!important;overflow:hidden!important;background:radial-gradient(ellipse at 62% 46%,rgba(93,174,239,.28) 0 22%,transparent 48%),linear-gradient(180deg,#0057FC 0%,#1768F7 52%,#5DAEEF 92%,#F4FBFF 100%)!important;color:#fff!important}
+.hero:before,.support-hero:before{content:""!important;position:absolute!important;right:-300px!important;bottom:-118px!important;width:500px!important;height:268px!important;border-radius:54% 46% 50% 50%!important;background:rgba(244,251,255,.15)!important;box-shadow:-96px 50px 0 24px rgba(244,251,255,.085),-188px 78px 0 -4px rgba(244,251,255,.06),-70px -34px 0 -10px rgba(244,251,255,.075),-248px 38px 0 12px rgba(244,251,255,.045)!important;pointer-events:none!important}
+.hero:after,.support-hero:after{content:""!important;position:absolute!important;left:-138px!important;top:-70px!important;width:330px!important;height:178px!important;border-radius:54% 46% 52% 48%!important;background:rgba(244,251,255,.105)!important;box-shadow:78px 40px 0 20px rgba(244,251,255,.07),152px 64px 0 -8px rgba(244,251,255,.048),48px -24px 0 -8px rgba(244,251,255,.065)!important;pointer-events:none!important}
+.hero>* ,.support-hero>*{position:relative!important;z-index:1!important}
+.hero h1,.hero h1 em,.hero h1 strong,.hero h2,.hero p,.hero-sub,.hero-copy p,.hero-grid > div:first-child p,.support-hero h1,.support-hero h1 em,.support-hero h1 strong,.support-hero h2,.support-hero p,.support-hero .support-copy p{color:#fff!important}
+.hero-kicker,.hero-tags span,.chips span,.support-hero .eyebrow{background:rgba(255,255,255,.12)!important;border-color:rgba(255,255,255,.46)!important;color:#fff!important}
+</style>
+<style>
+.demo-form{position:relative!important;overflow:hidden!important;background:radial-gradient(ellipse at 20% 22%,rgba(244,251,255,.12) 0 12%,transparent 28%),radial-gradient(ellipse at 76% 76%,rgba(244,251,255,.16) 0 14%,transparent 32%),radial-gradient(ellipse at 54% 48%,rgba(93,174,239,.26) 0 18%,transparent 46%),linear-gradient(180deg,#0057FC 0%,#1768F7 58%,#5DAEEF 100%)!important;color:#fff!important}
+.demo-form:before{content:"";position:absolute;right:-174px!important;bottom:-72px!important;width:340px!important;height:180px!important;border-radius:54% 46% 50% 50%!important;background:rgba(244,251,255,.125)!important;box-shadow:-76px 44px 0 20px rgba(244,251,255,.07),-160px 70px 0 -8px rgba(244,251,255,.05),-52px -26px 0 -10px rgba(244,251,255,.07),-212px 38px 0 8px rgba(244,251,255,.04)!important;pointer-events:none}
+.demo-form:after{content:"";position:absolute;left:-92px!important;top:-48px!important;width:250px!important;height:136px!important;border-radius:54% 46% 52% 48%!important;background:rgba(244,251,255,.105)!important;box-shadow:66px 36px 0 16px rgba(244,251,255,.06),134px 54px 0 -8px rgba(244,251,255,.044),36px -22px 0 -8px rgba(244,251,255,.06)!important;pointer-events:none}
+.demo-form .wrap{position:relative!important;z-index:1!important}
+.demo-form .wrap:before{content:"";position:absolute;right:18%;bottom:46px;width:230px;height:118px;border-radius:54% 46% 52% 48%;background:rgba(244,251,255,.06);box-shadow:62px 22px 0 9px rgba(244,251,255,.038),-40px 18px 0 7px rgba(244,251,255,.032),22px -18px 0 -9px rgba(244,251,255,.048);pointer-events:none;z-index:-1}
+.demo-form .wrap:after{content:"";position:absolute;left:12%;top:150px;width:205px;height:104px;border-radius:52% 48% 55% 45%;background:rgba(244,251,255,.052);box-shadow:56px 20px 0 8px rgba(244,251,255,.034),-36px 16px 0 6px rgba(244,251,255,.03),20px -16px 0 -9px rgba(244,251,255,.044);pointer-events:none;z-index:-1}
+.demo-form h2,.demo-form h2 strong,.demo-sub,.demo-field label{color:#fff!important}
+.demo-field input,.demo-field select{background:#fff!important;border-color:rgba(255,255,255,.72)!important;color:#344054!important}
+.demo-form{background:#fff!important;color:#020617!important}
+.demo-card{position:relative!important;overflow:hidden!important;background:radial-gradient(ellipse at 20% 22%,rgba(244,251,255,.12) 0 12%,transparent 28%),radial-gradient(ellipse at 76% 76%,rgba(244,251,255,.16) 0 14%,transparent 32%),radial-gradient(ellipse at 54% 48%,rgba(93,174,239,.26) 0 18%,transparent 46%),linear-gradient(180deg,#0057FC 0%,#1768F7 58%,#5DAEEF 100%)!important;border-color:rgba(255,255,255,.24)!important;color:#fff!important}
+.demo-card:before{content:"";position:absolute;right:-174px!important;bottom:-72px!important;width:340px!important;height:180px!important;border-radius:54% 46% 50% 50%!important;background:rgba(244,251,255,.125)!important;box-shadow:-76px 44px 0 20px rgba(244,251,255,.07),-160px 70px 0 -8px rgba(244,251,255,.05),-52px -26px 0 -10px rgba(244,251,255,.07)!important;pointer-events:none}
+.demo-card:after{content:"";position:absolute;left:-92px!important;top:-48px!important;width:250px!important;height:136px!important;border-radius:54% 46% 52% 48%!important;background:rgba(244,251,255,.105)!important;box-shadow:66px 36px 0 16px rgba(244,251,255,.06),134px 54px 0 -8px rgba(244,251,255,.044)!important;pointer-events:none}
+.demo-card form{position:relative!important;z-index:1!important}
+.demo-card .demo-field label,.demo-card .demo-legal,.demo-card .demo-legal a{color:#fff!important}
+.demo-card .demo-field input,.demo-card .demo-field select{background:#fff!important;border-color:rgba(255,255,255,.72)!important;color:#344054!important}
+.demo-form:before,.demo-form:after,.demo-form .wrap:before,.demo-form .wrap:after{display:none!important}
+.why-card{position:relative!important;overflow:hidden!important;background:radial-gradient(ellipse at 24% 18%,rgba(244,251,255,.12) 0 12%,transparent 30%),radial-gradient(ellipse at 86% 88%,rgba(244,251,255,.16) 0 14%,transparent 34%),linear-gradient(180deg,#0057FC 0%,#1768F7 58%,#5DAEEF 100%)!important;border:0!important;color:#fff!important;box-shadow:0 24px 60px rgba(0,87,252,.14)!important}
+.why-card:before{content:""!important;position:absolute!important;right:-70px!important;bottom:-42px!important;width:170px!important;height:86px!important;border-radius:54% 46% 50% 50%!important;background:rgba(244,251,255,.12)!important;box-shadow:-46px 24px 0 12px rgba(244,251,255,.065),-96px 36px 0 -8px rgba(244,251,255,.045)!important;pointer-events:none!important}
+.why-card > *{position:relative!important;z-index:1!important}
+.why-icon{background:rgba(255,255,255,.18)!important;color:#fff!important}
+.why-icon svg{stroke:#fff!important}
+.why-card h3,.why-card p{color:#fff!important}
+.demo-copy h2{color:#020617!important}
+.demo-copy p{color:#475467!important}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap"><span class="pill">Leia IA</span><span>Brief del ecosistema e-Sueldos.</span></div></div>
+
+<div class="utility"><div class="wrap"><a href="recursos-esueldos.html">Soporte</a><a href="log-in/recursos-humanos.html">Iniciar sesión</a></div></div>
+
+<header class="header">
+  <div class="nav-shell">
+    <nav class="nav">
+      <a class="logo" href="index-esueldos.html"><img src="fondo.png" alt="e-Sueldos"></a>
+      <div class="nav-links">
+        <div class="nav-item">
+          <button class="nav-btn">Producto <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="mega">
+            <div class="mega-side"><a class="active" href="producto-esueldos.html#liquidacion">Liquidación</a><a href="producto-esueldos.html#rrhh">Gestión de RR.HH.</a><a href="producto-esueldos.html#operaciones">Operaciones</a><a href="producto-esueldos.html#plataforma">Plataforma</a></div>
+            <div class="mega-main">
+              <a class="mega-card" href="e-sueldos-landing-completa.html"><span class="mega-icon">&check;</span><span><b>Portal Liquidación</b><small>Sueldos, convenios, recibos y reportes.</small></span></a>
+              <a class="mega-card" href="portal-rrhh-landing.html"><span class="mega-icon">&check;</span><span><b>Portal RRHH</b><small>Legajo, firma digital y autogestión.</small></span></a>
+              <a class="mega-card" href="control-horario-esueldos.html"><span class="mega-icon">&check;</span><span><b>Control Horario</b><small>Fichadas, turnos, GPS, QR y FaceID.</small></span></a>
+              <a class="mega-card" href="calculadora-horas-extras.html"><span class="mega-icon">&check;</span><span><b>Horas extras</b><small>Cálculo, trazabilidad y liquidación.</small></span></a>
+              <a class="mega-card" href="brief-esueldos.html"><span class="mega-icon">&check;</span><span><b>Leia IA</b><small>Asistente para consultas y automatización.</small></span></a>
+              <a class="mega-card" href="brief-esueldos.html#ecosistema-brief"><span class="mega-icon">&check;</span><span><b>Integraciones</b><small>Datos conectados entre módulos.</small></span></a>
+            </div>
+            <div class="mega-visual"><div class="mini-screen"><b>Liquidación · Junio</b><div class="mini-bar"></div><div class="mini-bar"></div><div class="mini-chart"><span style="height:45%"></span><span></span><span></span><span></span><span></span></div></div></div>
+          </div>
+        </div>
+        <div class="nav-item">
+          <button class="nav-btn">Soluciones <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="mega">
+            <div class="mega-side"><a class="active" href="pymes-esueldos.html">Por perfil</a><a href="e-sueldos-landing-completa.html">Por área</a><a href="portal-rrhh-landing.html">Por operación</a><a href="control-horario-esueldos.html">Por industria</a></div>
+            <div class="mega-main">
+              <a class="mega-card" href="pymes-esueldos.html"><span class="mega-icon">1</span><span><b>PyMEs</b><small>Liquidación y RR.HH. sin complejidad.</small></span></a>
+              <a class="mega-card" href="e-sueldos-landing-completa.html"><span class="mega-icon">2</span><span><b>Liquidadores</b><small>Cierre mensual, reportes y recibos.</small></span></a>
+              <a class="mega-card" href="portal-rrhh-landing.html"><span class="mega-icon">3</span><span><b>RR.HH.</b><small>Solicitudes, legajos y comunicación.</small></span></a>
+              <a class="mega-card" href="control-horario-esueldos.html"><span class="mega-icon">4</span><span><b>Operaciones</b><small>Equipos distribuidos y turnos.</small></span></a>
+            </div>
+            <div class="mega-visual"><div class="industry-badge">+40<br>casos de uso</div></div>
+          </div>
+        </div>
+        <a class="nav-link" href="brief-esueldos.html">e-Sueldos AI</a>
+        <div class="nav-item">
+          <button class="nav-btn">Recursos <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="mega">
+            <div class="mega-side"><a class="active" href="recursos-esueldos.html">Soporte</a><a href="calculadora-horas-extras.html">Calculadora horas extra</a><a href="brief-esueldos.html">Brief del ecosistema</a><a href="planes-esueldos.html">Planes</a></div>
+            <div class="mega-main">
+              <a class="mega-card" href="calculadora-horas-extras.html"><span class="mega-icon">&check;</span><span><b>Calculadora horas extra</b><small>Herramienta gratuita para Argentina.</small></span></a>
+              <a class="mega-card" href="brief-esueldos.html"><span class="mega-icon">i</span><span><b>Brief del ecosistema</b><small>Arquitectura, módulos y propuesta.</small></span></a>
+              <a class="mega-card" href="planes-esueldos.html"><span class="mega-icon">$</span><span><b>Planes</b><small>Comparación por tamaño y módulos.</small></span></a>
+            </div>
+            <div class="mega-visual"><div class="mini-screen"><b>Centro de recursos</b><div class="mini-bar"></div><div class="mini-bar"></div><div class="mini-bar"></div></div></div>
+          </div>
+        </div>
+        <div class="nav-item">
+          <button class="nav-btn">Nosotros <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="mega">
+            <div class="mega-side"><a class="active" href="nosotros-esueldos.html">e-Sueldos</a><a href="agendar-demo-esueldos.html">Contacto</a><a href="recursos-esueldos.html">Soporte</a><a href="planes-esueldos.html">Planes</a></div>
+            <div class="mega-main">
+              <a class="mega-card" href="nosotros-esueldos.html"><span class="mega-icon">e</span><span><b>Sobre e-Sueldos</b><small>Especialistas en gestión laboral argentina.</small></span></a>
+              <a class="mega-card" href="agendar-demo-esueldos.html"><span class="mega-icon">+</span><span><b>Hablemos</b><small>Conocé el producto con un asesor.</small></span></a>
+              <a class="mega-card" href="planes-esueldos.html"><span class="mega-icon">$</span><span><b>Planes</b><small>Comparación por tamaño y módulos.</small></span></a>
+            </div>
+            <div class="mega-visual"><div class="industry-badge">+20<br>años</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-actions"><a class="demo" href="agendar-demo-esueldos.html">Agenda una demo</a></div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============================================================
+       1. HERO
+       ============================================================ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="hero-kicker">Asistente de IA para RR.HH.</span>
+        <h1>Deja de buscar.<br>Pregúntale a Leia.</h1>
+        <p class="hero-sub">Leia es un asistente impulsado por IA que brinda respuestas instant&aacute;neas y confiables basadas en el conocimiento de tu empresa. Reduce consultas repetitivas, alivia la carga del equipo de RR.HH. y mejora la experiencia de todos los colaboradores.</p>
+        <div class="hero-actions">
+          <a class="demo" href="agendar-demo-esueldos.html">Agenda una demo</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <video src="leia-esueldos.mp4" autoplay muted loop playsinline aria-label="Video de Leia e-Sueldos"></video>
+      </div>
+    </div>
+  </section>
+
+  <section class="logos">
+    <div class="wrap">
+      <h2>Con la confianza de m&aacute;s de <strong>500 empresas</strong></h2>
+      <p>Organizaciones que conectan sueldos, RR.HH. y novedades con e-Sueldos.</p>
+      <div class="logo-marquee">
+        <div class="logo-track">
+          <a class="logo-tile" href="https://www.cerveceriaandes.com/" target="_blank" rel="noopener">Andes</a>
+          <a class="logo-tile" href="https://www.pirelli.com/" target="_blank" rel="noopener">Pirelli</a>
+          <a class="logo-tile" href="https://www.lumen.com/" target="_blank" rel="noopener">Lumen</a>
+          <a class="logo-tile" href="https://www.ogilvy.com/" target="_blank" rel="noopener">Ogilvy</a>
+          <a class="logo-tile" href="https://www.pecom.com.ar/" target="_blank" rel="noopener">Pecom</a>
+          <a class="logo-tile" href="https://securion.com.ar/" target="_blank" rel="noopener">Securion</a>
+          <a class="logo-tile" href="https://www.gestamp.com/" target="_blank" rel="noopener">Gestamp</a>
+          <a class="logo-tile" href="https://www.franui.store/es/" target="_blank" rel="noopener">Franu&iacute;</a>
+          <a class="logo-tile" href="https://www.cerveceriaandes.com/" target="_blank" rel="noopener">Andes</a>
+          <a class="logo-tile" href="https://www.pirelli.com/" target="_blank" rel="noopener">Pirelli</a>
+          <a class="logo-tile" href="https://www.lumen.com/" target="_blank" rel="noopener">Lumen</a>
+          <a class="logo-tile" href="https://www.ogilvy.com/" target="_blank" rel="noopener">Ogilvy</a>
+          <a class="logo-tile" href="https://www.pecom.com.ar/" target="_blank" rel="noopener">Pecom</a>
+          <a class="logo-tile" href="https://securion.com.ar/" target="_blank" rel="noopener">Securion</a>
+          <a class="logo-tile" href="https://www.gestamp.com/" target="_blank" rel="noopener">Gestamp</a>
+          <a class="logo-tile" href="https://www.franui.store/es/" target="_blank" rel="noopener">Franu&iacute;</a>
+        </div>
+        <div class="logo-track reverse">
+          <a class="logo-tile" href="https://www.hospitalitaliano.org.ar/" target="_blank" rel="noopener">Hospital Italiano</a>
+          <a class="logo-tile" href="https://corporate.arcelormittal.com/" target="_blank" rel="noopener">ArcelorMittal</a>
+          <a class="logo-tile" href="https://www.viva.com.ar/" target="_blank" rel="noopener">Viva</a>
+          <a class="logo-tile" href="https://www.grupowerthein.com/" target="_blank" rel="noopener">Werthein</a>
+          <a class="logo-tile" href="https://www.llaollao.com/" target="_blank" rel="noopener">Llao Llao</a>
+          <a class="logo-tile" href="https://www.vicentelopez.gov.ar/" target="_blank" rel="noopener">Vicente L&oacute;pez</a>
+          <a class="logo-tile" href="pymes-esueldos.html">Retail</a>
+          <a class="logo-tile" href="pymes-esueldos.html">Industria</a>
+          <a class="logo-tile" href="https://www.hospitalitaliano.org.ar/" target="_blank" rel="noopener">Hospital Italiano</a>
+          <a class="logo-tile" href="https://corporate.arcelormittal.com/" target="_blank" rel="noopener">ArcelorMittal</a>
+          <a class="logo-tile" href="https://www.viva.com.ar/" target="_blank" rel="noopener">Viva</a>
+          <a class="logo-tile" href="https://www.grupowerthein.com/" target="_blank" rel="noopener">Werthein</a>
+          <a class="logo-tile" href="https://www.llaollao.com/" target="_blank" rel="noopener">Llao Llao</a>
+          <a class="logo-tile" href="https://www.vicentelopez.gov.ar/" target="_blank" rel="noopener">Vicente L&oacute;pez</a>
+          <a class="logo-tile" href="pymes-esueldos.html">Retail</a>
+          <a class="logo-tile" href="pymes-esueldos.html">Industria</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why-leia">
+    <div class="wrap">
+      <h2>&iquest;Por qu&eacute; los equipos eligen <strong>Leia?</strong></h2>
+      <div class="why-grid">
+        <article class="why-card"><span class="why-icon"><svg viewBox="0 0 24 24"><path d="M8 11h8M8 15h5"/><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3h-5l-5 3v-3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h12Z"/></svg></span><h3>Los empleados obtienen respuestas en segundos</h3><p>Hac&eacute; una pregunta y obten&eacute; respuestas instant&aacute;neas, sin buscar ni esperar.</p></article>
+        <article class="why-card"><span class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v5l3 2"/></svg></span><h3>Ahorra horas cada semana</h3><p>Reduce las consultas repetitivas para que RR.HH. se enfoque en tareas estrat&eacute;gicas.</p></article>
+        <article class="why-card"><span class="why-icon"><svg viewBox="0 0 24 24"><path d="M6 5h12v14H6z"/><path d="M9 9h6M9 13h4"/></svg></span><h3>Respuestas con conocimiento</h3><p>Brinda acceso instant&aacute;neo a pol&iacute;ticas, procedimientos y documentos.</p></article>
+        <article class="why-card"><span class="why-icon"><svg viewBox="0 0 24 24"><path d="M7 7a7 7 0 0 1 10 0l2 2"/><path d="M19 4v5h-5"/><path d="M17 17a7 7 0 0 1-10 0l-2-2"/><path d="M5 20v-5h5"/></svg></span><h3>Disponible 24/7, donde sea que ocurra el trabajo</h3><p>Apoya a equipos y colaboradores desde cualquier dispositivo.</p></article>
+        <article class="why-card"><span class="why-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="11" cy="17" r="2"/></svg></span><h3>Personalizable y f&aacute;cil de configurar</h3><p>Configura el conocimiento, tono y comportamiento de Leia sin expertos.</p></article>
+        <article class="why-card"><span class="why-icon"><svg viewBox="0 0 24 24"><path d="M5 17 10 12l4 4 5-7"/><path d="M15 9h4v4"/></svg></span><h3>Mejora continua</h3><p>Aprende de cada consulta y mantiene la base de conocimiento actualizada.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="leia-tabs">
+    <div class="wrap">
+      <div class="leia-tab-nav" role="tablist">
+        <button class="active" type="button" data-leia-tab="0">Configuraci&oacute;n</button>
+        <button type="button" data-leia-tab="1">Respuestas</button>
+        <button type="button" data-leia-tab="2">Conocimiento</button>
+        <button type="button" data-leia-tab="3">Insights</button>
+      </div>
+
+      <div class="leia-panel active" data-leia-panel="0">
+        <div class="leia-panel-copy">
+          <h2>Crea un asistente de IA que refleje a tu empresa</h2>
+          <p>Sube el conocimiento de tu empresa, personaliza el nombre, el tono y el comportamiento de Leia, y define c&oacute;mo responde a los colaboradores.</p>
+          <ul class="leia-checks"><li>Implementaci&oacute;n r&aacute;pida.</li><li>Conocimiento confiable en cada respuesta.</li><li>No requiere programaci&oacute;n ni experiencia t&eacute;cnica.</li></ul>
+          <a class="demo" href="agendar-demo-esueldos.html">Agenda una demo</a>
+        </div>
+        <div class="leia-visual"><img class="leia-photo" src="assets/hero-suite.png" alt="Configuraci&oacute;n de Leia"><div class="leia-ui-card leia-chat-card">Configur&aacute; el tono, conocimiento y comportamiento de Leia.</div></div>
+      </div>
+
+      <div class="leia-panel" data-leia-panel="1">
+        <div class="leia-panel-copy">
+          <h2>Obten&eacute; respuestas al instante con una simple conversaci&oacute;n</h2>
+          <p>Los colaboradores ya no necesitan buscar informaci&oacute;n. Solo preguntan y Leia responde con informaci&oacute;n confiable basada en el conocimiento de tu empresa.</p>
+          <ul class="leia-checks"><li>Conocimiento confiable en cada respuesta.</li><li>Disponible en cualquier momento, desde computadora y dispositivos m&oacute;viles.</li></ul>
+          <a class="demo" href="agendar-demo-esueldos.html">Agenda una demo</a>
+        </div>
+        <div class="leia-visual"><img class="leia-photo" src="assets/hero-rrhh.png" alt="Leia responde consultas de RR.HH."><div class="leia-ui-card leia-chat-card">&iexcl;Hola Leia! &iquest;Pod&eacute;s decirme cu&aacute;ndo se actualiza mi saldo de vacaciones?</div></div>
+      </div>
+
+      <div class="leia-panel" data-leia-panel="2">
+        <div class="leia-panel-copy">
+          <h2>Transforma documentos en respuestas confiables</h2>
+          <p>Leia convierte tu documentaci&oacute;n en una fuente &uacute;nica de informaci&oacute;n confiable para que los colaboradores encuentren respuestas al instante.</p>
+          <ul class="leia-checks"><li>Pol&iacute;ticas y procedimientos siempre al alcance.</li><li>Manuales y gu&iacute;as para empleados en un solo lugar.</li><li>Documentos convertidos en respuestas confiables.</li></ul>
+          <a class="demo" href="agendar-demo-esueldos.html">Agenda una demo</a>
+        </div>
+        <div class="leia-visual"><img class="leia-photo" src="assets/hero-liquidacion.png" alt="Conocimiento conectado con Leia"><div class="leia-ui-card leia-chat-card left">La licencia por maternidad incluye 3 meses consecutivos con goce de sueldo.</div></div>
+      </div>
+
+      <div class="leia-panel" data-leia-panel="3">
+        <div class="leia-panel-copy">
+          <h2>Aprende de cada interacci&oacute;n</h2>
+          <p>Cada conversaci&oacute;n revela lo que m&aacute;s necesitan los colaboradores, identifica brechas de conocimiento y mejora continuamente tu documentaci&oacute;n.</p>
+          <ul class="leia-checks"><li>Informaci&oacute;n &uacute;til para optimizar el soporte interno.</li><li>Brechas de conocimiento para mejorar documentos.</li><li>Mejora continua impulsada por conversaciones reales.</li></ul>
+          <a class="demo" href="agendar-demo-esueldos.html">Agenda una demo</a>
+        </div>
+        <div class="leia-visual"><img class="leia-photo" src="assets/hero-leia.png" alt="Insights de Leia"><div class="leia-ui-card leia-alert">Informaci&oacute;n faltante detectada</div></div>
+      </div>
+
+      <div class="leia-steps-title">
+        <h2>Tu asistente de trabajo, en cada paso</h2>
+        <p>Desde responder preguntas cotidianas hasta ayudar a los equipos a mantenerse productivos, Leia apoya a los colaboradores donde sea que trabajen.</p>
+      </div>
+      <div class="leia-work-grid">
+        <article class="leia-work-card">
+          <div class="leia-work-visual"><span class="leia-mini-badge one">Dejame buscar tu &uacute;ltimo recibo</span><span class="leia-mini-badge two">Te quedan 12 d&iacute;as de vacaciones hasta el 31 de diciembre.</span><span class="leia-mini-dot one">AI</span></div>
+          <h3>Los empleados se mantienen productivos</h3>
+          <p>Encuentra respuestas confiables al instante para que el trabajo nunca se detenga.</p>
+        </article>
+        <article class="leia-work-card">
+          <div class="leia-work-visual"><span class="leia-mini-badge three">Ayudame con...</span><span class="leia-mini-badge four">Hola Leia, &iquest;pod&eacute;s enviarme mi &uacute;ltimo recibo de pago?</span></div>
+          <h3>Los equipos se mantienen enfocados</h3>
+          <p>Reduce las consultas repetitivas para que RR.HH., IT y soporte se concentren en tareas de mayor valor.</p>
+        </article>
+        <article class="leia-work-card">
+          <div class="leia-work-visual"><span class="leia-mini-badge five">Hola Leia, &iquest;cu&aacute;l es el proceso de mi equipo?</span><span class="leia-mini-badge six">No ten&eacute;s acceso a esa informaci&oacute;n seg&uacute;n tus permisos.</span><span class="leia-mini-dot two">AI</span></div>
+          <h3>Dise&ntilde;ado para un acceso seguro</h3>
+          <p>Leia solo responde con informaci&oacute;n que cada colaborador tiene permiso para consultar.</p>
+        </article>
+      </div>
+      <div class="leia-integrated">
+        <br>
+        <h2>Integrado en la experiencia e-Sueldos</h2>
+        <p>Leia est&aacute; integrado en e-Sueldos y brinda acceso instant&aacute;neo al conocimiento de tu empresa, sin salir de la plataforma.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="leia-faq">
+    <div class="wrap leia-faq-grid">
+      <div>
+        <h2>Preguntas frecuentes</h2>
+        <p>Resuelve las dudas m&aacute;s comunes sobre el funcionamiento, la configuraci&oacute;n y la seguridad de Leia.</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item"><summary>&iquest;Leia puede reemplazar a mi equipo de RR.HH. o de soporte?</summary><div>No. Leia reduce consultas repetitivas y ayuda a responder m&aacute;s r&aacute;pido, pero permite escalar a una persona cuando el caso lo requiere.</div></details>
+        <details class="faq-item"><summary>&iquest;Cu&aacute;l es la diferencia entre Leia y un chatbot de IA gen&eacute;rico?</summary><div>Leia trabaja con el conocimiento y los datos conectados de e-Sueldos, por eso responde con contexto laboral real.</div></details>
+        <details class="faq-item"><summary>&iquest;Puedo controlar a qu&eacute; informaci&oacute;n pueden acceder los colaboradores?</summary><div>S&iacute;. Las respuestas respetan permisos, roles y alcance de informaci&oacute;n definido para cada colaborador.</div></details>
+        <details class="faq-item"><summary>&iquest;La informaci&oacute;n de mi empresa est&aacute; segura?</summary><div>S&iacute;. Leia opera dentro del ecosistema e-Sueldos y mantiene trazabilidad sobre las consultas y respuestas.</div></details>
+        <details class="faq-item"><summary>&iquest;Leia es compatible con m&uacute;ltiples idiomas?</summary><div>Puede responder en lenguaje claro y adaptarse al tono definido por la empresa.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-form">
+    <div class="wrap demo-shell">
+      <div class="demo-copy">
+        <h2>&iquest;Listo para conocer a tu nuevo asistente de trabajo?</h2>
+        <p>Descubre c&oacute;mo Leia simplifica el trabajo diario en toda tu organizaci&oacute;n.</p>
+      </div>
+      <div class="demo-card">
+        <form class="demo-fields">
+          <div class="demo-field"><label>Nombre<span>*</span></label><input type="text"></div>
+          <div class="demo-field"><label>Apellido<span>*</span></label><input type="text"></div>
+          <div class="demo-field full"><label>Email empresarial<span>*</span></label><input type="email"></div>
+          <div class="demo-field"><label>Nombre de la empresa<span>*</span></label><input type="text"></div>
+          <div class="demo-field"><label>Cantidad de empleados<span>*</span></label><select><option></option><option>1 a 50</option><option>51 a 200</option><option>201 a 500</option><option>+500</option></select></div>
+          <div class="demo-field"><label>Pa&iacute;s<span>*</span></label><select><option></option><option>Argentina</option></select></div>
+          <div class="demo-field"><label>N&uacute;mero de tel&eacute;fono</label><div class="phone-row"><select><option>AR</option></select><input type="tel" value="+54"></div></div>
+          <div class="demo-field full"><label>&iquest;C&oacute;mo nos conociste?<span>*</span></label><select><option>LinkedIn</option><option>Google</option><option>Referido</option></select></div>
+          <p class="demo-legal">Al enviar este formulario, aceptas los T&eacute;rminos y Condiciones de e-Sueldos y reconoces que tus datos ser&aacute;n procesados para gestionar tu solicitud y evaluar una posible colaboraci&oacute;n.</p>
+          <button class="demo" type="submit">Agenda una demo</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap"><div class="footer-top"><div><img class="footer-logo" src="fondoBlanco.png" alt="e-Sueldos"><p>Payroll + RR.HH. impulsados por Leia. El ecosistema de gestión humana para empresas y organismos públicos de Argentina.</p></div><div><h4>Producto</h4><a href="e-sueldos-landing-completa.html">Portal Liquidación</a><a href="portal-rrhh-landing.html">Portal RRHH</a><a href="control-horario-esueldos.html">Control Horario</a><a href="brief-esueldos.html">Leia IA</a></div><div><h4>Soluciones</h4><a href="planes-esueldos.html">Por perfil</a><a href="portal-rrhh-landing.html">Por área</a><a href="pymes-esueldos.html">Por industria</a><a href="planes-esueldos.html">Planes</a></div><div><h4>Recursos</h4><a href="calculadora-horas-extras.html">Calculadora</a><a href="brief-esueldos.html">Brief</a><a href="recursos-esueldos.html">Soporte</a><a href="agendar-demo-esueldos.html">Demo</a></div><div><h4>Contacto</h4><a href="#">hola@e-sueldos.com</a><a href="#">+54 9 11 7110 3105</a><a href="#">Lun a Vie · 9 a 17 hs</a></div></div><div class="footer-bottom"><span>© 2026 e-Sueldos. Todos los derechos reservados.</span><span>Términos · Privacidad · Media Kit</span></div></div>
+</footer>
+
+<script>
+document.querySelectorAll(".mega").forEach((mega)=>{
+  const sideLinks=[...mega.querySelectorAll(".mega-side a")];
+  const main=mega.querySelector(".mega-main");
+  if(!sideLinks.length||!main) return;
+  const sideText=sideLinks.map((link)=>link.textContent.trim().toLowerCase());
+  const isResources=sideText.includes("calculadora horas extra")&&sideText.includes("brief del ecosistema");
+  const isAbout=sideText.includes("e-sueldos")&&sideText.includes("contacto")&&sideText.includes("planes");
+  if(isResources||isAbout){
+    const supportHref=sideLinks.find((link)=>link.textContent.trim().toLowerCase()==="soporte")?.href||"recursos-esueldos.html";
+    main.insertAdjacentHTML("beforeend",`<a class="mega-card" href="${supportHref}"><span class="mega-icon">&check;</span><span><b>Soporte</b><small>Centro de recursos y ayuda e-Sueldos.</small></span></a>`);
+  }
+  const cards=[...main.querySelectorAll(".mega-card")];
+  cards.forEach((card)=>{
+    const title=card.querySelector("b")?.textContent.trim().toLowerCase();
+    if(title==="brief del ecosistema"||title==="sobre e-sueldos") card.querySelector(".mega-icon").innerHTML="&check;";
+  });
+  if(!cards.length) return;
+  const supportIndex=cards.length-1;
+  const groups=isResources?[[supportIndex],[0],[1],[2]]:isAbout?[[0],[1],[supportIndex],[2]]:cards.length===6?[[0,3],[1,4],[2,3],[4,5]]:[[0],[1],[2],[3]];
+  const showGroup=(index)=>{
+    sideLinks.forEach((link,i)=>link.classList.toggle("active",i===index));
+    cards.forEach((card,i)=>card.style.display=groups[index]?.includes(i)?"grid":"none");
+  };
+  sideLinks.forEach((link,index)=>link.addEventListener("mouseenter",()=>showGroup(index)));
+  mega.closest(".nav-item")?.addEventListener("mouseenter",()=>showGroup(sideLinks.findIndex((link)=>link.classList.contains("active"))||0));
+});
+
+document.querySelectorAll("[data-leia-tab]").forEach((tab)=>{
+  tab.addEventListener("click",()=>{
+    const index=tab.dataset.leiaTab;
+    document.querySelectorAll("[data-leia-tab]").forEach((item)=>item.classList.toggle("active",item===tab));
+    document.querySelectorAll("[data-leia-panel]").forEach((panel)=>panel.classList.toggle("active",panel.dataset.leiaPanel===index));
+  });
+});
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

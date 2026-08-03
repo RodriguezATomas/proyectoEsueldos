@@ -1,0 +1,64 @@
+PÁGINA PILOTO: index-esueldos.html
+
+ORDEN DE LOS WIDGETS HTML
+1. bloques/01-header.html — barra superior, navegación y megamenús.
+2. bloques/02-hero.html — hero principal y video.
+3. bloques/03-logos-empresas.html — logos y confianza.
+4. bloques/04-inteligencia-artificial.html — cards de Leia/IA.
+5. bloques/05-equipos-distribuidos.html — aplicación móvil.
+6. bloques/06-resultados.html — métricas y resultados.
+7. bloques/07-modulos.html — módulos del producto.
+8. bloques/08-testimonios.html — slider de testimonios.
+9. bloques/99-footer.html — pie de página.
+
+CSS GLOBAL
+Cargar css/estilos.css una sola vez, después del CSS de Elementor, mediante el tema hijo, Elementor Custom Code o un plugin de CSS personalizado. No pegarlo dentro de cada widget.
+
+JAVASCRIPT GLOBAL
+Cargar js/scripts.js una sola vez al final del body/defer mediante Elementor Custom Code o el tema hijo. El script conserva el comportamiento original de megamenús y testimonios.
+
+CONFIGURACIÓN DE ELEMENTOR
+- Usar una página de ancho completo, preferentemente Elementor Canvas para evitar header/footer duplicados.
+- Crear un contenedor por bloque, todos en ancho completo (100%).
+- Establecer margin, padding, gap y separación entre widgets en 0.
+- No aplicar ancho máximo, fondo, tipografía, borde ni efectos desde Elementor.
+- Mantener los widgets en el orden indicado.
+- Desactivar el título de la página y cualquier espaciado automático del tema.
+
+DEPENDENCIAS Y ARCHIVOS A CONSERVAR
+- recursos-esueldos.html
+- log-in/recursos-humanos.html
+- index-esueldos.html
+- fondo.png
+- producto-esueldos.html#liquidacion
+- producto-esueldos.html#rrhh
+- producto-esueldos.html#operaciones
+- producto-esueldos.html#plataforma
+- e-sueldos-landing-completa.html
+- portal-rrhh-landing.html
+- control-horario-esueldos.html
+- calculadora-horas-extras.html
+- brief-esueldos.html
+- brief-esueldos.html#ecosistema-brief
+- pymes-esueldos.html
+- planes-esueldos.html
+- nosotros-esueldos.html
+- agendar-demo-esueldos.html
+- hero-esueldos.mp4
+- celular.png
+- celular2.png
+- fondoBlanco.png
+- ${supportHref}
+
+FUENTES EXTERNAS
+- Los @font-face y sus URLs originales permanecen dentro de css/estilos.css.
+
+RIESGOS DETECTADOS
+- Las rutas relativas de imágenes, videos y enlaces deben existir con la misma estructura en WordPress o resolverse desde el dominio correspondiente.
+- Elementor y el tema pueden agregar estilos globales a body, botones, enlaces y encabezados; por eso se recomienda Canvas y cero espaciado.
+- El header usa position:absolute y megamenús; debe cargarse antes del hero.
+- El slider requiere que scripts.js se cargue después de los bloques HTML.
+- El video autoplay depende de las políticas del navegador; conserva muted y playsinline.
+
+RESPALDO
+pagina-completa-original.html es una copia byte a byte del archivo piloto al momento de la separación.
