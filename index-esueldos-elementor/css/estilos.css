@@ -58,6 +58,7 @@ img,svg{display:block}
 .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:42px;align-items:center;justify-items:center;text-align:center}
 .hero h1{font-size:clamp(2.5rem,4.9vw,4.9rem);line-height:.98;letter-spacing:-.035em;margin:0;color:#fff;font-weight:900;max-width:860px}
 .hero h1 em{font-style:normal;color:#fff}
+.hero h1 em strong{display:inline-block;padding-bottom:.08em;line-height:1.04;background:linear-gradient(180deg,#fff 0%,#DFF2FF 34%,#7CC4FF 70%,#2F8FFF 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 3px 10px rgba(0,48,140,.42))}
 .hero-sub{font-size:21px;line-height:1.38;color:#fff;margin:28px auto 0;max-width:760px;font-weight:800}
 .hero-actions{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:30px;flex-wrap:wrap}
 .hero .demo{position:relative;overflow:hidden;height:54px;padding:0 36px;background:#FF333E;color:#fff;border:1px solid #FF333E;border-radius:16px;box-shadow:0 14px 36px rgba(255,51,62,.24);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
