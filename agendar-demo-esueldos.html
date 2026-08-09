@@ -162,9 +162,13 @@ button,input,select{font:inherit}
 .brief-extra-clouds .c5{animation-name:es-cloud-d;animation-duration:18s}
 body:before,.login-page:after{animation:es-cloud-a 25s ease-in-out infinite}
 body:after,.login-page:before{animation:es-cloud-c 20s ease-in-out infinite reverse}
-@keyframes es-rv{from{opacity:0;translate:0px var(--esrv-y,32px);scale:var(--esrv-s,1)}to{opacity:1;translate:0px 0px;scale:1}}
+@keyframes es-rv{
+  0%{opacity:0;translate:var(--esrv-x,0px) var(--esrv-y,32px);scale:var(--esrv-s,1);filter:blur(var(--esrv-b,0px))}
+  62%{opacity:1;translate:calc(var(--esrv-x,0px) * -0.08) calc(var(--esrv-y,32px) * -0.12);scale:calc(var(--esrv-s,1) + (1 - var(--esrv-s,1)) * 1.15);filter:blur(0px)}
+  100%{opacity:1;translate:0px 0px;scale:1;filter:blur(0px)}
+}
 [data-esrv]:not([data-esrv-on]){opacity:0}
-[data-esrv-on]{animation-name:es-rv;animation-timing-function:cubic-bezier(.16,1,.3,1);animation-fill-mode:backwards}
+[data-esrv-on]{animation-name:es-rv;animation-timing-function:cubic-bezier(.16,.8,.24,1);animation-fill-mode:backwards}
 }
 </style></head>
 <body>
@@ -296,12 +300,12 @@ if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matc
 var SUF=["-grid","-cards","-list","-stats","-benefits","-categories","-row","-tiles"];
 var BTN_CLASSES=["demo","submit","modules-more"];
 var ROLE={
-  title:{y:50,s:1,dur:900,delay:0},
-  text:{y:28,s:1,dur:850,delay:140},
-  media:{y:80,s:.95,dur:1100,delay:80},
-  button:{y:24,s:1,dur:750,delay:260},
-  card:{y:46,s:1,dur:850,delay:0},
-  block:{y:42,s:1,dur:850,delay:0}
+  title:{y:64,s:.92,b:9,dur:950,delay:0},
+  text:{y:38,s:.96,b:6,dur:850,delay:140},
+  media:{y:96,s:.9,b:10,dur:1150,delay:80},
+  button:{y:30,s:.9,b:4,dur:750,delay:260},
+  card:{y:58,s:.93,b:8,dur:900,delay:0},
+  block:{y:50,s:.95,b:6,dur:850,delay:0}
 };
 var CARD_STAGGER=110,CARD_STAGGER_CAP=770,MAX_DEPTH=6;
 function cls(el){return " "+((el.getAttribute&&el.getAttribute("class"))||"")+" ";}
@@ -359,6 +363,7 @@ function tagRole(el,role,delay){
   el.setAttribute("data-esrv",role);
   el.style.setProperty("--esrv-y",spec.y+"px");
   if(spec.s!==1)el.style.setProperty("--esrv-s",String(spec.s));
+  if(spec.b)el.style.setProperty("--esrv-b",spec.b+"px");
   el.style.animationDuration=spec.dur+"ms";
   el.__esDelay=delay!=null?delay:spec.delay;
   io.observe(el);
@@ -397,6 +402,7 @@ function cleanup(el){
   el.removeAttribute("data-esrv-on");
   el.style.removeProperty("--esrv-y");
   el.style.removeProperty("--esrv-s");
+  el.style.removeProperty("--esrv-b");
   el.style.removeProperty("animation-duration");
   el.style.removeProperty("animation-delay");
   if(!el.getAttribute("style"))el.removeAttribute("style");
@@ -427,6 +433,17 @@ function start(){
   }
 }
 if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",start);}else{start();}
+/* Salvaguarda: si el IntersectionObserver no revela un elemento que ya esta a la vista, se lo fuerza.
+   Solo actua sobre elementos dentro (o ya pasados) del viewport, para no arruinar la animacion progresiva
+   de elementos que todavia no llegaron a la pantalla. Corre en un intervalo, no una sola vez. */
+window.setInterval(function(){
+  var stuck=document.querySelectorAll("[data-esrv]:not([data-esrv-on])");
+  for(var s=0;s<stuck.length;s++){
+    var el=stuck[s];
+    var r=el.getBoundingClientRect();
+    if(r.top<window.innerHeight&&r.bottom>0){reveal(el);}
+  }
+},1200);
 }catch(e){}
 })();
 </script></body>
