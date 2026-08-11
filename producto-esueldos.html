@@ -156,9 +156,28 @@ img,svg{display:block}
 .story-points li b{font-weight:700}
 .story-visual{position:relative}
 .story-visual img{width:100%;display:block;border-radius:22px;box-shadow:0 28px 70px rgba(35,85,232,.16);filter:brightness(.66) saturate(.9)}
-.story-card{position:absolute;background:#fff;border:1px solid #DCE6FF;border-radius:14px;padding:14px 18px;box-shadow:0 18px 38px rgba(11,18,32,.12);color:#14215D;font-weight:900}
-.story-card small{display:block;color:#667085;margin-top:5px;font-size:11px}
-.story-card.one{left:-52px!important;top:30px!important}.story-card.two{right:-62px!important;top:40%!important}.story-card.three{right:-26px!important;bottom:-34px!important}
+.story-card{position:absolute;min-width:154px;background:rgba(255,255,255,.76);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(220,230,255,.85);border-radius:14px;padding:11px 13px;box-shadow:0 16px 36px rgba(11,18,32,.16);color:#14215D;animation:storyFloat 7s ease-in-out infinite}
+.story-card .pf-icon{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:2px;width:26px;height:26px;border-radius:8px;margin-bottom:7px;background:linear-gradient(145deg,#2355E8,#8FADFC);box-shadow:0 6px 14px rgba(35,85,232,.28)}
+.story-card .pf-icon--check:after{content:"";position:absolute;left:7px;top:8px;width:9px;height:5px;border-left:1.6px solid #fff;border-bottom:1.6px solid #fff;transform:rotate(-45deg)}
+.story-card .pf-icon--chart{align-items:flex-end;padding-bottom:5px}
+.story-card .pf-icon--chart em{display:block;width:3px;border-radius:1.5px;background:#fff}
+.story-card .pf-icon--chart em:nth-child(1){height:6px;opacity:.75}
+.story-card .pf-icon--chart em:nth-child(2){height:12px}
+.story-card .pf-icon--chart em:nth-child(3){height:9px;opacity:.9}
+.story-card .pf-icon--spark:after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:2.5px;height:13px;background:#fff;border-radius:2px}
+.story-card .pf-icon--spark:before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:13px;height:2.5px;background:#fff;border-radius:2px}
+.story-card .pf-icon--target:after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:13px;height:13px;border-radius:50%;border:1.6px solid #fff}
+.story-card .pf-icon--target:before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:4px;height:4px;border-radius:50%;background:#fff}
+.story-card .pf-icon--person:after{content:"";position:absolute;top:7px;left:50%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%;background:#fff}
+.story-card .pf-icon--person:before{content:"";position:absolute;bottom:5px;left:50%;transform:translateX(-50%);width:14px;height:7px;border-radius:8px 8px 0 0;background:#fff}
+.story-card .pf-icon--layers:after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:12px;height:3px;background:#fff;border-radius:2px;box-shadow:0 -5px 0 #fff,0 5px 0 #fff}
+.story-card b{display:block;font-size:12.5px;font-weight:900;line-height:1.25}
+.story-card .pf-status{display:inline-flex;align-items:center;gap:5px;margin-top:7px;padding:3px 8px;border-radius:999px;font-size:10px;font-weight:800}
+.story-card .pf-status i{width:5px;height:5px;border-radius:50%;background:currentColor;flex:none}
+.story-card .pf-status--ok{background:#E5F7ED;color:#14A25A}
+.story-card .pf-status--info{background:#EAF0FF;color:#2355E8}
+.story-card.one{left:-52px!important;top:30px!important}.story-card.two{right:-62px!important;top:40%!important;animation-delay:.6s}.story-card.three{right:-26px!important;bottom:-34px!important;animation-delay:1.2s}
+@keyframes storyFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
 /* ============================================================
    7. SECCIÓN OSCURA — plataforma / integraciones
@@ -835,8 +854,8 @@ body:after,.login-page:before{animation:es-cloud-c 20s ease-in-out infinite reve
         </div>
         <div class="story-visual">
           <img src="assets/hero-suite.png" alt="Base conectada e-Sueldos">
-          <div class="story-card one">Base laboral<small>Datos únicos</small></div>
-          <div class="story-card three">Reportes claros<small>Para decidir</small></div>
+          <div class="story-card one"><span class="pf-icon pf-icon--layers"></span><b>Base laboral</b><span class="pf-status pf-status--ok"><i></i>Datos únicos</span></div>
+          <div class="story-card three"><span class="pf-icon pf-icon--chart"><em></em><em></em><em></em></span><b>Reportes claros</b><span class="pf-status pf-status--info"><i></i>Para decidir</span></div>
         </div>
       </div>
       <div class="story-row reverse">
@@ -852,8 +871,8 @@ body:after,.login-page:before{animation:es-cloud-c 20s ease-in-out infinite reve
         </div>
         <div class="story-visual">
           <img src="assets/hero-suite.png" alt="Leia conectada a módulos">
-          <div class="story-card one">Leia IA<small>Consultas frecuentes</small></div>
-          <div class="story-card three">Soporte interno<small>Más autonomía</small></div>
+          <div class="story-card one"><span class="pf-icon pf-icon--spark"></span><b>Leia IA</b><span class="pf-status pf-status--info"><i></i>Consultas frecuentes</span></div>
+          <div class="story-card three"><span class="pf-icon pf-icon--target"></span><b>Soporte interno</b><span class="pf-status pf-status--ok"><i></i>Más autonomía</span></div>
         </div>
       </div>
       <div class="story-row">
@@ -869,8 +888,8 @@ body:after,.login-page:before{animation:es-cloud-c 20s ease-in-out infinite reve
         </div>
         <div class="story-visual">
           <img src="assets/hero-suite.png" alt="Módulos e-Sueldos">
-          <div class="story-card one">Liquidación<small>Cierre mensual</small></div>
-          <div class="story-card three">Portal RR.HH.<small>Autogestión</small></div>
+          <div class="story-card one"><span class="pf-icon pf-icon--check"></span><b>Liquidación</b><span class="pf-status pf-status--ok"><i></i>Cierre mensual</span></div>
+          <div class="story-card three"><span class="pf-icon pf-icon--person"></span><b>Portal RR.HH.</b><span class="pf-status pf-status--info"><i></i>Autogestión</span></div>
         </div>
       </div>
     </div>
