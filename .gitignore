@@ -1,0 +1,12 @@
+# Herramientas locales / config de Claude Code (no son parte del proyecto)
+.agents/
+.claude/
+skills-lock.json
+
+# Remotion: dependencias y build (se regeneran con npm install / npm run build)
+remotion-esueldos/node_modules/
+remotion-esueldos/out/
+
+# Sistema
+.DS_Store
+Thumbs.db
