@@ -1003,6 +1003,7 @@ body:after,.login-page:before{animation:es-cloud-c 20s ease-in-out infinite reve
 "use strict";
 var reduceMotion=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 if(reduceMotion)return;
+function __esHeroAtmosphereInit(){
 var targets=[].slice.call(document.querySelectorAll(".hero,.support-hero,.logos,.section,.footer,.demo-form,.py-form,.contact-form-side,.support-contact"));
 if(!targets.length)return;
 function ease(p){var s=p<0?-1:1,a=Math.abs(p);return s*(1-Math.pow(1-a,2.2));}
@@ -1044,6 +1045,8 @@ if(!raf)raf=window.requestAnimationFrame(loop);
 },{passive:true});
 hero.addEventListener("mouseleave",function(){tx=0;ty=0;if(!raf)raf=window.requestAnimationFrame(loop);},{passive:true});
 }
+}
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",__esHeroAtmosphereInit);}else{__esHeroAtmosphereInit();}
 })();
 </script>
 
