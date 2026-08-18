@@ -1103,6 +1103,14 @@ if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded"
 .hero .hero-grid>*,.support-hero .support-hero-grid>*{position:relative!important;z-index:1!important}
 </style>
 
+<style>
+/* Boton "Agenda una demo" del hero: mismo efecto que index-esueldos.html (brillo + elevacion + glow rojo) */
+.hero .demo{position:relative!important;overflow:hidden!important;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease!important}
+.hero .demo::before{content:"";position:absolute;inset:-2px auto -2px -55%;width:46%;background:linear-gradient(110deg,transparent,rgba(0,87,252,.16),transparent);transform:skewX(-18deg);transition:left .55s ease;pointer-events:none}
+.hero .demo:hover::before{left:115%}
+.hero .demo:hover{transform:translateY(-3px)!important;background:#FF333E!important;color:#fff!important;border-color:#FF333E!important;box-shadow:0 0 0 6px rgba(255,51,62,.22),0 18px 46px rgba(255,51,62,.45)!important}
+</style>
+
 </head>
 <body><div class="brief-extra-clouds" aria-hidden="true"><i class="__esueldos-cloud c1"></i><i class="__esueldos-cloud c2"></i><i class="__esueldos-cloud c3"></i><i class="__esueldos-cloud c4"></i><i class="__esueldos-cloud c5"></i></div>
 
